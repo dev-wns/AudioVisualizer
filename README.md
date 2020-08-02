@@ -12,8 +12,8 @@
 
 #### 개발 SDK
 
-DirectX11
+* DirectX11
 
-FModEx
+* FModEx
 
 ---

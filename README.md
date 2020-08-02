@@ -26,7 +26,7 @@
 </p> <div align="center"> < 안티앨리어싱 > </div>
   사각형을 기울여서 렌더링 했을 때 테두리가 계단현상 때문에 부자연스러웠습니다. <br>
   조금 찾아보다가 DirectX에 안티 앨리어싱이라는 기술이 있는 것을 보고 <br>
-  MSAA x4(multi sampling anti-aliasing)를 적용하여 계단현상을 해결해봤습니다. br>
+  MSAA x4(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. br>
 
 ### 240 fps 고정
 </p> <div align="center"> < 240 fps 고정 > </div>

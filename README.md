@@ -1,4 +1,4 @@
 # Audio Visualizer
-![keyboard cat](https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif)
-
-안녕하세요.
+<p align="center">
+  <img src="https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif">
+</p>

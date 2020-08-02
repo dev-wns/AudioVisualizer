@@ -1,11 +1,8 @@
 # Audio Visualizer
 <p align="center">
-  <img src="https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif">
+  <img src="https://postfiles.pstatic.net/MjAyMDA4MDNfMjE2/MDAxNTk2NDA0MjMyMTgy.j1OPvFJAEff-bg9MWmI3IanbpUMyloWcQ4YJTbX9Bysg.QHicYGb1AZSGgU1UrRhEVldWtDGHScN0xQ9rlN6aNYkg.JPEG.ashi0/bandicam_2020-08-03_06-36-20-919.jpg?type=w966">
 </p>
 
-<center>가운데</center>  
-<div style="text-align: left"> 왼쪽 </div>
-<div style="text-align: right"> 오른쪽 </div>
 
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:

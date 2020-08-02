@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Core</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\\..\\Output\\$(ProjectName)_d\\</OutDir>
+    <IntDir>..\\..\\Output\\$(ProjectName)_d\\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\\..\\Output\\$(ProjectName)\\</OutDir>
+    <IntDir>..\\..\\Output\\$(ProjectName)\\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderFile>StdAfx.hpp</PrecompiledHeaderFile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableSpecificWarnings>4006; 4221</DisableSpecificWarnings>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>md "..\\..\\Include\\$(TargetName)"
+md "..\\..\\Lib\\$(TargetName)"
+
+copy "*.h" "..\\..\\Include\\$(TargetName)"
+copy "*.hpp" "..\\..\\Include\\$(TargetName)"
+copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
+</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>md "..\\..\\Include\\$(TargetName)"
+md "..\\..\\Lib\\$(TargetName)"
+
+copy "*.h" "..\\..\\Include\\$(TargetName)"
+copy "*.hpp" "..\\..\\Include\\$(TargetName)"
+copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\audiodefs.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\comdecl.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2D1.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2D1Helper.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2DBaseTypes.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2Derr.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10effect.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d10misc.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d10sdklayers.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10shader.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10_1.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10_1shader.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D11SDKLayers.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D11Shader.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9caps.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9types.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3Dcommon.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3Dcompiler.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DCSX.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx10async.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10core.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10mesh.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10tex.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11async.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11core.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11tex.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9anim.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9core.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9effect.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9math.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9mesh.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9shader.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9shape.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9tex.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9xof.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\Dcommon.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dinput.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dinputd.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsconf.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsetup.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsound.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DWrite.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxdiag.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DxErr.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxfile.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DXGI.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DXGIFormat.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxsdkver.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\gameux.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\PIXPlugin.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rmxfguid.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rmxftmpl.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rpcsal.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\X3DAudio.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3d3.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3wb.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPO.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPOBase.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPOFX.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAudio2.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAudio2fx.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XDSP.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XInput.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xma2defs.h" />
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xnamath.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.hpp" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_codec.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_dsp.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_errors.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_memoryinfo.h" />
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_output.h" />
+    <ClInclude Include="BaseMath.hpp" />
+    <ClInclude Include="BaseVector.hpp" />
+    <ClInclude Include="BufferUtility.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="DefaultCamera.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="DxManager.h" />
+    <ClInclude Include="DxState.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="ModelViewCamera.h" />
+    <ClInclude Include="MyRandom.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="ShaderUtility.h" />
+    <ClInclude Include="Singleton.hpp" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Spectrum.h" />
+    <ClInclude Include="StdAfx.hpp" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="BaseUtility.hpp" />
+    <ClInclude Include="UICamera.h" />
+    <ClInclude Include="Vector3.hpp" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="DefaultCamera.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DxManager.cpp" />
+    <ClCompile Include="DxState.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="ModelViewCamera.cpp" />
+    <ClCompile Include="MyRandom.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Spectrum.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UICamera.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9math.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX_DXGIFormatConvert.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathconvert.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathmatrix.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathmisc.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathvector.inl" />
+    <None Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCompiler_43.dll" />
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64.dll" />
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64L.dll" />
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64p.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d2d1.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d10.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d10_1.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d11.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d9.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dcompiler.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCSX.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCSXd.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx10.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx10d.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx11.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx11d.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx9.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx9d.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dxof.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dinput8.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dsound.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dwrite.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\DxErr.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dxgi.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dxguid.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\X3DAudio.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\xapobase.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\xapobased.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\XAPOFX.lib" />
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\XInput.lib" />
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64L_vc.lib" />
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64p_vc.lib" />
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64_vc.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\Resource\Shader\Default.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

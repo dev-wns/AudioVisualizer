@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ExternalLibraries">
+      <UniqueIdentifier>{fae35b8e-edb6-449c-a053-cd1eec087e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\DirectX11">
+      <UniqueIdentifier>{5a58dfd7-f0f4-4996-8b27-c676074ade7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\DirectX11\Include">
+      <UniqueIdentifier>{574393ca-b0c1-4660-acfb-cec386bd30f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\DirectX11\Library">
+      <UniqueIdentifier>{f03c6fce-e557-46fd-ad67-f0fd5e3ac344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{647e050f-5fb2-4374-8bef-fb8cffacba77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{1fe4ab63-1eb1-4f41-8493-7a84d09d2936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{b67bd828-838a-46f9-a3e3-ee6f1230b7c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Base">
+      <UniqueIdentifier>{830ce1dc-35c8-4991-9666-15035d893d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Vector">
+      <UniqueIdentifier>{d0af25ec-b8d8-4371-a10e-4389db014f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{bdcaf652-4ecd-457b-99f3-2cf34f3025af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{bbbc7cc7-4885-4588-aab9-43b09a194ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Component">
+      <UniqueIdentifier>{f70ed63b-13f4-4331-b567-b6abc56b6476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{fc096451-a60f-4323-bb2b-7fc750662e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\HLSL">
+      <UniqueIdentifier>{7babfe26-d813-4253-afba-3f7008e4a74a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Shape">
+      <UniqueIdentifier>{4e81eeee-f1e3-4d71-a1dc-8b680ccb18fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Windows">
+      <UniqueIdentifier>{765797b7-3d85-450c-afb0-f382978c5dcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard">
+      <UniqueIdentifier>{544de853-c512-42f8-80c0-d740bc43ffb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Utility">
+      <UniqueIdentifier>{2bcd75f3-c340-4947-93f3-dc44ced5b375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managed">
+      <UniqueIdentifier>{b8246b6d-c8e7-4be6-b8e3-e5a88b018f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DX">
+      <UniqueIdentifier>{da97a8ca-034a-41c0-849b-7d251f9b75c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DX\RenderTarget">
+      <UniqueIdentifier>{d8a45e65-0b80-48e7-ab6f-b0e815aec633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DX\State">
+      <UniqueIdentifier>{46a04f4e-05d8-4c96-a016-f31f01b8cb59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Camera">
+      <UniqueIdentifier>{609fa030-bfcc-4958-9b05-0a15121ed27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{802af802-2560-4ee3-a85e-4aed630dc567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\FMOD">
+      <UniqueIdentifier>{a6f79b69-9fac-4838-8fad-b8be5d0405cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\FMOD\Include">
+      <UniqueIdentifier>{0930812a-9003-4990-81ab-28b59b24a7e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExternalLibraries\FMOD\Lib">
+      <UniqueIdentifier>{4f8e75a6-17c8-4922-b8e6-b51030036287}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.hpp">
+      <Filter>Core\Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>Core\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Core\DX\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.hpp">
+      <Filter>Core\Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMath.hpp">
+      <Filter>Math\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseVector.hpp">
+      <Filter>Math\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.hpp">
+      <Filter>Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderUtility.h">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferUtility.h">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseUtility.hpp">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Object\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\audiodefs.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\comdecl.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2D1.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2D1Helper.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2DBaseTypes.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D2Derr.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9caps.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d9types.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10_1.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10_1shader.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10effect.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d10misc.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3d10sdklayers.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D10shader.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D11SDKLayers.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3D11Shader.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3Dcommon.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3Dcompiler.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DCSX.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9anim.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9core.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9effect.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9math.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9mesh.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9shader.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9shape.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9tex.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9xof.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\d3dx10async.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10core.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10mesh.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10tex.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11async.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11core.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\D3DX11tex.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\Dcommon.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dinput.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dinputd.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsconf.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsetup.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dsound.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DWrite.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxdiag.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DxErr.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxfile.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DXGI.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\DXGIFormat.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\dxsdkver.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\gameux.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\PIXPlugin.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rmxfguid.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rmxftmpl.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\rpcsal.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\X3DAudio.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3d3.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xact3wb.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPO.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPOBase.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAPOFX.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAudio2.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XAudio2fx.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XDSP.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\XInput.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xma2defs.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\DirectX11\Include\xnamath.h">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Components\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Components\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="DxManager.h">
+      <Filter>Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="DxState.h">
+      <Filter>Core\DX\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="UICamera.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelViewCamera.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultCamera.h">
+      <Filter>Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.hpp">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_codec.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_dsp.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_errors.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_memoryinfo.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_output.h">
+      <Filter>ExternalLibraries\FMOD\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Spectrum.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Object\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MyRandom.h">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Window.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Core\Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>Core\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTarget.cpp">
+      <Filter>Core\DX\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Object\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Components\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Components\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="DxManager.cpp">
+      <Filter>Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="DxState.cpp">
+      <Filter>Core\DX\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="UICamera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelViewCamera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultCamera.cpp">
+      <Filter>Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Spectrum.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>Object\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MyRandom.cpp">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX_DXGIFormatConvert.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\d3dx9math.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathconvert.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathmatrix.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathmisc.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Include\xnamathvector.inl">
+      <Filter>ExternalLibraries\DirectX11\Include</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCompiler_43.dll">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64.dll">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64L.dll">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </None>
+    <None Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64p.dll">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d2d1.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d9.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d10.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d10_1.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3d11.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dcompiler.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCSX.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\D3DCSXd.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx9.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx9d.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx10.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx10d.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx11.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dx11d.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\d3dxof.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dinput8.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dsound.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dwrite.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\DxErr.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dxgi.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\dxguid.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\X3DAudio.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\xapobase.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\xapobased.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\XAPOFX.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\DirectX11\Lib\XInput.lib">
+      <Filter>ExternalLibraries\DirectX11\Library</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64_vc.lib">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64L_vc.lib">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </Library>
+    <Library Include="..\..\ExternalLibraries\FMOD\Lib\fmodex64p_vc.lib">
+      <Filter>ExternalLibraries\FMOD\Lib</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\Resource\Shader\Default.hlsl">
+      <Filter>Shader\HLSL</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

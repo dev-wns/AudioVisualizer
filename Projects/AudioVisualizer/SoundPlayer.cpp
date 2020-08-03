@@ -1,14 +1,16 @@
 #include "StdAfx.hpp"
 #include "SoundPlayer.h"
 #include "DxManager.h"
+#include "Const.h"
+#include "Input.h"
 
 void SoundPlayer::Init()
 {
-	spectrum = new Spectrum( L"Spectrum", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI, 90 );
-	spectrum->Init();
+	SoundManager::Get()->Init();
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music40.mp3" ) == false )
+	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
-	particle = new ParticleSystem( L"Particle", ObjectManager::Get()->GetCamera( ECamera::Main ), EObject::UI, 128 );
-	particle->Init();
+	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
 	backGround = new Plane( L"BackGround", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
 	backGround->GetComponent<Transform>()->SetScale( 1440.0f, 1440.0f, 1.0f );
@@ -16,52 +18,30 @@ void SoundPlayer::Init()
 	backGround->GetComponent<Mesh>()->GetVSCB().color = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, 0.125f );
 	backGround->GetComponent<Material>()->SetTexture( TextureManager::Get()->GetTexture( L"back.jpg" ) );
 	backGround->GetComponent<Material>()->SetPixel( "PixelShaderTexture" );
-	backGround->Init();
-	
+	ObjectManager::Get()->AddObject( backGround );
 
-	centerImage = new Plane( L"CenterImage", GetCamera(), GetType() );
+	particle = new ParticleSystem( L"Particle", ObjectManager::Get()->GetCamera( ECamera::Main ), EObject::UI, 128 );
+	ObjectManager::Get()->AddObject( particle );
+
+	spectrum = new Spectrum( L"Spectrum", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI, 90 );
+	ObjectManager::Get()->AddObject( spectrum );
+
+	centerImage = new Plane( L"CenterImage", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
 	centerImage->GetComponent<Transform>()->SetScale( aroundScale, aroundScale, 1.0f );
 	centerImage->GetComponent<Material>()->SetPixel( "PS_Sphere" );
 	centerImage->GetComponent<Material>()->SetTexture( TextureManager::Get()->GetTexture( L"back.jpg" ) );
-	centerImage->Init();
-
-	GameObject::Init();
+	ObjectManager::Get()->AddObject( centerImage );
 }
 
 void SoundPlayer::Frame()
 {
 	Update();
-	spectrum->UpdateLength( lengthAmount );
-	// 카메라 흔들기 효과 ( UI Cam )
-	if ( isCameraShake == true )
+
+	if ( SoundManager::Get()->isPlaying() == true
+		&& Input::Get()->KeyCheck( VK_SPACE ) == EKeyState::KEY_PUSH )
 	{
-		//const float& shakeAmount( spectrum->GetRawBass() * shakePower );
-		//const float& shakeSin( ::sin( Timer::Get()->GameTimer() * 3.141595f * 720.0f ) );
-		//const float& shakeCos( ::cos( Timer::Get()->GameTimer() * 3.141595f * 720.0f ) );
-		//Camera* cam( ObjectManager::Get()->GetCamera( ECamera::UI ) );
-
-		//cam->GetComponent<Transform>()->SetPosition( shakeSin * shakeAmount, shakeCos * shakeAmount, 0.0f );
+		SoundManager::Get()->Play();
 	}
-	spectrum->Frame();
-	particle->Frame();
-	centerImage->Frame();
-	backGround->Frame();
-	
-	GameObject::Frame();
-}
-
-void SoundPlayer::Render( ID3D11DeviceContext* context )
-{
-	//backGround->Render( context );
-	particle->Render( context );
-
-	//rocker2.lock();
-	//{
-		spectrum->Render( context );
-	//} rocker2.unlock();
-
-	centerImage->Render( context );
-	GameObject::Render( context );
 }
 
 void SoundPlayer::Release()
@@ -97,9 +77,23 @@ void SoundPlayer::BassUpdate()
 void SoundPlayer::Update()
 {
 	BassUpdate();
+	spectrum->UpdateLength( lengthAmount );
+
+	// 센터 이미지 크기 조절 효과
 	if ( isCenterBass == true )
 	{
 		centerImage->GetComponent<Transform>()->SetScale( aroundScale + bassAmount, aroundScale + bassAmount, 1.0f );
 		spectrum->UpdatePosition( aroundScale, bassAmount );
+	}
+
+	// 카메라 흔들기 효과 ( UI Cam )
+	if ( isCameraShake == true )
+	{
+		const float& shakeAmount( rawBassValue * shakePower );
+		const float& shakeSin( ::sin( Timer::Get()->GameTimer() * 3.141592f * shakeAmount ) );
+		const float& shakeCos( ::cos( Timer::Get()->GameTimer() * 3.141592f * shakeAmount ) );
+
+		Camera* cam( ObjectManager::Get()->GetCamera( ECamera::UI ) );
+		cam->GetComponent<Transform>()->Translate( shakeSin, shakeCos, 0.0f );
 	}
 }

@@ -79,3 +79,16 @@ void  Material::SetInstanceLayout()
 	SafeRelease( layout );
 	layout = Utility::Material::CreateLayout( DxManager::Get()->GetDevice(), ied, sizeof( ied ) / sizeof( ied[0] ), blobVS );
 }
+
+void Material::SetColor( const D3DXVECTOR4& _color )
+{
+	color = _color;
+}
+
+void Material::SetColor( const float& r, const float& g, const float& b, const float a )
+{
+	color.x = r;
+	color.y = g;
+	color.z = b;
+	color.w = a;
+}

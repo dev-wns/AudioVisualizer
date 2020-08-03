@@ -16,7 +16,7 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	moveSpeed = MyRandom::Get()->GetRandomFloat(1.0f, 100.0f );
 
 	defaultColor = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) );
-	color = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.43f, 1.0f ) );
+	GetComponent<Material>()->SetColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.43f, 1.0f ) ) );
 	rainbowColor = D3DXVECTOR4(
 		MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
 		MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
@@ -87,7 +87,7 @@ void ParticleSystem::Init()
 		Particle* newParticle = new Particle( L"Particle", GetCamera(), GetType(), &isRainbow );
 		AddObject( newParticle );
 		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &Matrix::Identity );
-		instanceData[count].color = newParticle->color;
+		instanceData[count].color = newParticle->GetComponent<Material>()->GetColor();
 	}
 	instanceBuffer = Utility::Buffer::CreateBuffer( D3D11_BIND_VERTEX_BUFFER, DxManager::Get()->GetDevice(), &instanceData.at(0), (UINT)instanceData.size(), sizeof( InstanceData ), true );
 
@@ -112,7 +112,7 @@ void ParticleSystem::Frame()
 		}
 		oneParticle->Frame();
 		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &oneParticle->GetComponent<Transform>()->GetLocalMatrix() );
-		instanceData[count++].color = oneParticle->color;
+		instanceData[count++].color = oneParticle->GetComponent<Material>()->GetColor();
 	}
 
 	if ( instanceBuffer )
@@ -132,7 +132,7 @@ void ParticleSystem::Render( ID3D11DeviceContext* context )
 	GetComponent<Mesh>()->UpdateVertex();
 
 	context->IASetPrimitiveTopology( ( D3D11_PRIMITIVE_TOPOLOGY )D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-	ID3D11InputLayout* layout( GetComponent<Material>()->layout );
+	ID3D11InputLayout* layout( GetComponent<Material>()->GetLayout() );
 	context->IASetInputLayout( layout );
 
 	DxManager::Get()->SetState( EBlend::Alpha );
@@ -146,8 +146,8 @@ void ParticleSystem::Render( ID3D11DeviceContext* context )
 	context->IASetIndexBuffer( GetComponent<Mesh>()->indexBuffer, DXGI_FORMAT_R32_UINT, 0 );
 	context->VSSetConstantBuffers( 0, 1, &GetComponent<Mesh>()->vertexShaderConstantBuffer );
 	context->PSSetConstantBuffers( 0, 1, &GetComponent<Mesh>()->vertexShaderConstantBuffer );
-	context->VSSetShader( GetComponent<Material>()->vertexShader, NULL, 0 );
-	context->PSSetShader( GetComponent<Material>()->pixelShader, NULL, 0 );
+	context->VSSetShader( GetComponent<Material>()->GetVertexShader(), NULL, 0 );
+	context->PSSetShader( GetComponent<Material>()->GetPixelShader(), NULL, 0 );
 	
 	context->DrawIndexedInstanced( GetComponent<Mesh>()->numIndex, (UINT)instanceData.size(), 0, 0, 0 );
 	Clear( context );

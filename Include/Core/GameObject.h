@@ -76,6 +76,4 @@ protected:
 	GameObject* applyCamera;
 	std::vector<GameObject*> childs; // children
 	std::map<EComponent, Component*> components;
-public:
-	D3DXVECTOR4 color;
 };

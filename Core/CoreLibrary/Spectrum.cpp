@@ -136,7 +136,7 @@ void Spectrum::Render( ID3D11DeviceContext* context )
 	GetComponent<Mesh>()->UpdateVertex();
 
 	context->IASetPrimitiveTopology( ( D3D11_PRIMITIVE_TOPOLOGY )D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-	ID3D11InputLayout* layout( GetComponent<Material>()->layout );
+	ID3D11InputLayout* layout( GetComponent<Material>()->GetLayout() );
 	context->IASetInputLayout( layout );
 
 	DxManager::Get()->SetState( EBlend::Alpha );
@@ -150,8 +150,8 @@ void Spectrum::Render( ID3D11DeviceContext* context )
 	context->IASetIndexBuffer( GetComponent<Mesh>()->indexBuffer, DXGI_FORMAT_R32_UINT, 0 );
 	context->VSSetConstantBuffers( 0, 1, &GetComponent<Mesh>()->vertexShaderConstantBuffer );
 	context->PSSetConstantBuffers( 0, 1, &GetComponent<Mesh>()->vertexShaderConstantBuffer );
-	context->VSSetShader( GetComponent<Material>()->vertexShader, NULL, 0 );
-	context->PSSetShader( GetComponent<Material>()->pixelShader, NULL, 0 );
+	context->VSSetShader( GetComponent<Material>()->GetVertexShader(), NULL, 0 );
+	context->PSSetShader( GetComponent<Material>()->GetPixelShader(), NULL, 0 );
 
 	context->DrawIndexedInstanced( GetComponent<Mesh>()->numIndex, ( UINT )instanceData.size(), 0, 0, 0 );
 	Clear( context );

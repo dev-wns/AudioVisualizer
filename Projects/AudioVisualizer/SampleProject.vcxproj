@@ -157,13 +157,14 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\\..\\Lib\\Core;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
       <Command>copy "..\\..\\ExternalLibraries\\FMOD\\Lib\\*.dll" "$(OutputPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,10 @@
 #include "StdAfx.hpp"
 #include "Spectrum.h"
-#include "Plane.h"
 #include "ObjectManager.h"
-#include <cmath>
-#include "BufferUtility.h"
+#include "SoundManager.h"
+#include "DxManager.h"
+#include "BaseUtility.hpp"
+#include "Timer.h"
 
 // =======================================================================================================================
 // ***** Bar
@@ -28,6 +29,9 @@ Bar::Bar( const std::wstring& _name, GameObject* _cam, EObject _oType ) : GameOb
 // =======================================================================================================================
 // ***** Spectrum
 // =======================================================================================================================
+
+Spectrum::Spectrum( const std::wstring& _name, GameObject* _cam, EObject _oType, UINT _maxSpectrum ) : 
+	GameObject( _name, _cam, _oType ), maxSpectrum( _maxSpectrum ), barScale( 2.5f ) { }
 
 void Spectrum::Init()
 {
@@ -177,7 +181,7 @@ void Spectrum::UpdatePosition( const float& _aroundScale, const float& _bassAmou
 
 void Spectrum::UpdateLength( const float& _lengthAmount )
 {
-	const float& spf( Timer::Get()->SPF() );
+	const float& spf( Timer::Get()->GetSPF() );
 	std::map<ESoundCount, float*>& spectrum( SoundManager::Get()->GetSpectrum() );
 	const std::vector<GameObject*>& childList( GetChild() );
 	UINT spectrumCount( 0 );
@@ -204,7 +208,7 @@ void Spectrum::UpdateLength( const float& _lengthAmount )
 		{
 			// 스펙트럼 높이 감소
 			// 크기가 클수록 더 많은 힘으로 줄어들게 합니다.
-			childList[count]->GetComponent<Transform>()->ScalingY( -( 75.0f + ( scl.y * 9.7624f ) ) * spf );
+			childList[count]->GetComponent<Transform>()->ScalingY( -( 50.0f + ( scl.y * 9.7624f ) ) * spf );
 		}
 
 		if ( scl.y < 0.0f )

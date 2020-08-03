@@ -1,28 +1,21 @@
 #pragma once
-#include "BaseMath.hpp"
 #include "GameObject.h"
-#include "MyRandom.h"
-#include "Timer.h"
-#include "SoundManager.h"
-#include "DxManager.h"
-#include "ObjectManager.h"
-#include "Line.h"
 
 class Particle : public GameObject
 {
 public:
 	Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow );
-	virtual ~Particle() = default;
+	virtual ~Particle();
 
 public:
 	void Init() override;
 	void Frame() override;
 
-	D3DXVECTOR4 defaultColor;
 private:
 	friend class ParticleSystem;
 
 	bool& isRainbow;
+	D3DXVECTOR4 defaultColor;
 	D3DXVECTOR4 rainbowColor;
 
 	D3DXVECTOR3 startPos;
@@ -36,7 +29,7 @@ private:
 class ParticleSystem : public GameObject
 {
 public:
-	ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle ) : GameObject( _name, _cam, _type ), maxParticle( _maxParticle ) { }
+	ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle );
 	virtual ~ParticleSystem() = default;
 
 public:
@@ -48,6 +41,6 @@ public:
 private:
 	std::vector<InstanceData> instanceData;
 	ID3D11Buffer* instanceBuffer;
-	bool isRainbow = false;
+	bool isRainbow;
 	UINT maxParticle;
 };

@@ -1,28 +1,35 @@
 #include "StdAfx.hpp"
 #include "ParticleSystem.h"
-#include "BufferUtility.h"
+#include "BaseUtility.hpp"
+#include "MyRandom.h"
+#include "Timer.h"
+#include "SoundManager.h"
+#include "DxManager.h"
+#include "ObjectManager.h"
 
-Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow ) : GameObject( _name, _cam, _type ), isRainbow( *_isRainbow )
+Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow ) : 
+	GameObject( _name, _cam, _type ), isRainbow( *_isRainbow ), startPos( Vector3::Zero ), direction( Vector3::Backward ),
+	defaultColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) ) ),
+	rainbowColor( D3DXVECTOR4( MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
+	  					       MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) ) ),
+	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 100.0f ) ), 
+	respawnDelay( 0.0f ), timer( 0.0f )
+
 {
 	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
-	GetComponent<Transform>()->SetPosition(
-		MyRandom::Get()->GetRandomFloat( -width, width ),
-		MyRandom::Get()->GetRandomFloat( -width, width ),
-		MyRandom::Get()->GetRandomFloat( 0.0f, 10000.0f ) );
+	GetComponent<Transform>()->SetPosition( MyRandom::Get()->GetRandomFloat( -width, width ),
+											MyRandom::Get()->GetRandomFloat( -width, width ),
+											MyRandom::Get()->GetRandomFloat( 0.0f, 10000.0f ) );
 
 	const float& scl( MyRandom::Get()->GetRandomFloat( 10.0f, 25.0f ) );
 	GetComponent<Transform>()->SetScale( scl / 2.0f, scl, 1.0f );
-	respawnDelay = 0.0f;
-	moveSpeed = MyRandom::Get()->GetRandomFloat( 1.0f, 100.0f );
-
-	defaultColor = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) );
 	GetComponent<Material>()->SetColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.43f, 1.0f ) ) );
-	rainbowColor = D3DXVECTOR4(
-		MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
-		MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
-		MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
-		MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) );
 
+	SetBillboard( false );
+}
+
+Particle::~Particle() 
+{
 	SetBillboard( false );
 }
 
@@ -46,7 +53,7 @@ void Particle::Init()
 
 void Particle::Frame()
 {
-	const float& spf( Timer::Get()->SPF() );
+	const float& spf( Timer::Get()->GetSPF() );
 	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S512] );
 
 	// 색상 체크
@@ -64,6 +71,9 @@ void Particle::Frame()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
+ParticleSystem::ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle ) : 
+	GameObject( _name, _cam, _type ), isRainbow( false ), maxParticle( _maxParticle ) { }
 
 void ParticleSystem::Init()
 {

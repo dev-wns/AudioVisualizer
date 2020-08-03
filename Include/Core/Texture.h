@@ -1,6 +1,5 @@
 #pragma once
 #include "..\\..\\ExternalLibraries\\DirectX11\\Include\\d3dx11.h"
-#include "Device.h"
 
 class Texture
 {

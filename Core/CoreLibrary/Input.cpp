@@ -1,7 +1,5 @@
 #include "Stdafx.hpp"
 #include "Input.h"
-#include "Device.h"
-
 
 void Input::WindowMessageEvent( MSG msg )
 {
@@ -86,6 +84,5 @@ void Input::Frame( HWND hWnd )
 			}
 		}
 		mouseStateBefore[buttonCount] = mouseState[buttonCount];
-
 	}
 }

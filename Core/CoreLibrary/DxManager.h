@@ -3,8 +3,6 @@
 #include "Device.h"
 #include "DxState.h"
 #include "RenderTarget.h"
-#include "Timer.h"
-#include "Camera.h"
 
 class DxManager : public Device, public Singleton<DxManager>
 {
@@ -33,7 +31,7 @@ public:
 	RECT& GetWindowRect() { return windowRect; }
 
 public:
-	void Init();// const HWND& hWnd );
+	void Init();
 	void PreRender();
 	void Render();
 	void PostRender();

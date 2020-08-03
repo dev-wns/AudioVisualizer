@@ -5,7 +5,7 @@
 class MyRandom : public Singleton<MyRandom>
 {
 public:
-	MyRandom() {} // : rnd( rd() ) { }
+	MyRandom() = default;
 	virtual ~MyRandom() = default;
 
 	int GetRandomInt( int _min, int _max );

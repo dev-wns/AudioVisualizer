@@ -3,7 +3,8 @@
 #include "DxManager.h"
 #include "ObjectManager.h"
 #include "SoundManager.h"
-#include <thread>
+#include "Timer.h"
+#include "Input.h"
 
 void Core::GameInit()
 {
@@ -15,7 +16,6 @@ void Core::GameInit()
 	ObjectManager::Get()->PostInit();
 
 }
-
 
 void Core::GameFrame()
 {
@@ -29,29 +29,12 @@ void Core::GameFrame()
 
 void Core::GameRender()
 {
-	static float elapseFPSTime( 0.0f );
-	elapseFPSTime += Timer::Get()->SPF();
-
-	static DWORD fps ( 0 );
-	static float elapseTime ( 0 );
-	elapseTime += Timer::Get()->SPF();
-	if ( elapseTime > 1.0f )
-	{
-		std::string debug2( "Core Fixed Frame Rate : " + std::to_string( fps ) + "\n" );
-		::OutputDebugStringA( debug2.c_str() );
-		fps = 0;
-		elapseTime = 0;
-	}
-
-	if ( Timer::Get()->IsFixedFrameRate() ) //elapseFPSTime >= 1.0f / 144.0f )
+	if ( Timer::Get()->IsFixedFrameRate() == true )
 	{
 		DxManager::Get()->PreRender();
 		Render();
 		ObjectManager::Get()->Render( DxManager::Get()->GetContext() );
 		DxManager::Get()->PostRender();
-
-		elapseFPSTime = 0.0f;
-		fps++;
 	}
 }
 

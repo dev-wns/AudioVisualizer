@@ -17,7 +17,6 @@ void UICamera::CreateProjMatrix( LONG width, LONG height )
 	::D3DXMatrixOrthoOffCenterLH( &projMatrix, -width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f, 0.0f, 1000.0f );
 }
 
-
 void UICamera::Frame() 
 {
 	viewMatrix._41 = GetComponent<Transform>()->GetPosition().x;

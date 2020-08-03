@@ -1,13 +1,12 @@
 #pragma once
 #include "GameObject.h"
-#include "BaseMath.hpp"
 
 enum class ECamera { Main = 0, UI, ModelView };
 
 class Camera : public GameObject
 {
 public:
-	Camera()		  = default;
+	Camera();
 	virtual ~Camera() = default;
 
 public:

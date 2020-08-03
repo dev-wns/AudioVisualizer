@@ -1,5 +1,4 @@
 #pragma once
-#include "BaseMath.hpp"
 #include "Component.h"
 
 class Transform : public Component

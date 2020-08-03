@@ -1,7 +1,9 @@
 #include "StdAfx.hpp"
 #include "Mesh.h"
-#include "BufferUtility.h"
+#include "BaseUtility.hpp"
 #include "DxManager.h"
+
+Mesh::Mesh() : numVertex( 0 ), numIndex( 0 ), sizeVertex( 0 ), sizeIndex( 0 ) { }
 
 void Mesh::Set( const std::vector<PNCT_VERTEX>& _vertices, const std::vector<DWORD>& _indices )
 {

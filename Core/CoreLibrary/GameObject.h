@@ -1,5 +1,4 @@
 #pragma once
-//#include "Camera.h"
 #include "TextureManager.h"
 #include "Transform.h"
 #include "Mesh.h"
@@ -19,6 +18,9 @@ public:
 	virtual void Frame();
 	virtual void Render( ID3D11DeviceContext* context );
 	virtual void Release();
+
+public:
+	virtual void FixedFrame();
 
 public:
 	void SetVisible( bool visible ) { isEnable = visible; }

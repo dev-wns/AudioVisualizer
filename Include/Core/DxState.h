@@ -1,12 +1,10 @@
 #pragma once
-
-
+#include "BaseUtility.hpp"
 
 enum class ERasterizer	 : char { Wire = 0, Back, Front, None, };
 enum class EDepthStencil : char { Enable = 0, Disable, };
 enum class ESampler		 : char { Default = 0, Clamp, };
 enum class EBlend		 : char { Color = 0, Alpha, NoAlpha, };
-
 
 struct DxState
 {

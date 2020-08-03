@@ -1,8 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include "SoundManager.h"
-#include "Timer.h"
-#include "Plane.h"
 
 class Bar : public GameObject
 {
@@ -13,8 +10,7 @@ public:
 class Spectrum : public GameObject
 {
 public:
-	Spectrum( const std::wstring& _name, GameObject* _cam, EObject _oType, UINT _maxSpectrum )
-		: GameObject( _name, _cam, _oType ), maxSpectrum( _maxSpectrum ) { }
+	Spectrum( const std::wstring& _name, GameObject* _cam, EObject _oType, UINT _maxSpectrum );
 	virtual ~Spectrum() = default;
 
 public:

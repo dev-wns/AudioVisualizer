@@ -19,15 +19,6 @@
     <Filter Include="Object">
       <UniqueIdentifier>{1fe4ab63-1eb1-4f41-8493-7a84d09d2936}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{b67bd828-838a-46f9-a3e3-ee6f1230b7c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math\Base">
-      <UniqueIdentifier>{830ce1dc-35c8-4991-9666-15035d893d16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math\Vector">
-      <UniqueIdentifier>{d0af25ec-b8d8-4371-a10e-4389db014f0f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Texture">
       <UniqueIdentifier>{bdcaf652-4ecd-457b-99f3-2cf34f3025af}</UniqueIdentifier>
     </Filter>
@@ -70,9 +61,6 @@
     <Filter Include="Object\Camera">
       <UniqueIdentifier>{609fa030-bfcc-4958-9b05-0a15121ed27e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sound">
-      <UniqueIdentifier>{802af802-2560-4ee3-a85e-4aed630dc567}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ExternalLibraries\FMOD">
       <UniqueIdentifier>{a6f79b69-9fac-4838-8fad-b8be5d0405cc}</UniqueIdentifier>
     </Filter>
@@ -81,6 +69,12 @@
     </Filter>
     <Filter Include="ExternalLibraries\FMOD\Lib">
       <UniqueIdentifier>{4f8e75a6-17c8-4922-b8e6-b51030036287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managed\Sound">
+      <UniqueIdentifier>{802af802-2560-4ee3-a85e-4aed630dc567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Base">
+      <UniqueIdentifier>{a5b777aa-b3f2-4b5d-b874-fa7e1cd975ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,33 +105,12 @@
     <ClInclude Include="GameObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="BaseMath.hpp">
-      <Filter>Math\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseVector.hpp">
-      <Filter>Math\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.hpp">
-      <Filter>Math\Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Texture.h">
       <Filter>Texture</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Components\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderUtility.h">
-      <Filter>Core\Standard\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="BufferUtility.h">
-      <Filter>Core\Standard\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseUtility.hpp">
-      <Filter>Core\Standard\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Components</Filter>
@@ -389,7 +362,7 @@
       <Filter>Object\Camera</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
-      <Filter>Sound</Filter>
+      <Filter>Managed\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.h">
       <Filter>ExternalLibraries\FMOD\Include</Filter>
@@ -418,13 +391,13 @@
     <ClInclude Include="MyRandom.h">
       <Filter>Core\Standard\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="BaseUtility.hpp">
+      <Filter>Core\Standard\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
       <Filter>Core\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Core\Standard</Filter>
     </ClCompile>
     <ClCompile Include="Core.cpp">
       <Filter>Core</Filter>
@@ -443,9 +416,6 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Texture</Filter>
@@ -490,13 +460,22 @@
       <Filter>Object\Camera</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>Sound</Filter>
+      <Filter>Managed\Sound</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>Object\Shape</Filter>
     </ClCompile>
     <ClCompile Include="MyRandom.cpp">
       <Filter>Core\Standard\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseStruct.hpp">
+      <Filter>Core\Standard\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseConst.hpp">
+      <Filter>Core\Standard\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Core\Standard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

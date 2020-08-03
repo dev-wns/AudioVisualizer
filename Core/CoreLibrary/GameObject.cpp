@@ -1,16 +1,17 @@
 #include "StdAfx.hpp"
 #include "GameObject.h"
-#include "plane.h"
+#include "Timer.h"
+#include "BaseUtility.hpp"
 
-GameObject::GameObject()
+GameObject::GameObject() : isEnable( true ), isBillboard( false ), objectType( EObject::Empty ), objectName( ObjectName::Default )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
 	components.insert( std::make_pair( EComponent::Material, new Material() ) );
 }
 
-GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _type )
-					 : objectName( _name ), applyCamera( _cam ), objectType( _type ), isEnable( true ), isBillboard( false )
+GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _type ) : 
+	isEnable( true ), isBillboard( false ), objectType( _type ), objectName( _name ), applyCamera( _cam )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
@@ -146,6 +147,16 @@ void GameObject::Init()
 	}
 }
 
+void GameObject::FixedFrame()
+{
+	if ( Timer::Get()->IsFixedFrameRate() == false ) return;
+
+	for ( GameObject* object : childs )
+	{
+		object->FixedFrame();
+	}
+}
+
 void GameObject::Frame()
 {
 	if ( IsEnable() == false ) return;
@@ -155,6 +166,7 @@ void GameObject::Frame()
 		oneComponent.second->Frame();
 	}
 
+	FixedFrame();
 
 	for ( GameObject* oneObject : childs )
 	{
@@ -224,13 +236,13 @@ void GameObject::Release()
 	for ( std::map<EComponent, Component*>::iterator oneComponent = std::begin( components ); 
 		  oneComponent != std::end( components ); oneComponent++ )
 	{
-		SafeRelease( oneComponent->second );
+		SafeRelease( oneComponent->second, true );
 	}
 	components.clear();
 
 	for ( GameObject*& oneObject : childs )
 	{
-		SafeRelease( oneObject );
+		SafeRelease( oneObject, true );
 	}
 	childs.clear();
 }

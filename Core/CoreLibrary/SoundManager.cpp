@@ -1,6 +1,8 @@
 #include "StdAfx.hpp"
 #include "SoundManager.h"
 #include "Timer.h"
+#include "BaseUtility.hpp"
+
 bool SoundManager::isPlaying()
 {
 	bool isPlay = true;
@@ -19,7 +21,6 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 	// 사운드 생성
 	FMOD::Sound* sound;
 	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) return false;
-
 	// path에서 이름만 자르기
 	std::string name;
 	const size_t& pos( _path.find_last_of( L'\\' ) );
@@ -49,7 +50,7 @@ void SoundManager::Play()
 		{
 			soundSystem->playSound( FMOD_CHANNELINDEX::FMOD_CHANNEL_FREE, std::cbegin( musics )->second, false, &channels[0] );
 
-			channels[0]->setVolume( 1.0f );
+			currentPlaySound = std::cbegin( musics )->second;
 			break;
 		}
 	}
@@ -66,7 +67,7 @@ void SoundManager::Play( const std::string& _name )
 		{
 			soundSystem->playSound( FMOD_CHANNELINDEX::FMOD_CHANNEL_FREE, musics[_name], false, &channels[0] );
 
-			channels[0]->setVolume( 1.0f );
+			currentPlaySound = musics[_name];
 			break;
 		}
 	}

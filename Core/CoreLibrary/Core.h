@@ -1,7 +1,5 @@
 #pragma once
 #include "Window.h"
-#include "Timer.h"
-#include "Input.h"
 
 class Core : public Window
 {

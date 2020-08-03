@@ -1,20 +1,22 @@
 #pragma once
 #include "Singleton.hpp"
 
-
 class Timer : public Singleton<Timer>
 {
 public:
-	Timer() = default;
+	Timer();
     virtual ~Timer() = default;
 
 public:
-	static float SPF() { return secondPerFrame; }
-	static DWORD FPS() { return framePerSecond; }
-	static float GameTimer() { return gameTimer; }
+	float GetSPF() { return secondPerFrame; }
+	DWORD GetFPS() { return framePerSecond; }
+	float GetProgressTime() { return gameTimer; }
 
 public:
 	bool IsFixedFrameRate();
+	const float GetFixedFrameRate() const { return fixedFrame; }
+	// 원하는 프레임
+	void SetFixedFrameRate( const DWORD& value );
 
 public:
 	void Init();
@@ -22,14 +24,17 @@ public:
 
 private:
 	friend class Singleton<Timer>;
-	static float secondPerFrame;
-	static float gameTimer;
-	static DWORD framePerSecond;
+	bool isFixedFrame;
+	float fixedFrame;
+	DWORD fixedFramePerSecond;
+	float fixedFrameElapseTime;
+
+	float secondPerFrame;
+	float gameTimer;
 	float frameTime;
+	DWORD framePerSecond;
 	LARGE_INTEGER frequency;
 	LARGE_INTEGER beforeTick;
 	LARGE_INTEGER currentTick;
 	LONGLONG elapseTick;
-
-	bool isSetFrame;
 };

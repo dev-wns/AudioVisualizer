@@ -1,7 +1,6 @@
 #include "StdAfx.hpp"
 #include "Device.h"
-#include "Timer.h"
-#include "Input.h"
+#include "BaseUtility.hpp"
 
 void Device::ResizeClient( const HWND& hWnd, UINT width, UINT height )
 {

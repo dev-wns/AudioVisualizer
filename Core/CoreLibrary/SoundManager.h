@@ -1,9 +1,8 @@
 #pragma once
 #include "..\\..\\ExternalLibraries\\FMOD\\include\\fmod.h"
 #include "..\\..\\ExternalLibraries\\FMOD\\include\\fmod.hpp"
-#include <thread>
-//#pragma comment(lib,"fmodex64_vc.lib")
 #pragma comment(lib,"fmodex64L_vc.lib")
+//#pragma comment(lib,"fmodex64_vc.lib")
 //#pragma comment(lib,"fmodex64p_vc.lib")
 
 #include "Singleton.hpp"
@@ -40,6 +39,7 @@ public:
 private:
 	FMOD::System* soundSystem;
 	std::map<std::string, FMOD::Sound*> musics;
+	FMOD::Sound* currentPlaySound;
 	std::map<ESoundCount, float*> spectrum;
 	std::vector<FMOD::Channel*> channels;
 };

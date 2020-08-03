@@ -1,7 +1,6 @@
 #pragma once
 #include "Singleton.hpp"
 #include "Camera.h"
-#include "DxManager.h"
 
 /* 
 	오브젝트들을 관리해주는 클래스 입니다.

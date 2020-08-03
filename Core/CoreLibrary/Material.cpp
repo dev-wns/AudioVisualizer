@@ -1,23 +1,26 @@
 #include "StdAfx.hpp"
 #include "Material.h"
-#include "ShaderUtility.h"
 #include "DxManager.h"
+#include "BaseUtility.hpp"
+#include "BaseConst.hpp"
+
+Material::Material() : color( Vector4::Zero ) { }
 
 void Material::SetPixel(const std::string& _name)
 {
-	pixelShader = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobPS, _name.c_str() );
+	pixelShader = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobPS, _name.c_str() );
 }
 
 void Material::SetVertexShader( const std::string& _name )
 {
-	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobVS, _name.c_str() );
+	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobVS, _name.c_str() );
 }
 
 void Material::Init()
 {
-	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobVS, "VS" );
+	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobVS, "VS" );
 	if ( pixelShader == nullptr )
-		pixelShader  = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobPS, "PS" );
+		pixelShader  = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobPS, "PS" );
 
 	D3D11_INPUT_ELEMENT_DESC ied[] =
 	{
@@ -59,10 +62,10 @@ void  Material::SetTexture( Texture* tx )
 void  Material::SetInstanceLayout()
 {
 	SafeRelease( vertexShader );
-	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobVS, "VS_INSTANCE" );
+	vertexShader = Utility::Material::LoadVertexShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobVS, "VS_INSTANCE" );
 	
 	SafeRelease( pixelShader );
-	pixelShader = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Utility::Material::Name::Default, &blobPS, "PS_INSTANCE" );
+	pixelShader = Utility::Material::LoadPixelShader( DxManager::Get()->GetDevice(), Shader::Name::Default, &blobPS, "PS_INSTANCE" );
 
 	D3D11_INPUT_ELEMENT_DESC ied[] =
 	{

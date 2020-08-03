@@ -1,5 +1,6 @@
 #include "StdAfx.hpp"
 #include "TextureManager.h"
+#include "BaseUtility.hpp"
 
 Texture* TextureManager::GetTexture( const std::wstring& _name )
 {
@@ -25,7 +26,7 @@ void TextureManager::AddTexture( const std::wstring& _path )
 
 	if ( textures.find( oneTexture->GetName() ) != std::end( textures ) )
 	{
-		SafeRelease( oneTexture );
+		SafeRelease( oneTexture, true );
 	}
 
 	oneTexture->CreateShaderResourceView( _path );
@@ -48,7 +49,7 @@ void TextureManager::Release()
 	for ( std::map<std::wstring, Texture*>::iterator oneTexture = std::begin( textures );
 		  oneTexture != std::end( textures ); oneTexture++ )
 	{
-		SafeRelease( oneTexture->second );
+		SafeRelease( oneTexture->second, true );
 	}
 	textures.clear();
 }

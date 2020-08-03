@@ -1,5 +1,4 @@
 #pragma once
-#include <map>
 #include "Texture.h"
 #include "Singleton.hpp"
 

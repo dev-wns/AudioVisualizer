@@ -4,7 +4,7 @@
 class RenderTarget
 {
 public:
-	RenderTarget() = default;
+	RenderTarget();
 	virtual ~RenderTarget() = default;
 
 public:

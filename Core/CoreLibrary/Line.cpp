@@ -1,6 +1,7 @@
 #include "StdAfx.hpp"
 #include "Line.h"
-#include "DxManager.h"
+
+Line::Line( const std::wstring& _name, GameObject* _cam, EObject _type ) : GameObject( _name, _cam, _type ) { }
 
 void Line::Init() 
 {

@@ -267,9 +267,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_errors.h" />
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_memoryinfo.h" />
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_output.h" />
-    <ClInclude Include="BaseMath.hpp" />
-    <ClInclude Include="BaseVector.hpp" />
-    <ClInclude Include="BufferUtility.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DefaultCamera.h" />
@@ -284,12 +281,10 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Matrix.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="ShaderUtility.h" />
     <ClInclude Include="Singleton.hpp" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StdAfx.hpp" />
@@ -299,10 +294,10 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="Transform.h" />
     <ClInclude Include="BaseUtility.hpp" />
     <ClInclude Include="UICamera.h" />
-    <ClInclude Include="Vector3.hpp" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseStruct.hpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="DefaultCamera.cpp" />
@@ -317,12 +312,13 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">StdAfx.hpp</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
@@ -331,6 +327,7 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UICamera.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="BaseConst.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.inl" />

@@ -4,8 +4,6 @@
 #include "DefaultCamera.h"
 #include "UICamera.h"
 
-
-
 void ObjectManager::PrevInit()
 {
 	Camera* MainCam = new DefaultCamera();
@@ -65,7 +63,7 @@ void ObjectManager::Release()
 	for ( std::map<ECamera, Camera*>::iterator camera = std::begin( cameras );
 		  camera != std::end( cameras ); camera++ )
 	{
-		SafeRelease( camera->second );
+		SafeRelease( camera->second, true );
 	}
 	cameras.clear();
 
@@ -74,7 +72,7 @@ void ObjectManager::Release()
 	{
 		for ( GameObject*& oneObject : outiter->second )
 		{
-			SafeRelease( oneObject );
+			SafeRelease( oneObject, true );
 		}
 	}
 	objects.clear();

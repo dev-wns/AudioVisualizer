@@ -1,7 +1,9 @@
 #include "StdAfx.hpp"
 #include "Transform.h"
+#include "BaseConst.hpp"
 
-Transform::Transform() : worldMatrix( Matrix::Identity ), localMatrix( Matrix::Identity ),
+Transform::Transform() : 
+	worldMatrix( Matrix::Identity ), localMatrix( Matrix::Identity ),
 	sclMatrix( Matrix::Identity ), rotMatrix( Matrix::Identity ), posMatrix( Matrix::Identity ),
 	look( Vector3::Forward ), up( Vector3::Up ), side( Vector3::Right ),
 	scl( Vector3::One ), rot( Quaternion::Zero ), pos( Vector3::Zero ) { }

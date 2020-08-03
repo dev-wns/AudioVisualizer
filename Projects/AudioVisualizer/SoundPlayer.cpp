@@ -1,14 +1,27 @@
 #include "StdAfx.hpp"
 #include "SoundPlayer.h"
 #include "DxManager.h"
+#include "ObjectManager.h"
+#include "SoundManager.h"
 #include "Const.h"
 #include "Input.h"
+#include "Timer.h"
+
+SoundPlayer::SoundPlayer() : 
+	isBackGroundVisible( true ),
+	isCameraShake( false ), isCenterBass( true ), isBarBass( true ), 
+	aroundScale( 175.0f ), lengthAmount( 2000.0f ),
+	bassPower( 25.0f ), bassAmount( 0.0f ), rawBassValue( 0.0f ),
+	shakePower( 5.0f ) { }
 
 void SoundPlayer::Init()
 {
+	Timer::Get()->SetFixedFrameRate( 240 );
+
 	SoundManager::Get()->Init();
 	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music66.mp3" ) == false )
 	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
+
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
@@ -42,6 +55,54 @@ void SoundPlayer::Frame()
 	{
 		SoundManager::Get()->Play();
 	}
+	
+	// 이미지 렌더링 여부
+	if ( Input::Get()->KeyCheck( VK_F1 ) == EKeyState::KEY_PUSH )
+	{
+		isBackGroundVisible = !isBackGroundVisible;
+		backGround->SetVisible( isBackGroundVisible );
+	}
+	if ( Input::Get()->KeyCheck( VK_F2 ) == EKeyState::KEY_PUSH )
+	{
+		isCenterImageVisible = !isCenterImageVisible;
+		centerImage->SetVisible( isCenterImageVisible );
+	}
+
+	// 스펙트럼, 센터 이미지의 기준이 되는 원 크기 조절
+	if ( Input::Get()->KeyCheck( VK_F3 ) == EKeyState::KEY_HOLD )
+	{
+		aroundScale += 100.0f * Timer::Get()->GetSPF();
+	}
+	if ( Input::Get()->KeyCheck( VK_F4 ) == EKeyState::KEY_HOLD )
+	{
+		aroundScale -= 100.0f * Timer::Get()->GetSPF();
+		if ( aroundScale < 0.0f )
+			 aroundScale = 0.0f;
+	}
+
+	// 스펙트럼 바 길이 조절
+	if ( Input::Get()->KeyCheck( VK_F5 ) == EKeyState::KEY_HOLD )
+	{
+		lengthAmount += 2000.0f * Timer::Get()->GetSPF();
+	}
+	if ( Input::Get()->KeyCheck( VK_F6 ) == EKeyState::KEY_HOLD )
+	{
+		lengthAmount -= 2000.0f * Timer::Get()->GetSPF();
+		if ( lengthAmount < 0.0f )
+			 lengthAmount = 0.0f;
+	}
+
+	// 베이스 파워 조절
+	if ( Input::Get()->KeyCheck( VK_F7 ) == EKeyState::KEY_HOLD )
+	{
+		bassPower += 100.0f * Timer::Get()->GetSPF();
+	}
+	if ( Input::Get()->KeyCheck( VK_F8 ) == EKeyState::KEY_HOLD )
+	{
+		bassPower -= 100.0f * Timer::Get()->GetSPF();
+		if ( bassPower < 0.0f )
+	 		 bassPower = 0.0f;
+	}
 }
 
 void SoundPlayer::Release()
@@ -55,7 +116,7 @@ void SoundPlayer::Release()
 
 void SoundPlayer::BassUpdate()
 {
-	const float& spf( Timer::Get()->SPF() );
+	const float& spf( Timer::Get()->GetSPF() );
 	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S4096L] );
 	float calcValue = 0.0f;
 
@@ -91,8 +152,8 @@ void SoundPlayer::Update()
 	if ( isCameraShake == true )
 	{
 		const float& shakeAmount( rawBassValue * shakePower );
-		const float& shakeSin( ::sin( Timer::Get()->GameTimer() * 3.141592f * shakeAmount ) );
-		const float& shakeCos( ::cos( Timer::Get()->GameTimer() * 3.141592f * shakeAmount ) );
+		const float& shakeSin( ::sin( Timer::Get()->GetProgressTime() * 3.141592f * shakeAmount ) );
+		const float& shakeCos( ::cos( Timer::Get()->GetProgressTime() * 3.141592f * shakeAmount ) );
 
 		Camera* cam( ObjectManager::Get()->GetCamera( ECamera::UI ) );
 		cam->GetComponent<Transform>()->Translate( shakeSin, shakeCos, 0.0f );

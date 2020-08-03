@@ -1,9 +1,9 @@
 #include "StdAfx.hpp"
 #include "Timer.h"
 
-float Timer::secondPerFrame = 0.0f;
-float Timer::gameTimer = 0.0f;
-DWORD Timer::framePerSecond = 0;
+Timer::Timer() : 
+	isFixedFrame( false ), fixedFrame( 1.0f / 10000.0f ), fixedFramePerSecond( 0 ), fixedFrameElapseTime( 0.0f ),
+	secondPerFrame( 0.0f ), gameTimer( 0.0f ), frameTime( 0.0f ), framePerSecond( 0 ) { }
 
 void Timer::Init()
 {
@@ -18,10 +18,7 @@ void Timer::Frame()
 	secondPerFrame = static_cast< float >( elapseTick ) / static_cast< float >( frequency.QuadPart );
 	gameTimer += secondPerFrame;
 	frameTime += secondPerFrame;
-
-	static DWORD fixedFrameRate( 0 );
-	static float elapseTime( 0.0f );
-	elapseTime += secondPerFrame;
+	fixedFrameElapseTime += secondPerFrame;
 
 	if ( frameTime > 1.0f )
 	{
@@ -32,21 +29,20 @@ void Timer::Frame()
 		frameTime = 0.0f;
 
 		// 고정 프레임
-		std::string debug2( "Fixed Frame Rate : " + std::to_string( fixedFrameRate ) + "\n" );
+		std::string debug2( "Fixed Frame Rate : " + std::to_string( fixedFramePerSecond ) + "\n" );
 		::OutputDebugStringA( debug2.c_str() );
-		fixedFrameRate = 0;
+		fixedFramePerSecond = 0;
 	}
 
-	const static float fixedFrame( 1.0f / 240.f );
-	if ( elapseTime >= fixedFrame )
+	if ( fixedFrameElapseTime >= fixedFrame )
 	{
-		++fixedFrameRate;
-		elapseTime = 0.0f;
-		isSetFrame = true;
+		++fixedFramePerSecond;
+		fixedFrameElapseTime = 0.0f;
+		isFixedFrame = true;
 	}
 	else
 	{
-		isSetFrame = false;
+		isFixedFrame = false;
 	}
 
 	++framePerSecond;
@@ -54,7 +50,13 @@ void Timer::Frame()
 	beforeTick = currentTick;
 }
 
+void Timer::SetFixedFrameRate( const DWORD& value )
+{
+	if ( value <= 0 ) throw;
+	fixedFrame = 1.0f / static_cast<float>( value );
+};
+
 bool Timer::IsFixedFrameRate()
 {
-	return isSetFrame;
+	return isFixedFrame;
 }

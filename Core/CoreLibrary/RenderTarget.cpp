@@ -1,5 +1,8 @@
 #include "StdAfx.hpp"
 #include "RenderTarget.h"
+#include "BaseUtility.hpp"
+
+RenderTarget::RenderTarget() : countViewPort( 0 ) { }
 
 HRESULT	RenderTarget::Create( ID3D11Device* d3dDevice, FLOAT Width, FLOAT Height, ID3D11Texture2D* pTex )
 {

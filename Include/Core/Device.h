@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderTarget.h"
+#include "StdAfx.hpp"
 
 class Device
 {

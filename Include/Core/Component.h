@@ -1,7 +1,6 @@
 #pragma once
 #include "StdAfx.hpp"
 
-
 enum class EComponent {	Transform = 0, Material, Mesh, };
 
 class Component

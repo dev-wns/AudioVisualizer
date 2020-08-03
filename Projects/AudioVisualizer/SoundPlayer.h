@@ -4,10 +4,11 @@
 #include "ParticleSystem.h"
 #include "Plane.h"
 
+
 class SoundPlayer : public Core
 {
 public:
-	SoundPlayer() = default; // const std::wstring _name, GameObject* _cam, EObject _type ) : GameObject( _name, _cam, _type ) { }
+	SoundPlayer();
 	virtual ~SoundPlayer() = default;
 
 public:
@@ -20,19 +21,20 @@ private:
 	void Update();
 
 private:
-	bool isCameraShake = false;
-	bool isCenterBass = true;
-	bool isBarBass = true;
+	bool isBackGroundVisible;
+	bool isCenterImageVisible;
+	bool isCameraShake;
+	bool isCenterBass;
+	bool isBarBass;
 
-	float aroundScale = 175.0f;
-	float lengthAmount = 2000.0f;
-	float barScale = 1.70f;
+	float aroundScale;
+	float lengthAmount;
 
-	float bassPower = 25.0f;  // 베이스 증폭 힘
-	float bassAmount;         // 현재 베이스 양
-	float rawBassValue;       // 베이스 원시 값
+	float bassPower;    // 베이스 증폭 힘
+	float bassAmount;   // 현재 베이스 양
+	float rawBassValue; // 베이스 원시 값
 
-	float shakePower = 5.0f;
+	float shakePower;
 
 	Plane* centerImage;
 	Plane* backGround;
@@ -46,6 +48,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	if ( player.SetWindow( hInstance, L"Audio Visualizer" ) )
 	{
 		player.Run();
+		//::_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+		//::_CrtDumpMemoryLeaks();
 		return 0;
 	}
 	return 1;

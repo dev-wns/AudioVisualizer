@@ -18,7 +18,6 @@ void DxManager::SetRenderTargetView()
 
 void DxManager::ResizeClient( UINT width, UINT height )
 {
-	//	Device::ResizeClient( hWnd, width, height );
 	if ( d3dContext == nullptr ) return;
 	d3dContext->OMSetRenderTargets( 0, nullptr, nullptr );
 
@@ -86,7 +85,7 @@ void DxManager::SetState( EBlend blendState )
 	GetContext()->OMSetBlendState( state.blend[blendState], 0, 0xffffffff );
 }
 
-void DxManager::Init()//const HWND& hWnd )//, const RECT& clientRect )
+void DxManager::Init()
 {
 	Device::Init( hWnd, clientRect.right, clientRect.bottom );
 	state.Init( GetDevice() );
@@ -106,7 +105,6 @@ void DxManager::PreRender()
 void DxManager::Render()
 {
 	PreRender();
-	// dxRT.End( GetContext() );
 	PostRender();
 }
 

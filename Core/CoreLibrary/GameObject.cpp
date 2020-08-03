@@ -166,7 +166,7 @@ void GameObject::Frame()
 		oneComponent.second->Frame();
 	}
 
-	FixedFrame();
+	// FixedFrame();
 
 	for ( GameObject* oneObject : childs )
 	{

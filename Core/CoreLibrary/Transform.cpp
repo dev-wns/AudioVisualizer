@@ -1,6 +1,6 @@
 #include "StdAfx.hpp"
 #include "Transform.h"
-#include "BaseConst.hpp"
+#include "BaseConst.hpp" 
 
 Transform::Transform() : 
 	worldMatrix( Matrix::Identity ), localMatrix( Matrix::Identity ),

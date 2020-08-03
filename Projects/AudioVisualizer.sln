@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioVisualizer", "AudioVis
 		{3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB} = {3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB}
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{EAF737C9-037B-4F94-8F5E-4F4ABD92B397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,6 +26,8 @@ Global
 		{4EB6D908-588D-4C94-A4B5-64491C37E84D}.Debug|x64.Build.0 = Debug|x64
 		{4EB6D908-588D-4C94-A4B5-64491C37E84D}.Release|x64.ActiveCfg = Release|x64
 		{4EB6D908-588D-4C94-A4B5-64491C37E84D}.Release|x64.Build.0 = Release|x64
+		{EAF737C9-037B-4F94-8F5E-4F4ABD92B397}.Debug|x64.ActiveCfg = Debug
+		{EAF737C9-037B-4F94-8F5E-4F4ABD92B397}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

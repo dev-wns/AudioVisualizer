@@ -19,6 +19,6 @@ public:
 		PostRender();
 	}
 	virtual void PostRender() { }
-	virtual void Release() { }
+	virtual void Release() { }  
 };
 

@@ -41,7 +41,7 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 
 void SoundManager::Play()
 {
-	if ( std::cbegin( musics )->second == nullptr ) throw;
+	if ( std::cbegin( musics )->second == nullptr ) return;
 
 	bool isPlay = false;
 	for ( FMOD::Channel* oneChannel : channels )

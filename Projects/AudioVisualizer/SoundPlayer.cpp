@@ -6,7 +6,7 @@
 #include "Const.h"
 #include "Input.h"
 #include "Timer.h"
-
+#include <thread>
 SoundPlayer::SoundPlayer() : 
 	bBackGroundVisible( true ), bCenterImageVisible( true ),
 	bCameraShake( false ), bCenterBass( true ), bBarBass( true ), 
@@ -19,9 +19,11 @@ void SoundPlayer::Init()
 	Timer::Get()->SetFixedFrameRate( 240 );
 
 	SoundManager::Get()->Init();
-	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music66.mp3" ) == false )
-	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
-
+	std::thread th1 ( [](){
+		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music66.mp3" ) == false )
+			SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
+	} );
+	th1.detach();
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 

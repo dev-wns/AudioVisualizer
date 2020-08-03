@@ -25,7 +25,7 @@ void DxManager::ResizeClient( UINT width, UINT height )
 	SafeRelease( swapChain );
 	CreateSwapChain( hWnd, width, height );
 
-	ID3D11RenderTargetView* rtv( dxRT.GetRTView() );
+	ID3D11RenderTargetView*& rtv( dxRT.GetRTView() );
 	SafeRelease( rtv );
 	SetRenderTargetView();
 
@@ -106,7 +106,7 @@ void DxManager::PreRender()
 void DxManager::Render()
 {
 	PreRender();
-	dxRT.End( GetContext() );
+	// dxRT.End( GetContext() );
 	PostRender();
 }
 

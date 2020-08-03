@@ -9,7 +9,7 @@ public:
 	virtual ~Window() = default;
 
 public:
-	bool SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className );
+	bool SetWindow( HINSTANCE inst, LPCWSTR className );
 
 public:
 	void Run();

@@ -75,7 +75,7 @@ void Window::Run()
 
 	GameRelease();
 }
-bool Window::SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className )
+bool Window::SetWindow( HINSTANCE inst, LPCWSTR className )
 {
 	hInstance = inst;
 
@@ -97,10 +97,14 @@ bool Window::SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className
 		return false;
 	}
 
+	// 데스크탑 화면의 길이 ( 해상도 )
+	const int& width( ::GetSystemMetrics( SM_CXSCREEN ) );
+	const int& height( ::GetSystemMetrics( SM_CYSCREEN ) );
+
 	RECT window = { 0, 0, width, height };
 	AdjustWindowRect( &window, WS_OVERLAPPEDWINDOW, FALSE );
 	//hWnd = ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_OVERLAPPEDWINDOW, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, NULL, NULL, hInstance, NULL );
-	DxManager::Get()->SetWindowHandle( ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_OVERLAPPEDWINDOW, 0, 0, window.right - window.left, window.bottom - window.top, NULL, NULL, hInstance, NULL ) );
+	DxManager::Get()->SetWindowHandle( ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_POPUPWINDOW, 0, 0, window.right - window.left, window.bottom - window.top, NULL, NULL, hInstance, NULL ) );
 	if ( DxManager::Get()->GetWindowHandle() == NULL )
 	{
 		return false;

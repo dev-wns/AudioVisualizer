@@ -43,7 +43,7 @@ private:
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int lpCmdShow )
 {
 	SoundPlayer player;
-	if ( player.SetWindow( hInstance, 2560, 1440, L"Audio Visualizer" ) )
+	if ( player.SetWindow( hInstance, L"Audio Visualizer" ) )
 	{
 		player.Run();
 		return 0;

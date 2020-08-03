@@ -178,7 +178,8 @@ bool	RenderTarget::Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, b
 	d3dContext->OMGetRenderTargets( 1, &oldRTView, &oldDSView );
 
 	ID3D11RenderTargetView* pNullRTV( NULL );
-	d3dContext->OMSetRenderTargets( 1, &pNullRTV, NULL );
+	ID3D11DepthStencilView* pNullDSV( NULL );
+	d3dContext->OMSetRenderTargets( 1, &pNullRTV, pNullDSV );
 	d3dContext->OMSetRenderTargets( 1, &curRTView, curDSView );
 
 	Clear( d3dContext, vColor, bTarget, bDepth, bStencil );
@@ -187,15 +188,15 @@ bool	RenderTarget::Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, b
 }
 bool	RenderTarget::Clear( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, bool bTarget, bool bDepth, bool bStencil )
 {
-	if ( bTarget  == true )
+	if ( bTarget  == true && curRTView != nullptr )
 	{
 		d3dContext->ClearRenderTargetView( curRTView, vColor );
 	}
-	if ( bDepth == true )
+	if ( bDepth == true && curDSView != nullptr )
 	{
 		d3dContext->ClearDepthStencilView( curDSView, D3D11_CLEAR_DEPTH, 1.0, 0 );
 	}
-	if ( bStencil == true )
+	if ( bStencil == true && curDSView != nullptr )
 	{
 		d3dContext->ClearDepthStencilView( curDSView, D3D11_CLEAR_STENCIL, 1.0, 0 );
 	}

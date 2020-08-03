@@ -7,7 +7,7 @@
 void SoundPlayer::Init()
 {
 	SoundManager::Get()->Init();
-	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music21.mp3" ) == false )
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music66.mp3" ) == false )
 	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );

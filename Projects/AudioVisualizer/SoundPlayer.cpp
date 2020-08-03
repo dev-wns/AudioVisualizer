@@ -71,37 +71,37 @@ void SoundPlayer::Frame()
 	// 스펙트럼, 센터 이미지의 기준이 되는 원 크기 조절
 	if ( Input::Get()->KeyCheck( VK_F3 ) == EKeyState::KEY_HOLD )
 	{
-		aroundScale += 100.0f * Timer::Get()->GetSPF();
-	}
-	if ( Input::Get()->KeyCheck( VK_F4 ) == EKeyState::KEY_HOLD )
-	{
 		aroundScale -= 100.0f * Timer::Get()->GetSPF();
 		if ( aroundScale < 0.0f )
 			 aroundScale = 0.0f;
+	}
+	if ( Input::Get()->KeyCheck( VK_F4 ) == EKeyState::KEY_HOLD )
+	{
+		aroundScale += 100.0f * Timer::Get()->GetSPF();
 	}
 
 	// 스펙트럼 바 길이 조절
 	if ( Input::Get()->KeyCheck( VK_F5 ) == EKeyState::KEY_HOLD )
 	{
-		lengthAmount += 2000.0f * Timer::Get()->GetSPF();
+		lengthAmount -= 1000.0f * Timer::Get()->GetSPF();
+		if ( lengthAmount < 0.0f )
+			lengthAmount = 0.0f;
 	}
 	if ( Input::Get()->KeyCheck( VK_F6 ) == EKeyState::KEY_HOLD )
 	{
-		lengthAmount -= 2000.0f * Timer::Get()->GetSPF();
-		if ( lengthAmount < 0.0f )
-			 lengthAmount = 0.0f;
+		lengthAmount += 1000.0f * Timer::Get()->GetSPF();
 	}
 
 	// 베이스 파워 조절
 	if ( Input::Get()->KeyCheck( VK_F7 ) == EKeyState::KEY_HOLD )
 	{
-		bassPower += 100.0f * Timer::Get()->GetSPF();
+		bassPower -= 100.0f * Timer::Get()->GetSPF();
+		if ( bassPower < 0.0f )
+			bassPower = 0.0f;
 	}
 	if ( Input::Get()->KeyCheck( VK_F8 ) == EKeyState::KEY_HOLD )
 	{
-		bassPower -= 100.0f * Timer::Get()->GetSPF();
-		if ( bassPower < 0.0f )
-	 		 bassPower = 0.0f;
+		bassPower += 100.0f * Timer::Get()->GetSPF();
 	}
 }
 

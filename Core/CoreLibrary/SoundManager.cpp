@@ -1,6 +1,6 @@
 #include "StdAfx.hpp"
 #include "SoundManager.h"
-
+#include "Timer.h"
 bool SoundManager::isPlaying()
 {
 	bool isPlay = true;
@@ -195,43 +195,49 @@ void SoundManager::Init()
 	//fr = soundSystem->setDriver( 0 );
 	//fr = soundSystem->playSound( FMOD_CHANNEL_FREE, recordSound, false, &recordChannel );
 
-	std::thread t1( [&] ()
-	{
-		while ( true )
-		{
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S64], 64, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S128], 128, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S256], 256, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S1024], 1024, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S2048], 2048, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//std::thread t1( [&] ()
+	//{
+	//	while ( true )
+	//	{
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S64], 64, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S128], 128, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S256], 256, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S1024], 1024, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S2048], 2048, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
 
-			soundSystem->getSpectrum( spectrum[ESoundCount::S512], 512, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			soundSystem->getSpectrum( spectrum[ESoundCount::S4096L], 4096, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			soundSystem->getSpectrum( spectrum[ESoundCount::S4096R], 4096, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		soundSystem->getSpectrum( spectrum[ESoundCount::S512], 512, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		soundSystem->getSpectrum( spectrum[ESoundCount::S4096L], 4096, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		soundSystem->getSpectrum( spectrum[ESoundCount::S4096R], 4096, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
 
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S8192L], 8192, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//soundSystem->getSpectrum( spectrum[ESoundCount::S8192R], 8192, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-			//Sleep( 10 );
-		}
-	} );
-	t1.detach();
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S8192L], 8192, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//soundSystem->getSpectrum( spectrum[ESoundCount::S8192R], 8192, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	//		//Sleep( 10 );
+	//	}
+	//} );
+	//t1.detach();
 }
 
 void SoundManager::Frame()
 {
+	if ( Timer::Get()->IsFixedFrameRate() == true )
+	{
+		soundSystem->getSpectrum( spectrum[ESoundCount::S512], 512, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+		soundSystem->getSpectrum( spectrum[ESoundCount::S4096L], 4096, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+		soundSystem->getSpectrum( spectrum[ESoundCount::S4096R], 4096, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+	}
 	soundSystem->update();
 }
 
 void SoundManager::Release()
 {
-	if ( soundSystem != nullptr )
+	// 공식 FMOD 문서에 채널은 Release 할 필요가 없다고 함.
+	for ( std::vector<FMOD::Channel*>::iterator iter = std::begin( channels );
+		  iter != std::end( channels ); iter++ )
 	{
-		soundSystem->close();
-		soundSystem->release();
-		soundSystem = nullptr;
+		( *iter )->stop();
 	}
 
-	for ( std::map<std::string, FMOD::Sound*>::iterator it = std::begin( musics ); it != std::end(musics ); it++ )
+	for ( std::map<std::string, FMOD::Sound*>::iterator it = std::begin( musics ); it != std::end( musics ); it++ )
 	{
 		if ( it->second == nullptr ) continue;
 
@@ -246,5 +252,10 @@ void SoundManager::Release()
 	}
 	spectrum.clear();
 
-	// 공식 FMOD 문서에 채널은 Release 할 필요가 없다고 함.
+	if ( soundSystem != nullptr )
+	{
+		soundSystem->close();
+		soundSystem->release();
+		soundSystem = nullptr;
+	}
 }

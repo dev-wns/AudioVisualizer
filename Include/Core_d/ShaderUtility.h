@@ -12,8 +12,8 @@ namespace Name
 
 static ID3D11InputLayout* CreateLayout( ID3D11Device* device, D3D11_INPUT_ELEMENT_DESC* IED, int ElementCnt, ID3DBlob* pVSBlob )
 {
-	HRESULT hr = S_OK;
-	ID3D11InputLayout* ILOut = 0;
+	HRESULT hr( S_OK );
+	ID3D11InputLayout* ILOut( 0 );
 	DWORD dwSize = ( DWORD )pVSBlob->GetBufferSize();
 	LPCVOID dwPoint = pVSBlob->GetBufferPointer();
 	if ( FAILED( hr = device->CreateInputLayout( IED, ElementCnt, dwPoint, dwSize, &ILOut ) ) )
@@ -25,8 +25,8 @@ static ID3D11InputLayout* CreateLayout( ID3D11Device* device, D3D11_INPUT_ELEMEN
 
 static HRESULT CompileShader( const std::wstring& loadFileName, ID3DBlob** pBlob, const std::string& shaderFuncName, const std::string& shaderModel )
 {
-	HRESULT hr = S_OK;
-	ID3DBlob* pErrorBlob = 0;
+	HRESULT hr( S_OK );
+	ID3DBlob* pErrorBlob( 0 );
 	if ( FAILED( hr = D3DX11CompileFromFileW( loadFileName.c_str(), NULL, NULL, shaderFuncName.c_str(), shaderModel.c_str(), 0, 0, NULL, pBlob, &pErrorBlob, NULL ) ) )
 	{
 		OutputDebugStringA( ( char* )pErrorBlob->GetBufferPointer() );
@@ -38,9 +38,9 @@ static HRESULT CompileShader( const std::wstring& loadFileName, ID3DBlob** pBlob
 
 static ID3D11VertexShader* LoadVertexShader( ID3D11Device* device, const std::wstring& szLoadFileName, ID3DBlob** ppBlobOut, const char* szShaderFunc )
 {
-	HRESULT hr = S_OK;
-	ID3DBlob* pBlob = 0;
-	ID3D11VertexShader* VS = 0;
+	HRESULT hr( S_OK );
+	ID3DBlob* pBlob( 0 );
+	ID3D11VertexShader* VS( 0 );
 	if ( szShaderFunc == 0 )
 	{
 		if ( FAILED( hr = CompileShader( szLoadFileName.c_str(), &pBlob, "VS", "vs_5_0" ) ) )
@@ -55,8 +55,8 @@ static ID3D11VertexShader* LoadVertexShader( ID3D11Device* device, const std::ws
 			return nullptr;
 		}
 	}
-	DWORD dwSize = 0;
-	LPCVOID lpData = 0;
+	DWORD dwSize( 0 );
+	LPCVOID lpData( 0 );
 	dwSize = ( DWORD )pBlob->GetBufferSize();
 	lpData = pBlob->GetBufferPointer();
 
@@ -79,9 +79,9 @@ static ID3D11VertexShader* LoadVertexShader( ID3D11Device* device, const std::ws
 
 static ID3D11PixelShader* LoadPixelShader( ID3D11Device* device, const std::wstring& szLoadFileName, ID3DBlob** ppBlobOut, const char* szShaderFunc )
 {
-	HRESULT hr = S_OK;
-	ID3DBlob* pBlob = 0;
-	ID3D11PixelShader* PS = 0;
+	HRESULT hr( S_OK );
+	ID3DBlob* pBlob( 0 );
+	ID3D11PixelShader* PS( 0 );
 	if ( szShaderFunc == 0 )
 	{
 		if ( FAILED( hr = CompileShader( szLoadFileName.c_str(), &pBlob, "PS", "ps_5_0" ) ) )
@@ -96,8 +96,8 @@ static ID3D11PixelShader* LoadPixelShader( ID3D11Device* device, const std::wstr
 			return nullptr;
 		}
 	}
-	DWORD dwSize = 0;
-	LPCVOID lpData = 0;
+	DWORD dwSize( 0 );
+	LPCVOID lpData( 0 );
 	dwSize = ( DWORD )pBlob->GetBufferSize();
 	lpData = pBlob->GetBufferPointer();
 

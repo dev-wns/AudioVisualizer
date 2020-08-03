@@ -156,6 +156,7 @@ struct DxState
 
 		return hr;
 	}
+
 	void Release()
 	{
 		for ( std::pair<ERasterizer, ID3D11RasterizerState*> oneRaster : raster )

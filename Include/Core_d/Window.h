@@ -5,13 +5,10 @@
 class Window : public Singleton<Window>
 {
 public:
-	Window();
-	virtual ~Window();
+	Window() = default;
+	virtual ~Window() = default;
 
 public:
-	//const HWND& GetWindowHandle() { return hWnd; }
-	//const RECT& GetClientRect() const { return clientRect; }
-	//const RECT& GetWindowRect() const { return windowRect; }
 	bool SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className );
 
 public:
@@ -21,19 +18,13 @@ public:
 	LRESULT MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 private:
-	void GameRun()
-	{
-		GameFrame();
-		GameRender();
-	}
+	void GameRun();
 	virtual void GameInit() { }
 	virtual void GameFrame() { }
 	virtual void GameRender() { }
 	virtual void GameRelease() { }
+
 private:
 	HINSTANCE hInstance;
-	//HWND hWnd;
-	//RECT windowRect;
-	//RECT clientRect;
 };
 

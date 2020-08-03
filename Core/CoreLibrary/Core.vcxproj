@@ -281,7 +281,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="Line.h" />
     <ClInclude Include="ModelViewCamera.h" />
     <ClInclude Include="MyRandom.h" />
-    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mesh.h" />
@@ -293,7 +292,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="ShaderUtility.h" />
     <ClInclude Include="Singleton.hpp" />
     <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="Spectrum.h" />
     <ClInclude Include="StdAfx.hpp" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
@@ -316,7 +314,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="ModelViewCamera.cpp" />
     <ClCompile Include="MyRandom.cpp" />
-    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -325,7 +322,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="Spectrum.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "..\Core\CoreLibrary\Core.vcxproj", "{3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioVisualizer", "AudioVisualizer\SampleProject.vcxproj", "{4EB6D908-588D-4C94-A4B5-64491C37E84D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB} = {3CDBA50A-FCD0-48AC-AF07-E4F2167BB4DB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

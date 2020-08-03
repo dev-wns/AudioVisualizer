@@ -127,6 +127,9 @@ void Mesh::PostRender()
 
 void Mesh::Release()
 {
+	vertices.clear();
+	indices.clear();
+
 	SafeRelease( vertexBuffer );
 	SafeRelease( indexBuffer );
 	SafeRelease( vertexShaderConstantBuffer );

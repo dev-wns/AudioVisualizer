@@ -153,7 +153,7 @@ void	RenderTarget::Apply( ID3D11DeviceContext* d3dContext, ID3D11RenderTargetVie
 		else
 			d3dContext->OMSetRenderTargets( 1, &curRTView, curDSView );
 	}
-	if ( bDepth )
+	if ( bDepth == true )
 	{
 		if ( pDSV != NULL )
 			d3dContext->ClearDepthStencilView( pDSV, D3D11_CLEAR_DEPTH, 1.0, 0 );
@@ -161,7 +161,7 @@ void	RenderTarget::Apply( ID3D11DeviceContext* d3dContext, ID3D11RenderTargetVie
 			d3dContext->ClearDepthStencilView( curDSView, D3D11_CLEAR_DEPTH, 1.0, 0 );
 
 	}
-	if ( bStencil )
+	if ( bStencil == true )
 	{
 		if ( pDSV != NULL )
 			d3dContext->ClearDepthStencilView( pDSV, D3D11_CLEAR_STENCIL, 1.0, 0 );
@@ -187,19 +187,20 @@ bool	RenderTarget::Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, b
 }
 bool	RenderTarget::Clear( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, bool bTarget, bool bDepth, bool bStencil )
 {
-	if ( bTarget )
+	if ( bTarget  == true )
 	{
 		d3dContext->ClearRenderTargetView( curRTView, vColor );
 	}
-	if ( bDepth )
+	if ( bDepth == true )
 	{
 		d3dContext->ClearDepthStencilView( curDSView, D3D11_CLEAR_DEPTH, 1.0, 0 );
 	}
-	if ( bStencil )
+	if ( bStencil == true )
 	{
 		d3dContext->ClearDepthStencilView( curDSView, D3D11_CLEAR_STENCIL, 1.0, 0 );
 	}
 	d3dContext->RSSetViewports( 1, &curViewPort );
+
 	return true;
 }
 bool	RenderTarget::End( ID3D11DeviceContext* d3dContext )
@@ -211,7 +212,7 @@ bool	RenderTarget::End( ID3D11DeviceContext* d3dContext )
 	return true;
 }
 
-bool RenderTarget::Release()
+void RenderTarget::Release()
 {
 	SafeRelease( curRTView );
 	SafeRelease( curDSView );
@@ -219,5 +220,4 @@ bool RenderTarget::Release()
 	SafeRelease( oldDSView );
 	SafeRelease( resRTV );
 	SafeRelease( resDSV );
-	return true;
 }

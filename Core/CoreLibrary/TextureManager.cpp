@@ -45,11 +45,10 @@ void TextureManager::RemoveTexture( const std::wstring& _name )
 
 void TextureManager::Release()
 {
-	for ( auto& oneTexture : textures )
+	for ( std::map<std::wstring, Texture*>::iterator oneTexture = std::begin( textures );
+		  oneTexture != std::end( textures ); oneTexture++ )
 	{
-		SafeRelease( oneTexture.second );
+		SafeRelease( oneTexture->second );
 	}
-
-	// Texture객체 안의 SRV는 지움.
-	// map의 Texture객체 지우기
+	textures.clear();
 }

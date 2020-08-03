@@ -2,9 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="Spectrum.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Const.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="Spectrum.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Const.h">
+      <Filter>Const</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{8bc79b47-12c7-4a14-86a7-a8449ccdc651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Const">
+      <UniqueIdentifier>{f6cd3b88-913d-4431-9eb1-06dcfa7ef77f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

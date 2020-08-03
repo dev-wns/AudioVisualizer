@@ -6,17 +6,24 @@ class RenderTarget
 public:
 	RenderTarget() = default;
 	virtual ~RenderTarget() = default;
+
 public:
-	HRESULT	Create( ID3D11Device* d3dDevice, FLOAT fWidth = 1024, FLOAT fHeight = 1024, ID3D11Texture2D* pTex = NULL );
 	void	ViewPortSet( FLOAT TopLeftX, FLOAT TopLeftY, FLOAT fWidth, FLOAT fHeight );
 	HRESULT UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT dwWidth, FLOAT dwHeight );
+
+public:
 	void	Apply( ID3D11DeviceContext* d3dContext, ID3D11RenderTargetView* pRTV, ID3D11DepthStencilView* pDepthStencilView, bool bDepth = true, bool bStencil = true );
 	bool	Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, bool bTarget = true, bool bDepth = true, bool bStencil = true );
-	bool	Clear( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, bool bTarget = true, bool bDepth = true, bool bStencil = true );
 	bool	End( ID3D11DeviceContext* d3dContext );
-	bool	Release();
+	bool	Clear( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, bool bTarget = true, bool bDepth = true, bool bStencil = true );
+
+public:
+	HRESULT	Create( ID3D11Device* d3dDevice, FLOAT fWidth = 1024, FLOAT fHeight = 1024, ID3D11Texture2D* pTex = NULL );
+	void	Release();
+
 public:
 	ID3D11RenderTargetView*& GetRTView() { return curRTView; }
+
 private:
 	ID3D11RenderTargetView*	curRTView;
 	ID3D11DepthStencilView*	curDSView;

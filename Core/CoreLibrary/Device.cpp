@@ -9,9 +9,6 @@ void Device::ResizeClient( const HWND& hWnd, UINT width, UINT height )
 
 	d3dContext->OMSetRenderTargets( 0, nullptr, nullptr );
 
-	//ID3D11RenderTargetView* rtv( renderTarget.GetRTView() );
-	//SafeRelease( rtv );
-
 	SafeRelease( swapChain );
 	CreateSwapChain( hWnd, width, height );
 }
@@ -20,7 +17,6 @@ void Device::Init( const HWND& _hWnd, UINT width, UINT height )
 {
 	if ( CreateDevice() == E_FAIL
 		|| CreateSwapChain( _hWnd, width, height ) == E_FAIL
-		//|| SetRenderTargetView() == E_FAIL
 		|| dxgiFaxtory->MakeWindowAssociation( _hWnd, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER ) == E_FAIL )
 	{
 		throw;
@@ -45,7 +41,6 @@ HRESULT Device::CreateFactory()
 	IDXGIAdapter * pDXGIAdapter;
 	hr = pDXGIDevice->GetParent( __uuidof( IDXGIAdapter ), ( void ** )&pDXGIAdapter );
 
-	//IDXGIFactory * pIDXGIFactory = NULL;
 	pDXGIAdapter->GetParent( __uuidof( IDXGIFactory ), ( void ** )&dxgiFaxtory );
 
 	pDXGIDevice->Release();
@@ -116,17 +111,3 @@ HRESULT Device::CreateSwapChain( const HWND& _hWnd, UINT width, UINT height )
 
 	return S_OK;
 }
-
-//HRESULT Device::SetRenderTargetView()
-//{
-//	DXGI_SWAP_CHAIN_DESC SwapDesc = { 0, };
-//	swapChain->GetDesc( &SwapDesc );
-//	ID3D11Texture2D* pResource = nullptr;
-//	if ( swapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pResource ) == E_FAIL
-//		|| renderTarget.Create( d3dDevice, ( FLOAT )SwapDesc.BufferDesc.Width, ( FLOAT )SwapDesc.BufferDesc.Height, pResource ) == E_FAIL )
-//	{
-//		return E_FAIL;
-//	}
-//
-//	return S_OK;
-//}

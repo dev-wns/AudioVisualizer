@@ -62,13 +62,22 @@ void ObjectManager::Render( ID3D11DeviceContext* context )
 
 void ObjectManager::Release()
 {
-	for ( std::pair<EObject, std::list<GameObject*>> lists : objects )
+	for ( std::map<ECamera, Camera*>::iterator camera = std::begin( cameras );
+		  camera != std::end( cameras ); camera++ )
 	{
-		for ( GameObject* oneObject : lists.second )
+		SafeRelease( camera->second );
+	}
+	cameras.clear();
+
+	for ( std::map<EObject, std::list<GameObject*>>::iterator outiter = std::begin( objects );
+		  outiter != std::end( objects ); outiter++ )
+	{
+		for ( GameObject*& oneObject : outiter->second )
 		{
-			oneObject->Release();
+			SafeRelease( oneObject );
 		}
 	}
+	objects.clear();
 }
 
 void ObjectManager::AddObject( GameObject* _obj )

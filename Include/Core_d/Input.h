@@ -5,8 +5,9 @@ enum class EKeyState : char { KEY_FREE = 0,	KEY_PUSH, KEY_UP, KEY_HOLD, };
 
 class Input : public Singleton<Input>
 {
-private:		 Input() = default;
-public: virtual ~Input() = default;
+public:
+	Input() = default;
+	virtual ~Input() = default;
 
 public:
 	const POINT& GetMousePosition() const { return mousePosition; }
@@ -14,6 +15,8 @@ public:
 public:
 	void WindowMessageEvent( MSG msg );
 	EKeyState KeyCheck( DWORD dwKey );
+
+public:
 	void Frame( HWND hWnd );
 
 private:

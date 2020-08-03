@@ -1,8 +1,6 @@
 #include "StdAfx.hpp"
 #include "SoundManager.h"
 
-float SoundManager::maxSptValue = 0.0f;
-
 bool SoundManager::isPlaying()
 {
 	bool isPlay = true;
@@ -217,33 +215,36 @@ void SoundManager::Init()
 		}
 	} );
 	t1.detach();
-
-	std::thread t2( [&] ()
-	{
-		while ( true )
-		{
-			for ( int i = 0; i < 256; i++ )
-			{
-				const float& value( ( spectrum[ESoundCount::S4096L][i] + spectrum[ESoundCount::S4096R][i] ) * 0.5f );
-				if ( maxSptValue < value )
-					maxSptValue = value;
-			}
-		}
-	} );
-	t2.detach();
-
 }
+
 void SoundManager::Frame()
 {
 	soundSystem->update();
 }
+
 void SoundManager::Release()
 {
-	//for ( int index = 0; index < 3; index++ )
-	//{
-	//	m_pSound[index]->release();
-	//	m_pSound[index] = NULL;
-	//}
-	//m_pSystem->close();
-	//m_pSystem->release();
+	if ( soundSystem != nullptr )
+	{
+		soundSystem->close();
+		soundSystem->release();
+		soundSystem = nullptr;
+	}
+
+	for ( std::map<std::string, FMOD::Sound*>::iterator it = std::begin( musics ); it != std::end(musics ); it++ )
+	{
+		if ( it->second == nullptr ) continue;
+
+		it->second->release();
+		it->second = nullptr;
+	}
+	musics.clear();
+
+	for ( std::map<ESoundCount, float*>::iterator it = std::begin( spectrum ); it != std::end( spectrum ); it++	)
+	{
+		SafeDeleteArray( it->second );
+	}
+	spectrum.clear();
+
+	// 공식 FMOD 문서에 채널은 Release 할 필요가 없다고 함.
 }

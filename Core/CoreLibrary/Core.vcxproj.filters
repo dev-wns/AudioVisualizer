@@ -412,14 +412,8 @@
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_output.h">
       <Filter>ExternalLibraries\FMOD\Include</Filter>
     </ClInclude>
-    <ClInclude Include="Spectrum.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>Object\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="MyRandom.h">
       <Filter>Core\Standard\Utility</Filter>
@@ -498,14 +492,8 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Spectrum.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>Object\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="MyRandom.cpp">
       <Filter>Core\Standard\Utility</Filter>

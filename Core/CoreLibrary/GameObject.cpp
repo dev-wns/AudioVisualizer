@@ -8,8 +8,9 @@ GameObject::GameObject()
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
 	components.insert( std::make_pair( EComponent::Material, new Material() ) );
 }
+
 GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _type )
-					 : objectName( _name ), applyCamera( _cam ), objectType( _type ), isBillboard( false )
+					 : objectName( _name ), applyCamera( _cam ), objectType( _type ), isEnable( true ), isBillboard( false )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
@@ -18,14 +19,23 @@ GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _ty
 
 GameObject* GameObject::FindObject( GameObject* _obj )
 {
-	_obj;
-	return nullptr;
+	if ( _obj == nullptr ) throw;
+	const std::vector<GameObject*>::const_iterator& iter( std::find( std::cbegin( childs ), std::cend( childs ), _obj ) );
+
+	return iter == std::cend( childs ) ? nullptr : *iter;
 }
 
 GameObject* GameObject::FindObject( const std::wstring& _name )
 {
-	_name;
-	return nullptr;
+	if ( _name.empty() == true ) throw;
+
+	const std::vector<GameObject*>::const_iterator& iter( std::find_if( std::cbegin( childs ), std::cend( childs ), 
+		[&_name] ( GameObject* obj )->bool
+		{
+			return obj->GetName() == _name;
+		} ) );
+
+	return iter == std::cend( childs ) ? nullptr : *iter;
 }
 
 Component* GameObject::FindComponent( EComponent type )
@@ -40,11 +50,17 @@ void GameObject::SetBillboard( bool billboard )
 	isBillboard = billboard;
 }
 
-void GameObject::SetParent( GameObject* _obj )
+void GameObject::SetParent( GameObject* _parent )
 {
-	if ( _obj == nullptr ) throw;
+	if ( _parent == nullptr ) return;
 
-	parent = _obj;
+	if ( parent != nullptr )
+	{
+		parent->RemoveObject( this );
+		RemoveParent();
+	}
+
+	parent = _parent;
 }
 
 void GameObject::SetCamera( GameObject* _cam )
@@ -67,29 +83,47 @@ void GameObject::AddObject( GameObject* _obj )
 	childs.emplace_back( _obj );
 }
 
-void GameObject::RemoveObject( GameObject* _obj )
+GameObject* GameObject::RemoveObject( GameObject* _obj )
 {
 	const std::vector<GameObject*>::iterator& it( std::find( std::begin( childs ), std::end( childs ), _obj ) );
 
-	if ( it == std::end( childs ) ) return;
-
-	delete *it;
-	*it = nullptr;
+	if ( it == std::end( childs ) ) return nullptr;
 	childs.erase( it );
+
+	return *it;
 }
 
-void GameObject::RemoveObject( const std::wstring& _name )
+GameObject* GameObject::RemoveObject( const std::wstring& _name )
 {
 	const std::vector<GameObject*>::iterator& it ( std::find_if( std::begin( childs ), std::end( childs ), [&_name] (GameObject* obj)->bool
 	{
 		return obj->GetName() == _name;
 	} ) );
 
-	if ( it == std::end( childs ) ) return;
-
-	delete *it;
-	*it = nullptr;
+	if ( it == std::end( childs ) ) return nullptr;
 	childs.erase( it );
+
+	return *it;
+}
+
+void GameObject::DeleteObject( GameObject* _obj )
+{
+	if ( _obj == nullptr ) return;
+	
+	const GameObject* object( RemoveObject( _obj ) );
+	if ( object == nullptr ) return;
+
+	SafeDelete( object );
+}
+
+void GameObject::DeleteObject( const std::wstring& _name )
+{
+	if ( _name.empty() == true ) return;
+
+	GameObject* object( RemoveObject( _name ) );
+	if ( object == nullptr ) return;
+
+	SafeDelete( object );
 }
 
 void GameObject::RemoveParent()
@@ -101,10 +135,6 @@ void GameObject::RemoveParent()
 
 void GameObject::Init()
 {
-	//applyCamera = new Camera();
-	//applyCamera->CreateViewMatrix();
-	//applyCamera->CreateProjMatrix( 800, 600 );
-
 	for ( std::pair<EComponent, Component*> oneComponent : components )
 	{
 		oneComponent.second->Init();
@@ -118,7 +148,7 @@ void GameObject::Init()
 
 void GameObject::Frame()
 {
-	// transform.Frame();
+	if ( IsEnable() == false ) return;
 
 	for ( std::pair<EComponent, Component*> oneComponent : components )
 	{
@@ -147,6 +177,8 @@ void GameObject::PrevRender( ID3D11DeviceContext* context )
 
 void GameObject::Render( ID3D11DeviceContext* context )
 {
+	if ( IsEnable() == false ) return;
+
 	D3DXMATRIX parentMatrix( Matrix::Identity );
 	if ( parent != nullptr )
 		parentMatrix = parent->GetComponent<Transform>()->GetLocalMatrix();
@@ -172,9 +204,6 @@ void GameObject::Render( ID3D11DeviceContext* context )
 	{
 		oneObject->Render( context );
 	}
-
-	// PrevRender( context );
-	// PostRender( context );
 }
 
 void GameObject::PostRender( ID3D11DeviceContext* context )
@@ -184,7 +213,6 @@ void GameObject::PostRender( ID3D11DeviceContext* context )
 		oneComponent.second->PostRender();
 	}
 
-
 	for ( GameObject* oneObject : childs )
 	{
 		oneObject->PostRender( context );
@@ -193,15 +221,18 @@ void GameObject::PostRender( ID3D11DeviceContext* context )
 
 void GameObject::Release()
 {
-	for ( std::pair<EComponent, Component*> oneComponent : components )
+	for ( std::map<EComponent, Component*>::iterator oneComponent = std::begin( components ); 
+		  oneComponent != std::end( components ); oneComponent++ )
 	{
-		SafeRelease( oneComponent.second );
+		SafeRelease( oneComponent->second );
 	}
+	components.clear();
 
-	for ( GameObject* oneObject : childs )
+	for ( GameObject*& oneObject : childs )
 	{
 		SafeRelease( oneObject );
 	}
+	childs.clear();
 }
 
 void GameObject::Clear( ID3D11DeviceContext* context )

@@ -14,16 +14,6 @@ struct PNCT_VERTEX
 
 };
 
-//struct PCT_VERTEX
-//{
-//	D3DXVECTOR3 p;
-//	D3DXVECTOR4 c;
-//	D3DXVECTOR2 t;
-//
-//	PCT_VERTEX( const D3DXVECTOR3& _p, const D3DXVECTOR4& _c, const D3DXVECTOR2& _t ) : p( _p ), c( _c ), t( _t ) {}
-//	PCT_VERTEX() : p( Vector3::Zero ), c( Vector4::Zero ), t( Vector2::Zero ) {}
-//};
-
 struct VSCB
 {
 	D3DXMATRIX world;
@@ -49,25 +39,23 @@ public:
 public:
 	void UpdateConstantBuffer( const D3DXMATRIX&, const D3DXMATRIX&, const D3DXMATRIX& );
 	void Set( const std::vector<PNCT_VERTEX>& _vertices, const std::vector<DWORD>& _indices );
-	//void Set( const std::vector<PCT_VERTEX>& _vertices, const std::vector<DWORD>& _indices );
-	VSCB& GetVSCB() { return dataVSCB; }
-	ID3D11Buffer*& GetVertexBuffer() { return vertexBuffer; };
 	void UpdateVertex( const std::vector<PNCT_VERTEX>& _vertices );
 	void UpdateVertex();
-	//void UpdateVertexPCT();
 	void PrevRenderInst();
 
-	UINT GetIndexCount() const { return numIndex; }
-
 public:
-	ID3D11Buffer* vertexBuffer;
+	VSCB& GetVSCB() { return dataVSCB; }
+	const UINT GetIndexCount() const { return numIndex; }
+	ID3D11Buffer*& GetVertexBuffer() { return vertexBuffer; }
+	ID3D11Buffer* GetIndexBuffer() const { return indexBuffer; }
+	ID3D11Buffer*& GetConstantBuffer() { return vertexShaderConstantBuffer; }
 
-public:
+private:
 	std::vector<PNCT_VERTEX> vertices;
-	//std::vector<PCT_VERTEX> verticesPCT;
 	std::vector<DWORD> indices;
 	VSCB dataVSCB;
 
+	ID3D11Buffer* vertexBuffer;
 	ID3D11Buffer* indexBuffer;
 	ID3D11Buffer* vertexShaderConstantBuffer;
 

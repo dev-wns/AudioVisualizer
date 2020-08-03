@@ -43,10 +43,12 @@ void Material::PrevRender()
 
 void Material::Release()
 {
+	SafeRelease( texture );
+	SafeRelease( layout );
 	SafeRelease( vertexShader );
 	SafeRelease( pixelShader );
-	SafeRelease( layout );
 	SafeRelease( blobVS );
+	SafeRelease( blobPS );
 }
 
 void  Material::SetTexture( Texture* tx )

@@ -3,8 +3,9 @@
 
 class Device
 {
-protected:	     Device() = default;
-public:	virtual ~Device() = default;
+public:	     
+	Device() = default;
+	virtual ~Device() = default;
 
 public:
 	void ResizeClient( const HWND& hWnd, UINT width, UINT height );
@@ -14,16 +15,12 @@ public:
 
 public:
 	void Init( const HWND& hWnd, UINT width, UINT height );
-	//void PreRender();
-	//void Render();
-	//void PostRender();
 	void Release();
 
 private:
 	HRESULT	CreateFactory();
 	HRESULT	CreateDevice();
 	HRESULT	CreateSwapChain( const HWND& hWnd, UINT width, UINT height );
-	//HRESULT	SetRenderTargetView();
 
 private:
 	friend class DxManager;
@@ -33,6 +30,5 @@ private:
 	ID3D11DeviceContext* d3dContext;
 	IDXGISwapChain* swapChain;
 	IDXGIFactory* dxgiFaxtory;
-	//RenderTarget renderTarget;
 };
 

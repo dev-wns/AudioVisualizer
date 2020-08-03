@@ -156,31 +156,35 @@ struct DxState
 
 		return hr;
 	}
+
 	void Release()
 	{
-		for ( std::pair<ERasterizer, ID3D11RasterizerState*> oneRaster : raster )
+		for ( std::map<ERasterizer, ID3D11RasterizerState*>::iterator iter = std::begin( raster );
+			  iter != std::end( raster ); iter++ )
 		{
-			SafeRelease( oneRaster.second );
+			SafeRelease( iter->second );
 		}
-
-		for ( std::pair<EDepthStencil, ID3D11DepthStencilState*> oneDepth : depth )
-		{
-			SafeRelease( oneDepth.second );
-		}
-
-		for ( std::pair<ESampler, ID3D11SamplerState*> oneSampler : sampler )
-		{
-			SafeRelease( oneSampler.second );
-		}
-
-		for ( std::pair<EBlend, ID3D11BlendState*> oneBlend : blend )
-		{
-			SafeRelease( oneBlend.second );
-		}
-
 		raster.clear();
+
+		for ( std::map<EDepthStencil, ID3D11DepthStencilState*>::iterator iter = std::begin( depth );
+			  iter != std::end( depth ); iter++ )
+		{
+			SafeRelease( iter->second );
+		}
 		depth.clear();
+
+		for ( std::map<ESampler, ID3D11SamplerState*>::iterator iter = std::begin( sampler );
+			  iter != std::end( sampler ); iter++ )
+		{
+			SafeRelease( iter->second );
+		}
 		sampler.clear();
+
+		for ( std::map<EBlend, ID3D11BlendState*>::iterator iter = std::begin( blend );
+		 	  iter != std::end( blend ); iter++ )
+		{
+			SafeRelease( iter->second );
+		}
 		blend.clear();
 	}
 };

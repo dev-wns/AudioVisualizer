@@ -15,7 +15,6 @@ public:
 	const D3DXMATRIX& GetProjMatrix() const override { return projMatrix; }
 
 public:
-	// 나중에 모델뷰, UI카메라 같은거 만들기.
 	virtual void Create( LONG width, LONG height ) = 0;
 	virtual void CreateViewMatrix() = 0;
 	virtual void CreateProjMatrix( LONG width, LONG height ) = 0;

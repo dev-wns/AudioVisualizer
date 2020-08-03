@@ -42,8 +42,5 @@ private:
 	std::map<std::string, FMOD::Sound*> musics;
 	std::map<ESoundCount, float*> spectrum;
 	std::vector<FMOD::Channel*> channels;
-
-public:
-	static float maxSptValue;
 };
 

@@ -5,8 +5,9 @@
 
 class TextureManager : public Singleton<TextureManager>
 {
-private:	     TextureManager() = default;
-public:	virtual ~TextureManager() = default;
+public:
+	TextureManager() = default;
+	virtual ~TextureManager() = default;
 
 public:
 	Texture* GetTexture( const std::wstring& _name );

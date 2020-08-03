@@ -7,7 +7,7 @@
 void SoundPlayer::Init()
 {
 	SoundManager::Get()->Init();
-	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music40.mp3" ) == false )
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music21.mp3" ) == false )
 	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
@@ -46,10 +46,11 @@ void SoundPlayer::Frame()
 
 void SoundPlayer::Release()
 {
-	SafeRelease( centerImage );
-	SafeRelease( backGround );
-	SafeRelease( spectrum );
-	SafeRelease( particle );
+	// ObjectManager에서 제거
+	//SafeRelease( centerImage );
+	//SafeRelease( backGround );
+	//SafeRelease( spectrum );
+	//SafeRelease( particle );
 }
 
 void SoundPlayer::BassUpdate()

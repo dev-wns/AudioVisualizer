@@ -165,11 +165,15 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="Spectrum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Const.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="SoundPlayer.h" />
+    <ClInclude Include="Spectrum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

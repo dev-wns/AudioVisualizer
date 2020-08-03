@@ -59,11 +59,7 @@ void Core::GameRelease()
 {
 	Release();
 	ObjectManager::Get()->Release();
-	//State::Release();
+	SoundManager::Get()->Release();
+	TextureManager::Get()->Release();
+	DxManager::Get()->Release();
 }
-
-//void Core::ResizeClient( UINT width, UINT height )
-//{
-//	Device::Get()->ResizeClient( GetWindowHandle(), width, height );
-//	Window::ResizeClient( width, height );
-//}

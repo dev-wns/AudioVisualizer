@@ -4,8 +4,9 @@
 
 class Timer : public Singleton<Timer>
 {
-private:		 Timer() = default;
-public: virtual ~Timer() = default;
+public:
+	Timer() = default;
+    virtual ~Timer() = default;
 
 public:
 	static float SPF() { return secondPerFrame; }

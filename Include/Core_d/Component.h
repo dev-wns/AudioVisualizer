@@ -7,7 +7,7 @@ enum class EComponent {	Transform = 0, Material, Mesh, };
 class Component
 {
 public:
-	Component() {}
+	Component() = default;
 	virtual ~Component() = default;
 
 public:

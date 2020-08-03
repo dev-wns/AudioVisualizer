@@ -4,13 +4,17 @@
 
 class Timer : public Singleton<Timer>
 {
-private:		 Timer() = default;
-public: virtual ~Timer() = default;
+public:
+	Timer() = default;
+    virtual ~Timer() = default;
 
 public:
 	static float SPF() { return secondPerFrame; }
 	static DWORD FPS() { return framePerSecond; }
 	static float GameTimer() { return gameTimer; }
+
+public:
+	bool IsFixedFrameRate();
 
 public:
 	void Init();
@@ -26,4 +30,6 @@ private:
 	LARGE_INTEGER beforeTick;
 	LARGE_INTEGER currentTick;
 	LONGLONG elapseTick;
+
+	bool isSetFrame;
 };

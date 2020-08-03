@@ -99,15 +99,6 @@ void DxManager::Init()//const HWND& hWnd )//, const RECT& clientRect )
 }
 void DxManager::PreRender()
 {
-	// float color[3];
-	// color[0] = sinf( Timer::GameTimer() ) * 0.5f + 0.5f;
-	// color[1] = cosf( Timer::GameTimer() * 2.0f ) * 0.5f + 0.5f;
-	// color[2] = sinf( Timer::GameTimer() * 3.0f ) * 0.5f + 0.5f;
-	// float fRed = 0.0f;
-	// fRed = ( cosf( Timer::GameTimer() ) * 0.5f + 0.5f );
-	// float fGreen = 0.0f;
-	// fGreen = ( sinf( Timer::GameTimer() ) * 0.5f + 0.5f );
-
 	dxRT.Begin( GetContext(), Color::Black, true, true, true );
 	GetContext()->IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 }
@@ -129,4 +120,5 @@ void DxManager::Release()
 {
 	Device::Release();
 	state.Release();
+	dxRT.Release();
 }

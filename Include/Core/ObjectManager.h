@@ -27,25 +27,8 @@ public:
 
 public:
 	void SetCamera( ECamera _cam );
-	Camera* GetCamera( ECamera _camType )
-	{
-		const std::map<ECamera, Camera*>::const_iterator& iter( cameras.find( _camType ) );
-		if ( iter == std::cend( cameras ) )
-		{
-			// 무엇을 반환할까?? 고민고민 throw?
-			return curCamera;
-		}
-
-		return iter->second;
-	}
-	void ResizeClient( UINT width, UINT height )
-	{
-		for ( const std::pair<ECamera, Camera*>& cam : cameras )
-		{
-			cam.second->CreateProjMatrix( width, height );
-		}
-	}
-
+	Camera* GetCamera( ECamera _camType );
+	void ResizeClient( UINT width, UINT height );
 	std::map<ECamera, Camera*>& GetCameras() { return cameras; }
 
 private:

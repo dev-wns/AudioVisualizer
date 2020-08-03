@@ -3,7 +3,7 @@
 
 HRESULT	RenderTarget::Create( ID3D11Device* d3dDevice, FLOAT Width, FLOAT Height, ID3D11Texture2D* pTex )
 {
-	HRESULT hr = S_OK;
+	HRESULT hr( S_OK );
 	D3D11_TEXTURE2D_DESC desc;
 	ZeroMemory( &desc, sizeof( D3D11_TEXTURE2D_DESC ) );
 	ViewPortSet( 0, 0, Width, Height );
@@ -20,7 +20,7 @@ HRESULT	RenderTarget::Create( ID3D11Device* d3dDevice, FLOAT Width, FLOAT Height
 	desc.MiscFlags = 0;
 	desc.ArraySize = 1;
 
-	ID3D11Texture2D* pTexture = NULL;
+	ID3D11Texture2D* pTexture( NULL );
 
 	if ( FAILED( hr = d3dDevice->CreateTexture2D( &desc, NULL, &pTexture ) ) )
 	{
@@ -61,7 +61,7 @@ void RenderTarget::ViewPortSet( FLOAT TopLeftX, FLOAT TopLeftY, FLOAT Width, FLO
 }
 HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidth, FLOAT iHeight )
 {
-	HRESULT hr;
+	HRESULT hr( S_OK );
 	if ( curDSView != NULL )
 	{
 		SafeRelease( curDSView );
@@ -70,7 +70,7 @@ HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidt
 	curViewPort.Width = iWidth;
 	curViewPort.Height = iHeight;
 
-	ID3D11Texture2D* pTexture = NULL;
+	ID3D11Texture2D* pTexture( NULL );
 	CD3D11_TEXTURE2D_DESC DescDepth;
 	DescDepth.Width = ( UINT )iWidth;
 	DescDepth.Height = ( UINT )iHeight;
@@ -136,7 +136,7 @@ HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidt
 }
 void	RenderTarget::Apply( ID3D11DeviceContext* d3dContext, ID3D11RenderTargetView* pRTV, ID3D11DepthStencilView* pDSV, bool bDepth, bool bStencil )
 {
-	ID3D11RenderTargetView* pNullRTV = NULL;
+	ID3D11RenderTargetView* pNullRTV( NULL );
 	d3dContext->OMSetRenderTargets( 1, &pNullRTV, NULL );
 
 	if ( pRTV != NULL )
@@ -177,7 +177,7 @@ bool	RenderTarget::Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, b
 	d3dContext->RSGetViewports( &countViewPort, &oldViewPort );
 	d3dContext->OMGetRenderTargets( 1, &oldRTView, &oldDSView );
 
-	ID3D11RenderTargetView* pNullRTV = NULL;
+	ID3D11RenderTargetView* pNullRTV( NULL );
 	d3dContext->OMSetRenderTargets( 1, &pNullRTV, NULL );
 	d3dContext->OMSetRenderTargets( 1, &curRTView, curDSView );
 

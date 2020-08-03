@@ -4,7 +4,7 @@
 
 void Texture::CreateShaderResourceView( const std::wstring& _path )
 {
-	HRESULT hr = S_OK;
+	HRESULT hr ( S_OK );
 	if ( FAILED( hr = D3DX11CreateShaderResourceViewFromFile( DxManager::Get()->GetDevice(), _path.c_str(), NULL, NULL, &resource, NULL ) ) )
 	{
 		return;

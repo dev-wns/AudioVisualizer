@@ -5,7 +5,7 @@ namespace Utility { namespace Buffer {
 
 	static ID3D11Buffer* CreateBuffer( D3D11_BIND_FLAG flag, ID3D11Device* device, void* pData, UINT iSize, UINT iNumCount, bool bDynamic = false )
 	{
-		HRESULT hr = S_OK;
+		HRESULT hr ( S_OK );
 		ID3D11Buffer* pBuffer = 0;
 		D3D11_BUFFER_DESC pDesc;
 		ZeroMemory( &pDesc, sizeof( D3D11_BUFFER_DESC ) );

@@ -7,7 +7,9 @@
 #include "Spectrum.h"
 #include "ParticleSystem.h"
 #include <thread>
-#include "MusicPlayer.h"
+#include "SoundPlayer.h"
+#include "Const.h"
+#include "TextureManager.h"
 //#include "..\\..\\Core\Core.h"
 //#include "..\\..\\Core\DxManager.h"
 //#include "..\\..\\Include\Core_d\\GameObject.h"
@@ -17,31 +19,18 @@ class Sample : public Core
 	GameObject* spec;
 	GameObject* spec1;
 	ParticleSystem* part;
-	MusicPlayer* m;
+	SoundPlayer* m;
 public:
 	void Init() override
 	{
 		SoundManager::Get()->Init();
 		{
-			SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music.mp3" );
+			if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music33.mp3" ) == false )
+				SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 		}
-		//std::thread t1( [] ()
-		//{
-		//	SoundManager::Get()->Init();
-		//	{
-		//		SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music64.mp3" );
-		//		//SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music31.mp3" );
-		//		//SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music32.mp3" );
-		//		//SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music25.mp3" );
-		//		//SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music20.mp3" );
-		//		//SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music17.mp3" );
-		//		//SoundManager::Get()->Play( "music10.mp3" );
-		//	} 
-		//} );
-		//t1.detach();
-		TextureManager::Get()->PushTexture( L"..\\..\\Resource\\back.jpg" );
+		TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
-		m = new MusicPlayer( L"Spectrum", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
+		m = new SoundPlayer( L"Spectrum", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
 		ObjectManager::Get()->AddObject( m );
 	}
 

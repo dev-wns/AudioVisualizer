@@ -29,16 +29,16 @@ void Core::GameFrame()
 
 void Core::GameRender()
 {
-	static float elapseFPSTime = 0.0f;
+	static float elapseFPSTime( 0.0f );
 	elapseFPSTime += Timer::Get()->SPF();
 
-	static DWORD fps = 0;
-	static float elapseTime = 0;
+	static DWORD fps ( 0 );
+	static float elapseTime ( 0 );
 	elapseTime += Timer::Get()->SPF();
 	if ( elapseTime > 1.0f )
 	{
 		std::string debug2( "Core Fixed Frame Rate : " + std::to_string( fps ) + "\n" );
-		OutputDebugStringA( debug2.c_str() );
+		::OutputDebugStringA( debug2.c_str() );
 		fps = 0;
 		elapseTime = 0;
 	}

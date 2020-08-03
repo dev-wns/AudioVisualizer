@@ -31,6 +31,8 @@ void Input::WindowMessageEvent( MSG msg )
 		{
 			mouseState[2] = EKeyState::KEY_UP;
 		}break;
+
+		default: break;
 	}
 }
 

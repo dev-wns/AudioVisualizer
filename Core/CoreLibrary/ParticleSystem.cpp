@@ -12,7 +12,7 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 
 	const float& scl( MyRandom::Get()->GetRandomFloat( 10.0f, 25.0f ) );
 	GetComponent<Transform>()->SetScale( scl / 2.0f, scl, 1.0f );
-	respawnDelay = 0.0f;// MyRandom::Get()->GetRandomFloat( 3.0f, 10.0f );
+	respawnDelay = 0.0f;
 	moveSpeed = MyRandom::Get()->GetRandomFloat(1.0f, 100.0f );
 
 	defaultColor = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) );
@@ -61,23 +61,6 @@ void Particle::Frame()
 	const D3DXVECTOR3& value( direction * speed * spf );
 	GetComponent<Transform>()->Translate( value );
 
-	//// 이동 루틴
-	//if ( isEnable == true )
-	//{
-	//	timer += spf;
-	//	if ( respawnDelay < timer )
-	//	{
-	//		timer = 0.0f;
-	//		isEnable = false;
-	//	}
-	//}
-	//else
-	//{
-	//	const float& accSpeed( ( spec[0] + spec[1] + spec[2] + spec[3] + spec[4] ) * 150.0f );
-	//	const float& speed( moveSpeed + ( moveSpeed * accSpeed ) );
-	//	const D3DXVECTOR3& value( direction * speed * spf );
-	//	GetComponent<Transform>()->Translate( value );
-	//}
 	GameObject::Frame();
 }
 
@@ -102,8 +85,6 @@ void ParticleSystem::Init()
 	for ( UINT count = 0; count < maxParticle; count++ )
 	{
 		Particle* newParticle = new Particle( L"Particle", GetCamera(), GetType(), &isRainbow );
-		//newParticle->GetComponent<Material>()->SetTexture( GetComponent<Material>()->GetTexture() );
-		//newParticle->GetComponent<Material>()->SetPixel( "PS_Sphere" );
 		AddObject( newParticle );
 		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &Matrix::Identity );
 		instanceData[count].color = newParticle->color;
@@ -118,7 +99,7 @@ void ParticleSystem::Init()
 void ParticleSystem::Frame() 
 {
 	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
-	int count = 0;
+	int count ( 0 );
 	for ( GameObject* oneParticle : GetChild() )
 	{
 		const D3DXVECTOR3& pos( oneParticle->GetComponent<Transform>()->GetPosition() );
@@ -138,9 +119,9 @@ void ParticleSystem::Frame()
 	{
 		static D3D11_MAPPED_SUBRESOURCE MappedResource = { 0, };
 		DxManager::Get()->GetContext()->Map( instanceBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
-		InstanceData* pInstance = ( InstanceData* )MappedResource.pData;		
+		InstanceData* instance( ( InstanceData* )MappedResource.pData );		
 
-		memcpy( pInstance, &instanceData.at( 0 ), sizeof( InstanceData ) * instanceData.size() );
+		::memcpy( instance, &instanceData.at( 0 ), sizeof( InstanceData ) * instanceData.size() );
 		DxManager::Get()->GetContext()->Unmap( instanceBuffer, 0 );
 	}
 }

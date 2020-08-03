@@ -8,7 +8,7 @@ void DxManager::SetRenderTargetView()
 
 	DXGI_SWAP_CHAIN_DESC SwapDesc = { 0, };
 	GetSwapChain()->GetDesc( &SwapDesc );
-	ID3D11Texture2D* pResource = nullptr;
+	ID3D11Texture2D* pResource( nullptr );
 	if ( GetSwapChain()->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pResource ) == E_FAIL
 		|| dxRT.Create( GetDevice(), ( FLOAT )SwapDesc.BufferDesc.Width, ( FLOAT )SwapDesc.BufferDesc.Height, pResource ) == E_FAIL )
 	{
@@ -18,7 +18,7 @@ void DxManager::SetRenderTargetView()
 
 void DxManager::ResizeClient( UINT width, UINT height )
 {
-//	Device::ResizeClient( hWnd, width, height );
+	//	Device::ResizeClient( hWnd, width, height );
 	if ( d3dContext == nullptr ) return;
 	d3dContext->OMSetRenderTargets( 0, nullptr, nullptr );
 
@@ -28,7 +28,6 @@ void DxManager::ResizeClient( UINT width, UINT height )
 	ID3D11RenderTargetView* rtv( dxRT.GetRTView() );
 	SafeRelease( rtv );
 	SetRenderTargetView();
-
 
 	for ( std::pair<ECamera, Camera*> oneCamera : ObjectManager::Get()->GetCameras() )
 	{
@@ -52,10 +51,12 @@ bool DxManager::isState( EDepthStencil dsState )
 {
 	return state.depth[dsState] == nullptr ? false : true;
 }
+
 bool DxManager::isState( ESampler samState )
 {
 	return state.sampler[samState] == nullptr ? false : true;
 }
+
 bool DxManager::isState( EBlend blendState )
 {
 	return state.blend[blendState] == nullptr ? false : true;

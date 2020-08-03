@@ -17,7 +17,7 @@ public:
 	enum class ESound { BackGround = 31, };
 
 public:
-	void LoadSoundFile( const std::string& _path );
+	bool LoadSoundFile( const std::string& _path );
 	void CreateSoundBuffer();
 	std::map<ESoundCount, float*>& GetSpectrum();
 

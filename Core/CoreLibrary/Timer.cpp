@@ -7,15 +7,15 @@ DWORD Timer::framePerSecond = 0;
 
 void Timer::Init()
 {
-	QueryPerformanceFrequency( &frequency );
-	QueryPerformanceCounter( &beforeTick );
+	::QueryPerformanceFrequency( &frequency );
+	::QueryPerformanceCounter( &beforeTick );
 }
 
 void Timer::Frame()
 {
-	QueryPerformanceCounter( &currentTick );
+	::QueryPerformanceCounter( &currentTick );
 	elapseTick = currentTick.QuadPart - beforeTick.QuadPart;
-	secondPerFrame = ( float )elapseTick / ( float )frequency.QuadPart;
+	secondPerFrame = static_cast< float >( elapseTick ) / static_cast< float >( frequency.QuadPart );
 	gameTimer += secondPerFrame;
 	frameTime += secondPerFrame;
 
@@ -27,13 +27,13 @@ void Timer::Frame()
 	{
 		// 전체 프레임
 		std::string debug( "FPS : " + std::to_string( framePerSecond ) + "\n" );
-		OutputDebugStringA( debug.c_str() );
+		::OutputDebugStringA( debug.c_str() );
 		framePerSecond = 0;
 		frameTime = 0.0f;
 
 		// 고정 프레임
 		std::string debug2( "Fixed Frame Rate : " + std::to_string( fixedFrameRate ) + "\n" );
-		OutputDebugStringA( debug2.c_str() );
+		::OutputDebugStringA( debug2.c_str() );
 		fixedFrameRate = 0;
 	}
 

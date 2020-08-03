@@ -84,7 +84,7 @@ void ObjectManager::AddObject( GameObject* _obj )
 	}
 
 	const EObject& type( _obj->objectType );
-	const auto& iter = objects.find( type );
+	const std::map<EObject, std::list<GameObject*>>::iterator& iter( objects.find( type ) );
 	if ( iter == std::cend( objects ) )
 	{
 		std::list<GameObject*> makelist;
@@ -103,7 +103,7 @@ void ObjectManager::RemoveObject( GameObject* _obj )
 	if ( _obj == nullptr ) throw;
 
 	const EObject& type( _obj->objectType );
-	const auto& iter = objects.find( type );
+	const std::map<EObject, std::list<GameObject*>>::iterator& iter = objects.find( type );
 	if ( iter == objects.cend() ) return;
 
 	std::list<GameObject*>& _list( iter->second );
@@ -115,12 +115,21 @@ void ObjectManager::RemoveObject( GameObject* _obj )
 	_list.erase( _iter );
 }
 
-//void ObjectManager::RemoveObject( const std::wstring& _name )
-//{
-//
-//}
-//
-//void ObjectManager::SetCamera( ECamera _cam )
-//{
-//
-//}
+Camera* ObjectManager::GetCamera( ECamera _camType )
+{
+	const std::map<ECamera, Camera*>::const_iterator& iter( cameras.find( _camType ) );
+	if ( iter == std::cend( cameras ) )
+	{
+		return curCamera;
+	}
+
+	return iter->second;
+}
+
+void ObjectManager::ResizeClient( UINT width, UINT height )
+{
+	for ( const std::pair<ECamera, Camera*>& cam : cameras )
+	{
+		cam.second->CreateProjMatrix( width, height );
+	}
+}

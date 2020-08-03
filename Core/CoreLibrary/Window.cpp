@@ -3,15 +3,6 @@
 #include "Input.h"
 #include "DxManager.h"
 
-Window::Window()
-{
-}
-
-Window::~Window()
-{
-	// SafeRelease( g_pWindow );
-}
-
 LRESULT CALLBACK WndProc( HWND windowHandle, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	return Window::Get()->MsgProc( windowHandle, msg, wParam, lParam );
@@ -21,25 +12,29 @@ LRESULT Window::MsgProc( HWND windowHandle, UINT msg, WPARAM wParam, LPARAM lPar
 {
 	switch ( msg )
 	{
-	case WM_SIZE:
-	{
-		if ( wParam != SIZE_MINIMIZED )
+		case WM_SIZE:
 		{
-			UINT width( LOWORD( lParam ) );
-			UINT height( HIWORD( lParam ) );
-			ResizeClient( width, height );
-		}
-	}break;
-	case WM_PAINT:
-	{
-		PAINTSTRUCT ps;
-		::BeginPaint( windowHandle, &ps );
-		::EndPaint( windowHandle, &ps );
-	}break;
-	case WM_DESTROY:
-	{
-		::PostQuitMessage( 0 );
-	}break;
+			if ( wParam != SIZE_MINIMIZED )
+			{
+				UINT width( LOWORD( lParam ) );
+				UINT height( HIWORD( lParam ) );
+				ResizeClient( width, height );
+			}
+		}break;
+
+		case WM_PAINT:
+		{
+			PAINTSTRUCT ps;
+			::BeginPaint( windowHandle, &ps );
+			::EndPaint( windowHandle, &ps );
+		}break;
+
+		case WM_DESTROY:
+		{
+			::PostQuitMessage( 0 );
+		}break;
+
+		default: break;
 	}
 
 	return ::DefWindowProc( windowHandle, msg, wParam, lParam );
@@ -54,11 +49,8 @@ void Window::ResizeClient( UINT width, UINT height )
 {
 	if( DxManager::Get()->GetWindowHandle() != nullptr )
 		DxManager::Get()->ResizeClient( width, height );
-	// clientRect.right = width;
-	// clientRect.bottom = height;
-	// 
-	// ::GetClientRect( hWnd, &clientRect );
 }
+
 void Window::Run()
 {
 	GameInit();
@@ -96,7 +88,7 @@ bool Window::SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className
 	wc.hInstance = hInstance;
 	wc.hIcon = ::LoadIcon( hInstance, IDI_ERROR );
 	wc.hCursor = ::LoadCursor( hInstance, IDC_IBEAM );
-	wc.hbrBackground = ( HBRUSH )::GetStockObject( BLACK_BRUSH );
+	wc.hbrBackground = static_cast<HBRUSH>( ::GetStockObject( BLACK_BRUSH ) );
 	wc.lpszMenuName = NULL;
 	wc.lpszClassName = className;
 	wc.hIconSm = ::LoadIcon( hInstance, IDI_ERROR );
@@ -105,31 +97,41 @@ bool Window::SetWindow( HINSTANCE inst, int width, int height, LPCWSTR className
 		return false;
 	}
 
-	RECT windowRect = { 0,0,width, height };
-	AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE );
+	RECT window = { 0, 0, width, height };
+	AdjustWindowRect( &window, WS_OVERLAPPEDWINDOW, FALSE );
 	//hWnd = ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_OVERLAPPEDWINDOW, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, NULL, NULL, hInstance, NULL );
-	DxManager::Get()->SetWindowHandle( ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_OVERLAPPEDWINDOW, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, NULL, NULL, hInstance, NULL ) );
+	DxManager::Get()->SetWindowHandle( ::CreateWindowEx( WS_EX_APPWINDOW, className, className, WS_OVERLAPPEDWINDOW, 0, 0, window.right - window.left, window.bottom - window.top, NULL, NULL, hInstance, NULL ) );
 	if ( DxManager::Get()->GetWindowHandle() == NULL )
 	{
 		return false;
 	}
 
-	::GetWindowRect( DxManager::Get()->GetWindowHandle(), &DxManager::Get()->GetWindowRect() );
-	::GetClientRect( DxManager::Get()->GetWindowHandle(), &DxManager::Get()->GetClientRect() );
+	RECT& clientRect( DxManager::Get()->GetClientRect() );
+	RECT& windowRect( DxManager::Get()->GetWindowRect() );
+	const HWND& windowHandle( DxManager::Get()->GetWindowHandle() );
+
+	::GetWindowRect( windowHandle, &windowRect );
+	::GetClientRect( windowHandle, &clientRect );
 
 	// 윈도우 창 센터 맞추기.
-	int screenWidth ( ::GetSystemMetrics( SM_CXSCREEN ) );
-	int screenHeight( ::GetSystemMetrics( SM_CYSCREEN ) );
+	const int& screenWidth ( ::GetSystemMetrics( SM_CXSCREEN ) );
+	const int& screenHeight( ::GetSystemMetrics( SM_CYSCREEN ) );
 
-	int x( ( screenWidth  - ( DxManager::Get()->GetClientRect().right - DxManager::Get()->GetClientRect().left ) ) / 2 );
-	int y( ( screenHeight - ( DxManager::Get()->GetClientRect().bottom - DxManager::Get()->GetClientRect().top ) ) / 2 );
+	const int& x( ( screenWidth  - ( clientRect.right -  clientRect.left ) ) / 2 );
+	const int& y( ( screenHeight - ( clientRect.bottom - clientRect.top ) ) / 2 );
 
-	RECT rt = { 0, 0, DxManager::Get()->GetClientRect().right, DxManager::Get()->GetClientRect().bottom };
-	::AdjustWindowRect( &rt, GetWindowStyle( DxManager::Get()->GetWindowHandle() ), FALSE );
-	::MoveWindow( DxManager::Get()->GetWindowHandle(), x, y, rt.right - rt.left, rt.bottom - rt.top, true );
+	RECT rt = { 0, 0, clientRect.right, clientRect.bottom };
+	::AdjustWindowRect( &rt, GetWindowStyle( windowHandle ), FALSE );
+	::MoveWindow( windowHandle, x, y, rt.right - rt.left, rt.bottom - rt.top, true );
 
-	::UpdateWindow( DxManager::Get()->GetWindowHandle() );
-	::ShowWindow( DxManager::Get()->GetWindowHandle(), SW_SHOW );
+	::UpdateWindow( windowHandle );
+	::ShowWindow( windowHandle, SW_SHOW );
 
 	return true;
+}
+
+void Window::GameRun()
+{
+	GameFrame();
+	GameRender();
 }

@@ -38,10 +38,10 @@ void Device::Release()
 HRESULT Device::CreateFactory()
 {
 	if ( d3dDevice == NULL ) return E_FAIL;
-	HRESULT hr;
+	HRESULT hr( S_OK );
 	IDXGIDevice * pDXGIDevice;
 	hr = d3dDevice->QueryInterface( __uuidof( IDXGIDevice ), ( void ** )&pDXGIDevice );
-
+	
 	IDXGIAdapter * pDXGIAdapter;
 	hr = pDXGIDevice->GetParent( __uuidof( IDXGIAdapter ), ( void ** )&pDXGIAdapter );
 

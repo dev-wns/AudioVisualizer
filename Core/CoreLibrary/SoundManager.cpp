@@ -14,37 +14,30 @@ std::map<ESoundCount, float*>& SoundManager::GetSpectrum()
 	return spectrum;
 }
 
-void SoundManager::LoadSoundFile( const std::string& _path )
+bool SoundManager::LoadSoundFile( const std::string& _path )
 {
-	if ( _path.empty() == true )
-		throw;
+	if ( _path.empty() == true ) return false;
 
+	// 사운드 생성
 	FMOD::Sound* sound;
-	// FMOD_DEFAULT     한번
-	// FMOD_LOOP_NORMAL 반복
+	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) return false;
 
-	//FMOD_CREATESOUNDEXINFO soundInfo = { 0, };
-	//soundInfo.cbsize = sizeof( FMOD_CREATESOUNDEXINFO );
-	//soundInfo.numchannels = 1;
-	//soundInfo.format = FMOD_SOUND_FORMAT_PCMFLOAT;
-	//soundInfo.defaultfrequency = 1;
-	//soundInfo.length = soundInfo.defaultfrequency * sizeof( short ) * soundInfo.numchannels;
-
-	soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound );
-
+	// path에서 이름만 자르기
+	std::string name;
 	const size_t& pos( _path.find_last_of( L'\\' ) );
+
 	if ( pos == std::string::npos )
 	{
 		throw;
 	}
-	std::string name;
+
 	for ( size_t start = pos + 1; start != _path.size(); start++ )
 	{
 		name.push_back( _path[start] );
 	}
 	musics.insert( std::make_pair( name, sound ) );
 
-	//Play( name );
+	return true;
 }
 
 void SoundManager::Play()

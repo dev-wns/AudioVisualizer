@@ -53,12 +53,12 @@ void Spectrum::Init()
 	const float& degree( ( 180.0f / maxSpectrum ) * ( 3.14159265358979323846f / 180.0f ) );
 
 
-	int instanceCount = 0;
+	int instanceCount ( 0 );
 	instanceData.resize( maxSpectrum * 2 );
 	for ( UINT count = 0; count < maxSpectrum; count++ )
 	{
 		// Red -> Green -> Blue 그라데이션 색상
-		int r = 0, g = 0, b = 0;
+		int r( 0 ), g( 0 ), b( 0 );
 		const float& a( ( 1.0f - ( ( 1.0f / maxSpectrum * ( maxSpectrum - count ) ) ) ) / 0.25f );
 		const int& X( static_cast < int >( ::floor( a ) ) );
 		const int& Y( static_cast < int >( ::floor( 255 * ( a - X ) ) ) );
@@ -109,7 +109,7 @@ void Spectrum::Init()
 
 void Spectrum::Frame()
 {
-	int count = 0;
+	int count ( 0 );
 	for ( GameObject* oneSpectrumBar : GetChild() )
 	{
 		oneSpectrumBar->Frame();
@@ -176,16 +176,14 @@ void Spectrum::UpdateLength( const float& _lengthAmount )
 	const float& spf( Timer::Get()->SPF() );
 	std::map<ESoundCount, float*>& spectrum( SoundManager::Get()->GetSpectrum() );
 	const std::vector<GameObject*>& childList( GetChild() );
-	UINT spectrumCount = 0;
+	UINT spectrumCount ( 0 );
 
 	for ( UINT count = 0; count < maxSpectrum * 2; spectrumCount++)
 	{
-		const float& value( ( ( spectrum[ESoundCount::S4096L][spectrumCount] + spectrum[ESoundCount::S4096R][spectrumCount] ) * 0.5f ) );
 		// 음악에 따라 스펙트럼바 높낮이 조절
+		const float& value( ( ( spectrum[ESoundCount::S4096L][spectrumCount] + spectrum[ESoundCount::S4096R][spectrumCount] ) * 0.5f ) );
 		const float& calc( value * _lengthAmount );
 		const D3DXVECTOR3& scl( childList[count]->GetComponent<Transform>()->GetScale() );
-
-		
 
 		if ( scl.y < calc )
 		{
@@ -194,30 +192,12 @@ void Spectrum::UpdateLength( const float& _lengthAmount )
 				childList[count]->GetComponent<Transform>()->SetScaleY( calc );
 		}
 		else
-			childList[count]->GetComponent<Transform>()->ScalingY( -( 50.0f + ( ( ( scl.y * 3.5f ) / 18.0f ) * 40.71f ) ) * spf ); // 42
+			childList[count]->GetComponent<Transform>()->ScalingY( -( 50.0f + ( ( ( scl.y * 3.5f ) / 18.0f ) * 40.71f ) ) * spf );
 
 		if ( scl.y < 0.0f )
 			childList[count]->GetComponent<Transform>()->SetScaleY( 0.0f );
 
-//		if ( scl.y < calc )
-//		{
-//			childList[count]->GetComponent<Transform>()->SetScaleY( calc );
-//		}
-//
-//		if ( scl.y > 0.0f )
-//		{
-//			//childList[count]->GetComponent<Transform>()->ScalingY( -( 50.0f + ( ( ( scl.y * 3.0f ) / 18.0f ) * 40.71f ) ) * spf ); // 42
-//			//childList[count]->GetComponent<Transform>()->ScalingY( -( 100.0f + ( ( ( scl.y * 4.0f ) / 18.0f ) * 50.71f ) ) * spf ); // 42
-//			if ( scl.y < 0.0f )
-//			{
-//				childList[count]->GetComponent<Transform>()->SetScaleY( calc );
-//			}
-//		}
-//		else
-//		{
-//			childList[count]->GetComponent<Transform>()->SetScaleY( calc );
-//		}
-
+		// 만든 스펙트럼이 좌우 대칭이므로 반대쪽은 값 복사
 		childList[count + 1]->GetComponent<Transform>()->SetScale( childList[count]->GetComponent<Transform>()->GetScale() );
 		count += 2;
 	}

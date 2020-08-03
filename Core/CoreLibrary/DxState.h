@@ -2,10 +2,10 @@
 
 
 
-enum class ERasterizer : char {	Wire = 0, Back, Front, None, };
+enum class ERasterizer	 : char { Wire = 0, Back, Front, None, };
 enum class EDepthStencil : char { Enable = 0, Disable, };
-enum class ESampler : char { Default = 0, Clamp, };
-enum class EBlend : char { Color = 0, Alpha, NoAlpha, };
+enum class ESampler		 : char { Default = 0, Clamp, };
+enum class EBlend		 : char { Color = 0, Alpha, NoAlpha, };
 
 
 struct DxState
@@ -17,7 +17,7 @@ struct DxState
 
 	HRESULT Init( ID3D11Device* pd3dDevice )
 	{
-		HRESULT hr = S_OK;
+		HRESULT hr( S_OK );
 		//===========================================================
 		//=======================AlphaBlend==========================
 		//===========================================================

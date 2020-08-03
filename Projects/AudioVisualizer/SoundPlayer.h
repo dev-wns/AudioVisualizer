@@ -21,11 +21,11 @@ private:
 	void Update();
 
 private:
-	bool isBackGroundVisible;
-	bool isCenterImageVisible;
-	bool isCameraShake;
-	bool isCenterBass;
-	bool isBarBass;
+	bool bBackGroundVisible;
+	bool bCenterImageVisible;
+	bool bCameraShake;
+	bool bCenterBass;
+	bool bBarBass;
 
 	float aroundScale;
 	float lengthAmount;

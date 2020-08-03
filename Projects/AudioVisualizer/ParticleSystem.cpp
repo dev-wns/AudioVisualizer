@@ -8,7 +8,7 @@
 #include "ObjectManager.h"
 
 Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow ) : 
-	GameObject( _name, _cam, _type ), isRainbow( *_isRainbow ), startPos( Vector3::Zero ), direction( Vector3::Backward ),
+	GameObject( _name, _cam, _type ), bRainbow( *_isRainbow ), startPos( Vector3::Zero ), direction( Vector3::Backward ),
 	defaultColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) ) ),
 	rainbowColor( D3DXVECTOR4( MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
 	  					       MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) ) ),
@@ -24,14 +24,9 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	const float& scl( MyRandom::Get()->GetRandomFloat( 10.0f, 25.0f ) );
 	GetComponent<Transform>()->SetScale( scl / 2.0f, scl, 1.0f );
 	GetComponent<Material>()->SetColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.43f, 1.0f ) ) );
-
-	SetBillboard( false );
 }
 
-Particle::~Particle() 
-{
-	SetBillboard( false );
-}
+Particle::~Particle() { }
 
 void Particle::Init()
 {
@@ -57,7 +52,7 @@ void Particle::Frame()
 	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S512] );
 
 	// 색상 체크
-	if ( isRainbow == true )
+	if ( bRainbow == true )
 		GetComponent<Mesh>()->GetVSCB().color = rainbowColor;
 	else
 		GetComponent<Mesh>()->GetVSCB().color = defaultColor;
@@ -73,7 +68,7 @@ void Particle::Frame()
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 ParticleSystem::ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle ) : 
-	GameObject( _name, _cam, _type ), isRainbow( false ), maxParticle( _maxParticle ) { }
+	GameObject( _name, _cam, _type ), bRainbow( false ), maxParticle( _maxParticle ) { }
 
 void ParticleSystem::Init()
 {
@@ -93,7 +88,7 @@ void ParticleSystem::Init()
 	instanceData.resize( maxParticle );
 	for ( UINT count = 0; count < maxParticle; count++ )
 	{
-		Particle* newParticle = new Particle( L"Particle", GetCamera(), GetType(), &isRainbow );
+		Particle* newParticle = new Particle( L"Particle", GetCamera(), GetType(), &bRainbow );
 		AddObject( newParticle );
 		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &Matrix::Identity );
 		instanceData[count].color = newParticle->GetComponent<Material>()->GetColor();
@@ -107,8 +102,8 @@ void ParticleSystem::Init()
 
 void ParticleSystem::Frame()
 {
-	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
 	int count( 0 );
+	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
 	for ( GameObject* oneParticle : GetChild() )
 	{
 		const D3DXVECTOR3& pos( oneParticle->GetComponent<Transform>()->GetPosition() );
@@ -137,7 +132,7 @@ void ParticleSystem::Frame()
 
 void ParticleSystem::Render( ID3D11DeviceContext* context )
 {
-	GetComponent<Mesh>()->UpdateConstantBuffer( GetComponent<Transform>()->GetLocalMatrix(), ObjectManager::Get()->GetCamera( ECamera::Main )->GetViewMatrix(), ObjectManager::Get()->GetCamera( ECamera::Main )->GetProjMatrix() );
+	GetComponent<Mesh>()->UpdateConstantBuffer( GetComponent<Transform>()->GetLocalMatrix(), GetCamera()->GetViewMatrix(), GetCamera()->GetProjMatrix() );
 	GetComponent<Mesh>()->UpdateVertex();
 
 	context->IASetPrimitiveTopology( ( D3D11_PRIMITIVE_TOPOLOGY )D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
@@ -158,7 +153,7 @@ void ParticleSystem::Render( ID3D11DeviceContext* context )
 	context->VSSetShader( GetComponent<Material>()->GetVertexShader(), NULL, 0 );
 	context->PSSetShader( GetComponent<Material>()->GetPixelShader(), NULL, 0 );
 
-	context->DrawIndexedInstanced( GetComponent<Mesh>()->GetIndexCount(), ( UINT )instanceData.size(), 0, 0, 0 );
+	context->DrawIndexedInstanced( GetComponent<Mesh>()->GetIndexCount(), static_cast< UINT >( instanceData.size() ), 0, 0, 0 );
 	GameObject::Clear( context );
 }
 

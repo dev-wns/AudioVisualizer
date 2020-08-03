@@ -3,7 +3,7 @@
 #include "Timer.h"
 #include "BaseUtility.hpp"
 
-GameObject::GameObject() : isEnable( true ), isBillboard( false ), objectType( EObject::Empty ), objectName( ObjectName::Default )
+GameObject::GameObject() : bVisibled( true ), bBillboard( false ), objectType( EObject::Empty ), objectName( ObjectName::Default )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
@@ -11,7 +11,7 @@ GameObject::GameObject() : isEnable( true ), isBillboard( false ), objectType( E
 }
 
 GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _type ) : 
-	isEnable( true ), isBillboard( false ), objectType( _type ), objectName( _name ), applyCamera( _cam )
+	bVisibled( true ), bBillboard( false ), objectType( _type ), objectName( _name ), applyCamera( _cam )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
@@ -46,9 +46,9 @@ Component* GameObject::FindComponent( EComponent type )
 	return dynamic_cast< Component* >( iter->second );
 }
 
-void GameObject::SetBillboard( bool billboard )
+void GameObject::SetBillboard( bool _billboard )
 {
-	isBillboard = billboard;
+	bBillboard = _billboard;
 }
 
 void GameObject::SetParent( GameObject* _parent )
@@ -159,7 +159,7 @@ void GameObject::FixedFrame()
 
 void GameObject::Frame()
 {
-	if ( IsEnable() == false ) return;
+	if ( IsVisible() == false ) return;
 
 	for ( std::pair<EComponent, Component*> oneComponent : components )
 	{
@@ -189,7 +189,7 @@ void GameObject::PrevRender( ID3D11DeviceContext* context )
 
 void GameObject::Render( ID3D11DeviceContext* context )
 {
-	if ( IsEnable() == false ) return;
+	if ( IsVisible() == false ) return;
 
 	D3DXMATRIX parentMatrix( Matrix::Identity );
 	if ( parent != nullptr )
@@ -199,7 +199,7 @@ void GameObject::Render( ID3D11DeviceContext* context )
 	D3DXMATRIX viewMatrix( applyCamera->GetViewMatrix() );
 	GetComponent<Mesh>()->UpdateConstantBuffer( world, viewMatrix, applyCamera->GetProjMatrix() );
 
-	if ( isBillboard == true )
+	if ( bBillboard == true )
 	{
 		viewMatrix._41 = 0.0f; viewMatrix._42 = 0.0f; viewMatrix._43 = 0.0f;
 		D3DXMatrixInverse( &viewMatrix, nullptr, &viewMatrix );

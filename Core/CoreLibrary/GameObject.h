@@ -23,8 +23,8 @@ public:
 	virtual void FixedFrame();
 
 public:
-	void SetVisible( bool visible ) { isEnable = visible; }
-	bool IsEnable() { return isEnable; }
+	void SetVisible( bool visible ) { bVisibled = visible; }
+	bool IsVisible() { return bVisibled; }
 
 public:
 	void AddObject( GameObject* _obj );
@@ -38,7 +38,7 @@ public:
 	GameObject* FindObject( const std::wstring& _name );
 
 public:
-	void SetBillboard( bool billboard );
+	void SetBillboard( bool bBillboard );
 	void SetParent( GameObject* _obj );
 	void RemoveParent();
 	void SetCamera( GameObject* _cam );
@@ -61,13 +61,13 @@ public:
 	template<           > Material*  GetComponent() { return dynamic_cast< Material* >  ( FindComponent( EComponent::Material )  ); }
 	template<           > Mesh*      GetComponent() { return dynamic_cast< Mesh* >      ( FindComponent( EComponent::Mesh )      ); }
 
+public:
+	virtual const D3DXMATRIX& GetViewMatrix() const { return Matrix::Identity; }
+	virtual const D3DXMATRIX& GetProjMatrix() const { return Matrix::Identity; }
+
 protected:
 	void Clear( ID3D11DeviceContext* context );
 	virtual GameObject* Clone() { return new GameObject( *this ); }
-
-protected:
-	virtual const D3DXMATRIX& GetViewMatrix() const { return Matrix::Identity; }
-	virtual const D3DXMATRIX& GetProjMatrix() const { return Matrix::Identity; }
 
 protected:
 	virtual void PrevRender( ID3D11DeviceContext* context );
@@ -78,8 +78,8 @@ private:
 
 private:
 	friend class ObjectManager;
-	bool isEnable;
-	bool isBillboard;
+	bool bVisibled;
+	bool bBillboard;
 	EObject objectType;
 	std::wstring objectName;
 	GameObject* parent;

@@ -3,6 +3,8 @@
 ################################################################################
 
 /Core/CoreLibrary/PropertySheet.props
+/Include
+/Lib
 /Output
 /Projects/.vs/AudioVisualizer/v15
 /Projects/AudioVisualizer/fmodoutput.wav

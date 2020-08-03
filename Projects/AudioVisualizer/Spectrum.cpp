@@ -135,7 +135,7 @@ void Spectrum::Frame()
 
 void Spectrum::Render( ID3D11DeviceContext* context )
 {
-	GetComponent<Mesh>()->UpdateConstantBuffer( GetComponent<Transform>()->GetLocalMatrix(), ObjectManager::Get()->GetCamera( ECamera::UI )->GetViewMatrix(), ObjectManager::Get()->GetCamera( ECamera::UI )->GetProjMatrix() );
+	GetComponent<Mesh>()->UpdateConstantBuffer( GetComponent<Transform>()->GetLocalMatrix(), GetCamera()->GetViewMatrix(), GetCamera()->GetProjMatrix() );
 	GetComponent<Mesh>()->UpdateVertex();
 
 	context->IASetPrimitiveTopology( ( D3D11_PRIMITIVE_TOPOLOGY )D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );

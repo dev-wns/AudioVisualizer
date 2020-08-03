@@ -24,7 +24,7 @@ public:
 
 private:
 	friend class Singleton<Timer>;
-	bool isFixedFrame;
+	bool bFixedFrame;
 	float fixedFrame;
 	DWORD fixedFramePerSecond;
 	float fixedFrameElapseTime;

@@ -8,8 +8,8 @@
 #include "Timer.h"
 
 SoundPlayer::SoundPlayer() : 
-	isBackGroundVisible( true ),
-	isCameraShake( false ), isCenterBass( true ), isBarBass( true ), 
+	bBackGroundVisible( true ), bCenterImageVisible( true ),
+	bCameraShake( false ), bCenterBass( true ), bBarBass( true ), 
 	aroundScale( 175.0f ), lengthAmount( 2000.0f ),
 	bassPower( 25.0f ), bassAmount( 0.0f ), rawBassValue( 0.0f ),
 	shakePower( 5.0f ) { }
@@ -50,8 +50,8 @@ void SoundPlayer::Frame()
 {
 	Update();
 
-	if ( SoundManager::Get()->isPlaying() == true
-		&& Input::Get()->KeyCheck( VK_SPACE ) == EKeyState::KEY_PUSH )
+	if ( SoundManager::Get()->isPlaying() == true && 
+		 Input::Get()->KeyCheck( VK_SPACE ) == EKeyState::KEY_PUSH )
 	{
 		SoundManager::Get()->Play();
 	}
@@ -59,13 +59,13 @@ void SoundPlayer::Frame()
 	// 이미지 렌더링 여부
 	if ( Input::Get()->KeyCheck( VK_F1 ) == EKeyState::KEY_PUSH )
 	{
-		isBackGroundVisible = !isBackGroundVisible;
-		backGround->SetVisible( isBackGroundVisible );
+		bBackGroundVisible = !bBackGroundVisible;
+		backGround->SetVisible( bBackGroundVisible );
 	}
 	if ( Input::Get()->KeyCheck( VK_F2 ) == EKeyState::KEY_PUSH )
 	{
-		isCenterImageVisible = !isCenterImageVisible;
-		centerImage->SetVisible( isCenterImageVisible );
+		bCenterImageVisible = !bCenterImageVisible;
+		centerImage->SetVisible( bCenterImageVisible );
 	}
 
 	// 스펙트럼, 센터 이미지의 기준이 되는 원 크기 조절
@@ -142,14 +142,14 @@ void SoundPlayer::Update()
 	spectrum->UpdateLength( lengthAmount );
 
 	// 센터 이미지 크기 조절 효과
-	if ( isCenterBass == true )
+	if ( bCenterBass == true )
 	{
 		centerImage->GetComponent<Transform>()->SetScale( aroundScale + bassAmount, aroundScale + bassAmount, 1.0f );
 		spectrum->UpdatePosition( aroundScale, bassAmount );
 	}
 
 	// 카메라 흔들기 효과 ( UI Cam )
-	if ( isCameraShake == true )
+	if ( bCameraShake == true )
 	{
 		const float& shakeAmount( rawBassValue * shakePower );
 		const float& shakeSin( ::sin( Timer::Get()->GetProgressTime() * 3.141592f * shakeAmount ) );

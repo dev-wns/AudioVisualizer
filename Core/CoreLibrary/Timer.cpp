@@ -2,7 +2,7 @@
 #include "Timer.h"
 
 Timer::Timer() : 
-	isFixedFrame( false ), fixedFrame( 1.0f / 10000.0f ), fixedFramePerSecond( 0 ), fixedFrameElapseTime( 0.0f ),
+	bFixedFrame( false ), fixedFrame( 1.0f / 10000.0f ), fixedFramePerSecond( 0 ), fixedFrameElapseTime( 0.0f ),
 	secondPerFrame( 0.0f ), gameTimer( 0.0f ), frameTime( 0.0f ), framePerSecond( 0 ) { }
 
 void Timer::Init()
@@ -38,11 +38,11 @@ void Timer::Frame()
 	{
 		++fixedFramePerSecond;
 		fixedFrameElapseTime = 0.0f;
-		isFixedFrame = true;
+		bFixedFrame = true;
 	}
 	else
 	{
-		isFixedFrame = false;
+		bFixedFrame = false;
 	}
 
 	++framePerSecond;
@@ -58,5 +58,5 @@ void Timer::SetFixedFrameRate( const DWORD& value )
 
 bool Timer::IsFixedFrameRate()
 {
-	return isFixedFrame;
+	return bFixedFrame;
 }

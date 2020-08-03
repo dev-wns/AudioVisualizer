@@ -14,7 +14,7 @@ public:
 private:
 	friend class ParticleSystem;
 
-	bool& isRainbow;
+	bool& bRainbow;
 	D3DXVECTOR4 defaultColor;
 	D3DXVECTOR4 rainbowColor;
 
@@ -41,6 +41,6 @@ public:
 private:
 	std::vector<InstanceData> instanceData;
 	ID3D11Buffer* instanceBuffer;
-	bool isRainbow;
+	bool bRainbow;
 	UINT maxParticle;
 };

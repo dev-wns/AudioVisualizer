@@ -27,6 +27,6 @@ private:
 	UINT maxSpectrum;
 	std::vector<InstanceData> instanceData;
 	ID3D11Buffer* instanceBuffer;
-	float barScale = 2.5f;
+	float barScale;
 };
 

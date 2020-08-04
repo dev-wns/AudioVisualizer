@@ -12,7 +12,7 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	defaultColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) ) ),
 	rainbowColor( D3DXVECTOR4( MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
 	  					       MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) ) ),
-	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 100.0f ) ), 
+	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 200.0f ) ), 
 	respawnDelay( 0.0f ), timer( 0.0f )
 
 {
@@ -90,7 +90,7 @@ void ParticleSystem::Init()
 	{
 		Particle* newParticle = new Particle( L"Particle", GetCamera(), GetType(), &bRainbow );
 		AddObject( newParticle );
-		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &Matrix::Identity );
+		::D3DXMatrixTranspose( &instanceData[count].worldMatrix, &Matrix::Identity );
 		instanceData[count].color = newParticle->GetComponent<Material>()->GetColor();
 	}
 	instanceBuffer = Utility::Buffer::CreateBuffer( D3D11_BIND_VERTEX_BUFFER, DxManager::Get()->GetDevice(), &instanceData.at( 0 ), ( UINT )instanceData.size(), sizeof( InstanceData ), true );
@@ -115,7 +115,7 @@ void ParticleSystem::Frame()
 				10000.0f );
 		}
 		oneParticle->Frame();
-		D3DXMatrixTranspose( &instanceData[count].worldMatrix, &oneParticle->GetComponent<Transform>()->GetLocalMatrix() );
+		::D3DXMatrixTranspose( &instanceData[count].worldMatrix, &oneParticle->GetComponent<Transform>()->GetLocalMatrix() );
 		instanceData[count++].color = oneParticle->GetComponent<Material>()->GetColor();
 	}
 

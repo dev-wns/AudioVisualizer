@@ -76,6 +76,12 @@ void GameObject::SetCamera( GameObject* _cam )
 	}
 }
 
+GameObject* GameObject::GetCamera() const 
+{
+	if ( applyCamera == nullptr ) throw;
+	return applyCamera; 
+}
+
 void GameObject::AddObject( GameObject* _obj )
 {
 	if ( _obj == nullptr ) throw;

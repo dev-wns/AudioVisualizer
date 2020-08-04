@@ -5,7 +5,7 @@ class Particle : public GameObject
 {
 public:
 	Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow );
-	virtual ~Particle();
+	virtual ~Particle() = default;
 
 public:
 	void Init() override;
@@ -13,13 +13,12 @@ public:
 
 private:
 	friend class ParticleSystem;
-
 	bool& bRainbow;
 	D3DXVECTOR4 defaultColor;
 	D3DXVECTOR4 rainbowColor;
 
 	D3DXVECTOR3 startPos;
-	D3DXVECTOR3	direction = Vector3::Backward;
+	D3DXVECTOR3	direction;
 
 	float moveSpeed;
 	float respawnDelay;

@@ -14,7 +14,6 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	  					       MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) ) ),
 	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 200.0f ) ), 
 	respawnDelay( 0.0f ), timer( 0.0f )
-
 {
 	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
 	GetComponent<Transform>()->SetPosition( MyRandom::Get()->GetRandomFloat( -width, width ),
@@ -25,8 +24,6 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	GetComponent<Transform>()->SetScale( scl / 2.0f, scl, 1.0f );
 	GetComponent<Material>()->SetColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.43f, 1.0f ) ) );
 }
-
-Particle::~Particle() { }
 
 void Particle::Init()
 {

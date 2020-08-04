@@ -36,9 +36,10 @@
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjQy/MDAxNTk2NTI1OTQxMDg3.J8CF48dXdoYRTqbfxszjEvvSwLRjyKIwvT3mheFD978g.YbjzjIJN2oRh0uLmvWWd1GCI-n7ZuuyBeaR6grxMdb4g.JPEG.ashi0/bandicam_2020-08-04_16-22-25-935.jpg?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMzkg/MDAxNTk2NTI1OTQzNDIz.hhnEWX5U61nPOs05PUMNrJ6QUgQk8ktf8wkLhcLQPiwg.Haxe5Oo0F4BVvQbeUnSwnFCpRN5IYSDjyJ72nlfswUYg.JPEG.ashi0/bandicam_2020-08-04_16-20-28-936.jpg?type=w966" width="500" height="400"> |
 |:------------------------------------------------:|:-------------------------------------------:|
 |</p> <div align="center"> < before > </div>       |</p> <div align="center"> < after > </div>   |
-  사각형을 기울여서 렌더링 했을 때 테두리가 계단현상 때문에 부자연스러웠습니다. <br>
-  관련 내용을 찾아보다가 DirectX에 안티 앨리어싱이라는 기술이 있는 것을 보고 <br>
-  MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
+  
+사각형을 기울여서 렌더링 했을 때 테두리가 계단현상 때문에 부자연스러웠습니다. <br>
+관련 내용을 찾아보다가 DirectX에 안티 앨리어싱이라는 기술이 있는 것을 보고 <br>
+MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
 
 ### 240 fps 고정
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTc1/MDAxNTk2NTIzNTUwMTIw.bRpR2FYzXuEIhKQTU9M-QZVF2TBULVnyV0qDA0qNPSkg.WQg7y3y8J06FdOZVgm1_1aWXuj_jc1syKu4DFJu5McAg.JPEG.ashi0/bandicam_2020-08-04_15-44-40-556.jpg?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="500" height="400"> |

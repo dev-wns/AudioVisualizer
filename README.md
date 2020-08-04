@@ -40,7 +40,7 @@
   MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
 
 ### 240 fps 고정
-<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="300" height="300">
+<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="500" height="700">
 </p> <div align="center"> < before > </div>
 <p align="center"> <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTc1/MDAxNTk2NTIzNTUwMTIw.bRpR2FYzXuEIhKQTU9M-QZVF2TBULVnyV0qDA0qNPSkg.WQg7y3y8J06FdOZVgm1_1aWXuj_jc1syKu4DFJu5McAg.JPEG.ashi0/bandicam_2020-08-04_15-44-40-556.jpg?type=w966">
 </p> <div align="center"> < after > </div>

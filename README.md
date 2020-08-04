@@ -66,7 +66,7 @@ Steam의 Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면�
 MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결했습니다. <br>
 
 ### 240 fps 고정
-|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTc1/MDAxNTk2NTIzNTUwMTIw.bRpR2FYzXuEIhKQTU9M-QZVF2TBULVnyV0qDA0qNPSkg.WQg7y3y8J06FdOZVgm1_1aWXuj_jc1syKu4DFJu5McAg.JPEG.ashi0/bandicam_2020-08-04_15-44-40-556.jpg?type=w966" width="500" height="350">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="500" height="350"> |
+|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTAw/MDAxNTk2NTQ5MTQ5MDc1.PiB5OONB7Qbcila-l3z7EHPbFqE0z7TdYPt5IGb2LqYg.5AoSz-o0kc_HItmQ5gXbdmXjTvzXDpCaIusOF6DdUfYg.JPEG.ashi0/SE-5d4c5c01-305a-4b2d-97a4-879fdbe91343.jpg?type=w966" width="500" height="350">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfNzgg/MDAxNTk2NTQ5MTc0MzQz.acyIXtIoxoAQyJWaKSwoQtVlf4-sfqBJC-R7JUywBtQg.OgkVkVFGX-Z13BEX2jRArYVyqt-2QB4IP060yj46flUg.JPEG.ashi0/SE-63b1f3ab-5784-44d8-b3f2-20f141295c65.jpg?type=w966" width="500" height="350"> |
 |:------------------------------------------------:|:-------------------------------------------:|
 |**</p> <div align="center"> < before > </div>**|**</p> <div align="center"> < after > </div>**|
 

@@ -33,7 +33,6 @@
 #include "..\\..\\ExternalLibraries\\DirectX11\\Include\\d3dx11.h"
 #include "..\\..\\ExternalLibraries\\DirectX11\\Include\\D3DX10math.h"
 
-// ¸µÅ©
 #pragma comment(lib,"winmm.lib") // use timeGetTime
 //#pragma comment(lib,"..\\ExternalLibraries\\DirectX11\\dxgi.lib")
 //#pragma comment(lib,"..\\ExternalLibraries\\DirectX11\\d3dx11.lib")

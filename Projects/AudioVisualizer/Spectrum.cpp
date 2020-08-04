@@ -98,10 +98,10 @@ void Spectrum::Init()
 		AddObject( rightBar );
 
 		// 인스턴스 데이터 생성 ( 좌측, 우측 )
-		D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
+		::D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
 		instanceData[instanceCount++].color = c;
 
-		D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
+		::D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
 		instanceData[instanceCount++].color = c;
 	}
 	instanceBuffer = Utility::Buffer::CreateBuffer( D3D11_BIND_VERTEX_BUFFER, DxManager::Get()->GetDevice(), &instanceData.at( 0 ), ( UINT )instanceData.size(), sizeof( InstanceData ), true );
@@ -117,7 +117,7 @@ void Spectrum::Frame()
 	for ( GameObject* oneSpectrumBar : GetChild() )
 	{
 		oneSpectrumBar->Frame();
-		D3DXMatrixTranspose( &instanceData[count++].worldMatrix, &oneSpectrumBar->GetComponent<Transform>()->GetLocalMatrix() );
+		::D3DXMatrixTranspose( &instanceData[count++].worldMatrix, &oneSpectrumBar->GetComponent<Transform>()->GetLocalMatrix() );
 	}
 
 	if ( instanceBuffer )
@@ -126,7 +126,7 @@ void Spectrum::Frame()
 		DxManager::Get()->GetContext()->Map( instanceBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
 		InstanceData* pInstance = ( InstanceData* )MappedResource.pData;
 
-		memcpy( pInstance, &instanceData.at( 0 ), sizeof( InstanceData ) * instanceData.size() );
+		::memcpy( pInstance, &instanceData.at( 0 ), sizeof( InstanceData ) * instanceData.size() );
 		DxManager::Get()->GetContext()->Unmap( instanceBuffer, 0 );
 	}
 

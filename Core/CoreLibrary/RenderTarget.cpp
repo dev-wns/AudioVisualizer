@@ -24,13 +24,13 @@ HRESULT	RenderTarget::Create( ID3D11Device* d3dDevice, FLOAT Width, FLOAT Height
 	desc.MiscFlags = 0;
 	desc.ArraySize = 1;
 
-	ID3D11Texture2D* pTexture( NULL );
+	ID3D11Texture2D* pTexture( nullptr );
 
 	if ( FAILED( hr = d3dDevice->CreateTexture2D( &desc, NULL, &pTexture ) ) )
 	{
 		return hr;
 	}
-	if ( pTex == NULL )
+	if ( pTex == nullptr )
 	{
 		if ( FAILED( hr = d3dDevice->CreateShaderResourceView( pTexture, NULL, &resRTV ) ) )
 		{
@@ -66,7 +66,7 @@ void RenderTarget::ViewPortSet( FLOAT TopLeftX, FLOAT TopLeftY, FLOAT Width, FLO
 HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidth, FLOAT iHeight )
 {
 	HRESULT hr( S_OK );
-	if ( curDSView != NULL )
+	if ( curDSView != nullptr )
 	{
 		SafeRelease( curDSView );
 	}
@@ -74,7 +74,7 @@ HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidt
 	curViewPort.Width = iWidth;
 	curViewPort.Height = iHeight;
 
-	ID3D11Texture2D* pTexture( NULL );
+	ID3D11Texture2D* pTexture( nullptr );
 	CD3D11_TEXTURE2D_DESC DescDepth;
 	DescDepth.Width = ( UINT )iWidth;
 	DescDepth.Height = ( UINT )iHeight;
@@ -143,10 +143,10 @@ HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidt
 }
 void	RenderTarget::Apply( ID3D11DeviceContext* d3dContext, ID3D11RenderTargetView* pRTV, ID3D11DepthStencilView* pDSV, bool bDepth, bool bStencil )
 {
-	ID3D11RenderTargetView* pNullRTV( NULL );
+	ID3D11RenderTargetView* pNullRTV( nullptr );
 	d3dContext->OMSetRenderTargets( 1, &pNullRTV, NULL );
 
-	if ( pRTV != NULL )
+	if ( pRTV != nullptr )
 	{
 		if ( pDSV != NULL )
 			d3dContext->OMSetRenderTargets( 1, &pRTV, pDSV );
@@ -184,8 +184,8 @@ bool	RenderTarget::Begin( ID3D11DeviceContext* d3dContext, D3DXVECTOR4 vColor, b
 	d3dContext->RSGetViewports( &countViewPort, &oldViewPort );
 	d3dContext->OMGetRenderTargets( 1, &oldRTView, &oldDSView );
 
-	ID3D11RenderTargetView* pNullRTV( NULL );
-	ID3D11DepthStencilView* pNullDSV( NULL );
+	ID3D11RenderTargetView* pNullRTV( nullptr );
+	ID3D11DepthStencilView* pNullDSV( nullptr );
 	d3dContext->OMSetRenderTargets( 1, &pNullRTV, pNullDSV );
 	d3dContext->OMSetRenderTargets( 1, &curRTView, curDSView );
 

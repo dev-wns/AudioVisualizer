@@ -43,17 +43,17 @@ void Mesh::Set( const std::vector<PNCT_VERTEX>& _vertices, const std::vector<DWO
 
 void Mesh::UpdateConstantBuffer( const D3DXMATRIX& world, const D3DXMATRIX& view, const D3DXMATRIX& proj )
 {
-	D3DXMatrixTranspose( &dataVSCB.world, &world );
-	D3DXMatrixTranspose( &dataVSCB.view, &view );
-	D3DXMatrixTranspose( &dataVSCB.proj, &proj );
+	::D3DXMatrixTranspose( &dataVSCB.world, &world );
+	::D3DXMatrixTranspose( &dataVSCB.view, &view );
+	::D3DXMatrixTranspose( &dataVSCB.proj, &proj );
 	if ( vertexShaderConstantBuffer )
 	{
 		static D3D11_MAPPED_SUBRESOURCE MappedResource = { 0, };
 		// Á¢±ÙÇÏ°í ¼öÁ¤ÇÏ°í Á¢±ÙÇØÁ¦
 		DxManager::Get()->GetContext()->Map( vertexShaderConstantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
-		VSCB* pInstance = ( VSCB* )MappedResource.pData;		// ¹Ù²Ü °´Ã¼
+		VSCB* pInstance( ( VSCB* )MappedResource.pData );		// ¹Ù²Ü °´Ã¼
 
-		memcpy( pInstance, &dataVSCB, sizeof( VSCB ) );
+		::memcpy( pInstance, &dataVSCB, sizeof( VSCB ) );
 		DxManager::Get()->GetContext()->Unmap( vertexShaderConstantBuffer, 0 );
 		//DxManager::Get()->GetContext()->UpdateSubresource( vertexShaderConstantBuffer, 0, NULL, &dataVSCB, 0, 0 );
 	}
@@ -63,8 +63,8 @@ void Mesh::UpdateVertex( const std::vector<PNCT_VERTEX>& _vertices )
 {
 	static D3D11_MAPPED_SUBRESOURCE MappedResource = { 0, };
 	DxManager::Get()->GetContext()->Map( vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
-	PNCT_VERTEX* pInstance = ( PNCT_VERTEX* )MappedResource.pData;
-	memcpy( pInstance, &_vertices.at( 0 ), sizeof( PNCT_VERTEX ) * _vertices.size() );
+	PNCT_VERTEX* pInstance( ( PNCT_VERTEX* )MappedResource.pData );
+	::memcpy( pInstance, &_vertices.at( 0 ), sizeof( PNCT_VERTEX ) * _vertices.size() );
 	DxManager::Get()->GetContext()->Unmap( vertexBuffer, 0 );
 
 	//DxManager::Get()->GetContext()->UpdateSubresource( vertexBuffer, 0, NULL, &_vertices.at(0), 0, 0 );
@@ -74,9 +74,9 @@ void Mesh::UpdateVertex()
 {
 	static D3D11_MAPPED_SUBRESOURCE MappedResource = { 0, };
 	DxManager::Get()->GetContext()->Map( vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
-	PNCT_VERTEX* pInstance = ( PNCT_VERTEX* )MappedResource.pData;
+	PNCT_VERTEX* pInstance( ( PNCT_VERTEX* )MappedResource.pData );
 
-	memcpy( pInstance, &vertices.at( 0 ), sizeof( PNCT_VERTEX ) * vertices.size() );
+	::memcpy( pInstance, &vertices.at( 0 ), sizeof( PNCT_VERTEX ) * vertices.size() );
 	DxManager::Get()->GetContext()->Unmap( vertexBuffer, 0 );
 
 	//DxManager::Get()->GetContext()->UpdateSubresource( vertexBuffer, 0, NULL, &_vertices.at(0), 0, 0 );
@@ -102,8 +102,8 @@ void Mesh::PrevRender()
 {
 	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) return;
 
-	UINT stride = sizeVertex;
-	UINT offset = 0;
+	UINT stride( sizeVertex );
+	UINT offset( 0 );
 
 	DxManager::Get()->GetContext()->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &offset );
 	DxManager::Get()->GetContext()->IASetIndexBuffer( indexBuffer, DXGI_FORMAT_R32_UINT, 0 );

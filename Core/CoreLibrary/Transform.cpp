@@ -10,9 +10,9 @@ Transform::Transform() :
 
 void Transform::Frame()
 {
-	D3DXMatrixScaling( &sclMatrix, scl.x, scl.y, scl.z );
-	D3DXMatrixRotationYawPitchRoll( &rotMatrix, rot.y, rot.x, rot.z );
-	D3DXMatrixTranslation( &posMatrix, pos.x, pos.y, pos.z );
+	::D3DXMatrixScaling( &sclMatrix, scl.x, scl.y, scl.z );
+	::D3DXMatrixRotationYawPitchRoll( &rotMatrix, rot.y, rot.x, rot.z );
+	::D3DXMatrixTranslation( &posMatrix, pos.x, pos.y, pos.z );
 
 	worldMatrix = localMatrix = sclMatrix * rotMatrix * posMatrix;
 

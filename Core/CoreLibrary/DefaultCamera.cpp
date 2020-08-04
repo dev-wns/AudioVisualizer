@@ -18,5 +18,5 @@ void DefaultCamera::CreateProjMatrix( LONG width, LONG height )
 
 void DefaultCamera::CreateViewMatrix() 
 {
-	D3DXMatrixLookAtLH( &viewMatrix, &Vector3::Backward, &Vector3::Zero, &Vector3::Up );
+	::D3DXMatrixLookAtLH( &viewMatrix, &Vector3::Backward, &Vector3::Zero, &Vector3::Up );
 }

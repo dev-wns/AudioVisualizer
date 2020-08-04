@@ -94,9 +94,9 @@ void ObjectManager::AddObject( GameObject* _obj )
 	const std::map<EObject, std::list<GameObject*>>::iterator& iter( objects.find( type ) );
 	if ( iter == std::cend( objects ) )
 	{
-		std::list<GameObject*> makelist;
-		makelist.emplace_back( _obj );
-		objects.insert( std::make_pair( type, makelist ) );
+		std::list<GameObject*> newlist;
+		newlist.emplace_back( _obj );
+		objects.insert( std::make_pair( type, newlist ) );
 
 		return;
 	}
@@ -114,7 +114,7 @@ void ObjectManager::RemoveObject( GameObject* _obj )
 	if ( iter == objects.cend() ) return;
 
 	std::list<GameObject*>& _list( iter->second );
-	auto _iter = std::find( std::begin( _list ), std::end( _list ), _obj );
+	const std::list<GameObject*>::iterator& _iter( std::find( std::begin( _list ), std::end( _list ), _obj ) );
 	if ( _iter == std::end( _list ) ) return;
 
 	GameObject*& delObject( *_iter );

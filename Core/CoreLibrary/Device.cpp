@@ -33,25 +33,25 @@ void Device::Release()
 
 HRESULT Device::CreateFactory()
 {
-	if ( d3dDevice == NULL ) return E_FAIL;
+	if ( d3dDevice == nullptr ) return E_FAIL;
 	HRESULT hr( S_OK );
-	IDXGIDevice * pDXGIDevice;
-	hr = d3dDevice->QueryInterface( __uuidof( IDXGIDevice ), ( void ** )&pDXGIDevice );
+	IDXGIDevice * pDXGIDevice( nullptr );
+	if ( ( hr = d3dDevice->QueryInterface( __uuidof( IDXGIDevice ), ( void ** )&pDXGIDevice ) ) == E_FAIL ) return hr;
 	
-	IDXGIAdapter * pDXGIAdapter;
-	hr = pDXGIDevice->GetParent( __uuidof( IDXGIAdapter ), ( void ** )&pDXGIAdapter );
+	IDXGIAdapter* pDXGIAdapter( nullptr );
+	if ( ( hr = pDXGIDevice->GetParent( __uuidof( IDXGIAdapter ), ( void ** )&pDXGIAdapter ) ) == E_FAIL ) return hr;
 
 	pDXGIAdapter->GetParent( __uuidof( IDXGIFactory ), ( void ** )&dxgiFaxtory );
 
-	pDXGIDevice->Release();
-	pDXGIAdapter->Release();
+	SafeRelease( pDXGIDevice );
+	SafeRelease( pDXGIAdapter );
 	return S_OK;
 
 }
 
 HRESULT Device::CreateDevice()
 {
-	IDXGIAdapter* adapter = nullptr;
+	IDXGIAdapter* adapter( nullptr );
 	UINT createDeviceFlags( D3D11_CREATE_DEVICE_BGRA_SUPPORT );
 #ifdef _DEBUG
 	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
@@ -62,7 +62,7 @@ HRESULT Device::CreateDevice()
 		D3D_DRIVER_TYPE_WARP ,
 		D3D_DRIVER_TYPE_REFERENCE
 	};
-	HMODULE software = NULL;
+	HMODULE software( NULL );
 	//UINT Flags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 	const D3D_FEATURE_LEVEL& featureLevel( D3D_FEATURE_LEVEL_11_0 );
 	const UINT& featureLevels( 1 );

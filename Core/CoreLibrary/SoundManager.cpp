@@ -5,7 +5,7 @@
 
 bool SoundManager::isPlaying()
 {
-	bool isPlay = true;
+	bool isPlay( true );
 	return channels[0]->isPlaying( &isPlay );
 }
 
@@ -19,7 +19,7 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 	if ( _path.empty() == true ) return false;
 
 	// 사운드 생성
-	FMOD::Sound* sound;
+	FMOD::Sound* sound( nullptr );
 	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) return false;
 	// path에서 이름만 자르기
 	std::string name;
@@ -43,7 +43,7 @@ void SoundManager::Play()
 {
 	if ( std::cbegin( musics )->second == nullptr ) return;
 
-	bool isPlay = false;
+	bool isPlay( false );
 	for ( FMOD::Channel* oneChannel : channels )
 	{
 		if ( oneChannel->isPlaying( &isPlay ) == FMOD_RESULT::FMOD_OK || oneChannel == nullptr )
@@ -61,7 +61,7 @@ void SoundManager::Play( const std::string& _name )
 {
 	if ( _name.empty() == true || musics.find( _name ) == std::end( musics ) ) throw;
 
-	bool isPlay = false;
+	bool isPlay( false );
 	for ( FMOD::Channel* oneChannel : channels )
 	{
 		if ( oneChannel->isPlaying( &isPlay ) == FMOD_RESULT::FMOD_OK || oneChannel == nullptr )
@@ -139,7 +139,7 @@ void SoundManager::CreateSoundBuffer()
 	//FMOD_RESULT hr;
 	//static int const channelCount = 2;
 	FMOD_CREATESOUNDEXINFO soundInfo;
-	memset( &soundInfo, 0, sizeof( FMOD_CREATESOUNDEXINFO ) );
+	::memset( &soundInfo, 0, sizeof( FMOD_CREATESOUNDEXINFO ) );
 
 	soundInfo.cbsize = sizeof( FMOD_CREATESOUNDEXINFO );
 	soundInfo.numchannels = 1;
@@ -169,10 +169,10 @@ void SoundManager::Init()
 
 	channels.resize( 32 );
 
-	FMOD_RESULT fr;
-	fr = FMOD::System_Create( &soundSystem );
+	FMOD_RESULT fr( FMOD_OK );
+	if ( ( fr = FMOD::System_Create( &soundSystem ) ) != FMOD_OK ) return;
+	if ( ( fr = soundSystem->init( 32, FMOD_INIT_NORMAL, 0 ) ) != FMOD_OK ) return;
 	//fr = soundSystem->setOutput( FMOD_OUTPUTTYPE_WINMM );
-	fr = soundSystem->init( 32, FMOD_INIT_NORMAL, 0 );
 
 
 	//static int const channelCount = 2;
@@ -226,7 +226,7 @@ void SoundManager::Frame()
 
 void SoundManager::Release()
 {
-	// 공식 FMOD 문서에 채널은 Release 할 필요가 없다고 함.
+	// 공식 FMOD 문서에 채널은 Release 할 필요가 없다고 하고, Release 메서드 자체가 없음.
 	for ( std::vector<FMOD::Channel*>::iterator iter = std::begin( channels );
 		  iter != std::end( channels ); iter++ )
 	{

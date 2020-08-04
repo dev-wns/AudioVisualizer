@@ -51,7 +51,7 @@ void SoundManager::Play()
 			soundSystem->playSound( FMOD_CHANNELINDEX::FMOD_CHANNEL_FREE, std::cbegin( musics )->second, false, &channels[0] );
 
 			currentPlaySound = std::cbegin( musics )->second;
-			channels[0]->setVolume( 0.1f );
+			channels[0]->setVolume( 1.0f );
 			break;
 		}
 	}

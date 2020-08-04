@@ -3,8 +3,6 @@
 ################################################################################
 
 /Core/CoreLibrary/PropertySheet.props
-/Include
-/Lib
 /Output
 /Projects/.vs/AudioVisualizer/v15
 /Projects/AudioVisualizer/fmodoutput.wav
@@ -112,3 +110,5 @@
 /Resource/111back.jpg
 /Projects/Setup
 /Resource/icon.ico
+/Include/Core_d
+/Lib/Core_d

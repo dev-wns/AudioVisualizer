@@ -40,17 +40,12 @@
   MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
 
 ### 240 fps 고정
-|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.
-ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="500" height="400">  |
-<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTc1/MDAxNTk2NTIzNTUwMTIw.bRpR2FYzXuEIhKQTU9M-QZVF2TBULVnyV0qDA0qNPSkg.WQg7y3y8J06FdOZVgm1_1aWXuj_jc1syKu4DFJu5McAg.JPEG.ashi0/bandicam_2020-08-04_15-44-40-556.jpg?type=w966" width="500" height="400">|
-|:-------:|:-----------------------:|
+|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTc1/MDAxNTk2NTIzNTUwMTIw.bRpR2FYzXuEIhKQTU9M-QZVF2TBULVnyV0qDA0qNPSkg.WQg7y3y8J06FdOZVgm1_1aWXuj_jc1syKu4DFJu5McAg.JPEG.ashi0/bandicam_2020-08-04_15-44-40-556.jpg?type=w966" width="500" height="400"> |
+|:------------------------------------------------:|:-------------------------------------------:|
+|</p> <div align="center"> < before > </div>       |</p> <div align="center"> < after > </div>
 
-</p> <div align="center"> < before > </div>
-
-
-</p> <div align="center"> < before > </div>
-  오브젝트에 관련된 렌더링 부분은 240 fps로 고정 했습니다.<br>
-  제한을 걸지 않고 실행하면 GPU 점유율이 90% 이상 나와서 제한을 걸어야 겠다는 생각을 했습니다.<br>
+오브젝트에 관련된 렌더링 부분은 240 fps로 고정 했습니다.<br>
+제한을 걸지 않고 실행하면 GPU 점유율이 90% 이상 나와서 제한을 걸어야 겠다는 생각을 했습니다.<br>
 
 ## 프로그램에 대한 기술 설명
 

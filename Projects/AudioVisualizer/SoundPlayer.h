@@ -4,7 +4,6 @@
 #include "ParticleSystem.h"
 #include "Plane.h"
 
-
 class SoundPlayer : public Core
 {
 public:

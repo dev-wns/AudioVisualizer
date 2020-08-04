@@ -82,7 +82,8 @@ void Spectrum::Init()
 		leftBar->GetComponent<Transform>()->SetRotateZ( degree + degree * count );
 		leftBar->GetComponent<Transform>()->SetPosition(
 			D3DXVECTOR3( -leftBar->GetComponent<Transform>()->GetUp().x * 100.0f,
-						  leftBar->GetComponent<Transform>()->GetSide().x * 100.0f, 0.0f ) );
+				leftBar->GetComponent<Transform>()->GetSide().x * 100.0f, 0.0f ) );
+		leftBar->GetComponent<Mesh>()->GetVSCB().color = c;
 		leftBar->GetComponent<Material>()->SetPixel( "PixelShaderColor" );
 		AddObject( leftBar );
 
@@ -91,15 +92,16 @@ void Spectrum::Init()
 		rightBar->GetComponent<Transform>()->SetRotateZ( -degree * count );
 		rightBar->GetComponent<Transform>()->SetPosition(
 			D3DXVECTOR3( -rightBar->GetComponent<Transform>()->GetUp().x * 100.0f,
-						  rightBar->GetComponent<Transform>()->GetSide().x * 100.0f, 0.0f ) );
+				rightBar->GetComponent<Transform>()->GetSide().x * 100.0f, 0.0f ) );
+		rightBar->GetComponent<Mesh>()->GetVSCB().color = c;
 		rightBar->GetComponent<Material>()->SetPixel( "PixelShaderColor" );
 		AddObject( rightBar );
 
 		// 인스턴스 데이터 생성 ( 좌측, 우측 )
-		::D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
+		D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
 		instanceData[instanceCount++].color = c;
 
-		::D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
+		D3DXMatrixTranspose( &instanceData[instanceCount].worldMatrix, &Matrix::Identity );
 		instanceData[instanceCount++].color = c;
 	}
 	instanceBuffer = Utility::Buffer::CreateBuffer( D3D11_BIND_VERTEX_BUFFER, DxManager::Get()->GetDevice(), &instanceData.at( 0 ), ( UINT )instanceData.size(), sizeof( InstanceData ), true );
@@ -115,14 +117,14 @@ void Spectrum::Frame()
 	for ( GameObject* oneSpectrumBar : GetChild() )
 	{
 		oneSpectrumBar->Frame();
-		::D3DXMatrixTranspose( &instanceData[count++].worldMatrix, &oneSpectrumBar->GetComponent<Transform>()->GetLocalMatrix() );
+		D3DXMatrixTranspose( &instanceData[count++].worldMatrix, &oneSpectrumBar->GetComponent<Transform>()->GetLocalMatrix() );
 	}
 
 	if ( instanceBuffer )
 	{
 		static D3D11_MAPPED_SUBRESOURCE MappedResource = { 0, };
 		DxManager::Get()->GetContext()->Map( instanceBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource );
-		InstanceData* pInstance( ( InstanceData* )MappedResource.pData );
+		InstanceData* pInstance = ( InstanceData* )MappedResource.pData;
 
 		memcpy( pInstance, &instanceData.at( 0 ), sizeof( InstanceData ) * instanceData.size() );
 		DxManager::Get()->GetContext()->Unmap( instanceBuffer, 0 );
@@ -173,7 +175,7 @@ void Spectrum::UpdatePosition( const float& _aroundScale, const float& _bassAmou
 	{
 		childList[count]->GetComponent<Transform>()->SetPosition(
 			D3DXVECTOR3( -( childList[count]->GetComponent<Transform>()->GetUp().x ) * ( _aroundScale + 5.0f + _bassAmount ),
-						  ( childList[count]->GetComponent<Transform>()->GetSide().x ) * ( _aroundScale + 5.0f + _bassAmount ), 10.0f ) );
+			( childList[count]->GetComponent<Transform>()->GetSide().x ) * ( _aroundScale + 5.0f + _bassAmount ), 10.0f ) );
 	}
 }
 
@@ -212,7 +214,7 @@ void Spectrum::UpdateLength( const float& _lengthAmount )
 		if ( scl.y < 0.0f )
 			childList[count]->GetComponent<Transform>()->SetScaleY( 0.0f );
 
-		// 만든 스펙트럼이 좌우 대칭이므로 반대 스펙트럼 스케일값은 복사
+		// 만든 스펙트럼이 좌우 대칭이므로 반대쪽은 값 복사
 		childList[count + 1]->GetComponent<Transform>()->SetScale( childList[count]->GetComponent<Transform>()->GetScale() );
 		count += 2;
 	}

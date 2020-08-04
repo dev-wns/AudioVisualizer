@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Timer.h"
 #include <thread>
+
 SoundPlayer::SoundPlayer() : 
 	bBackGroundVisible( true ), bCenterImageVisible( true ),
 	bCameraShake( false ), bCenterBass( true ), bBarBass( true ), 
@@ -21,12 +22,12 @@ void SoundPlayer::Init()
 
 	// 음악 로드시간이 오래걸려서.. 우선 쓰레드로 로드하고 화면은 보여주도록 함.
 	std::thread th1 ( [](){
-		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music2.mp3" ) == false )
+		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
 			 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 	} );
 	th1.detach();
 
-	// 사용하는 사진이 하나밖에 없어서 여기에서 추가함.
+	// 지금 쓰는 사진이 하나밖에 없어서 여기에서 추가함..
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
 	// 객체 등록

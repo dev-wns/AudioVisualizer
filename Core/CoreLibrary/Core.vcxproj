@@ -117,33 +117,10 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
       <Command>md "..\\..\\Include\\$(TargetName)"
 md "..\\..\\Lib\\$(TargetName)"
 
-md "..\\..\\Include\\$(TargetName)\\Components"
-copy "Components\\*.h" "..\\..\\Include\\$(TargetName)\\Components"
-copy "Components\\*.hpp" "..\\..\\Include\\$(TargetName)\\Components"
-md "..\\..\\Include\\$(TargetName)\\Components\\Component"
-copy "Components\\Component\\*.h" "..\\..\\Include\\$(TargetName)\\Components\\Component"
-copy "Components\\Component\\*.hpp" "..\\..\\Include\\$(TargetName)\\Components\\Component"
-
-md "..\\..\\Include\\$(TargetName)\\Core"
-md "..\\..\\Include\\$(TargetName)\\Core\\DirectX"
-md "..\\..\\Include\\$(TargetName)\\Core\\DirectX\\RenderTarget"
-md "..\\..\\Include\\$(TargetName)\\Core\\DirectX\\State"
-md "..\\..\\Include\\$(TargetName)\\Core\\Standard"
-md "..\\..\\Include\\$(TargetName)\\Core\\Windows"
-
-md "..\\..\\Include\\$(TargetName)\\Managed"
-md "..\\..\\Include\\$(TargetName)\\Resource"
-
-md "..\\..\\Include\\$(TargetName)\\Object"
-md "..\\..\\Include\\$(TargetName)\\Object\\Camera"
-md "..\\..\\Include\\$(TargetName)\\Object\\Shape"
-
-md "..\\..\\Include\\$(TargetName)\\Standard"
-md "..\\..\\Include\\$(TargetName)\\Standard\\Base"
-md "..\\..\\Include\\$(TargetName)\\Standard\\Utility"
-
-copy "*" "..\\..\\Include\\$(TargetName)"
-copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"</Command>
+copy "*.h" "..\\..\\Include\\$(TargetName)"
+copy "*.hpp" "..\\..\\Include\\$(TargetName)"
+copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -225,36 +202,67 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"</Comm
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_errors.h" />
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_memoryinfo.h" />
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod_output.h" />
-    <ClInclude Include="Components\Component.h" />
-    <ClInclude Include="Components\Component\Material.h" />
-    <ClInclude Include="Components\Component\Mesh.h" />
-    <ClInclude Include="Components\Component\Transform.h" />
-    <ClInclude Include="Core\Core.h" />
-    <ClInclude Include="Core\DirectX\Device.h" />
-    <ClInclude Include="Core\DirectX\RenderTarget\RenderTarget.h" />
-    <ClInclude Include="Core\DirectX\State\DxState.h" />
-    <ClInclude Include="Core\Standard\Input.h" />
-    <ClInclude Include="Core\Standard\Timer.h" />
-    <ClInclude Include="Core\Windows\Window.h" />
-    <ClInclude Include="Managed\DxManager.h" />
-    <ClInclude Include="Managed\ObjectManager.h" />
-    <ClInclude Include="Managed\SoundManager.h" />
-    <ClInclude Include="Managed\TextureManager.h" />
-    <ClInclude Include="Object\Camera\Camera.h" />
-    <ClInclude Include="Object\Camera\DefaultCamera.h" />
-    <ClInclude Include="Object\Camera\ModelViewCamera.h" />
-    <ClInclude Include="Object\Camera\UICamera.h" />
-    <ClInclude Include="Object\GameObject.h" />
-    <ClInclude Include="Object\Shape\Line.h" />
-    <ClInclude Include="Object\Shape\Plane.h" />
-    <ClInclude Include="Resource\resource.h" />
-    <ClInclude Include="Resource\Texture.h" />
-    <ClInclude Include="Standard\Base\BaseConst.hpp" />
-    <ClInclude Include="Standard\Base\BaseStruct.hpp" />
-    <ClInclude Include="Standard\Base\BaseUtility.hpp" />
-    <ClInclude Include="Standard\Singleton.hpp" />
-    <ClInclude Include="Standard\Standard.hpp" />
-    <ClInclude Include="Standard\Utility\MyRandom.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="DefaultCamera.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="DxManager.h" />
+    <ClInclude Include="DxState.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="ModelViewCamera.h" />
+    <ClInclude Include="MyRandom.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Singleton.hpp" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="StdAfx.hpp" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="BaseUtility.hpp" />
+    <ClInclude Include="UICamera.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BaseStruct.hpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="DefaultCamera.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DxManager.cpp" />
+    <ClCompile Include="DxState.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="ModelViewCamera.cpp" />
+    <ClCompile Include="MyRandom.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">StdAfx.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UICamera.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="BaseConst.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\ExternalLibraries\DirectX11\Include\D3DX10math.inl" />
@@ -305,33 +313,6 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"</Comm
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Components\Component.cpp" />
-    <ClCompile Include="Components\Component\Material.cpp" />
-    <ClCompile Include="Components\Component\Mesh.cpp" />
-    <ClCompile Include="Components\Component\Transform.cpp" />
-    <ClCompile Include="Core\Core.cpp" />
-    <ClCompile Include="Core\DirectX\Device.cpp" />
-    <ClCompile Include="Core\DirectX\RenderTarget\RenderTarget.cpp" />
-    <ClCompile Include="Core\DirectX\State\DxState.cpp" />
-    <ClCompile Include="Core\Standard\Input.cpp" />
-    <ClCompile Include="Core\Standard\Timer.cpp" />
-    <ClCompile Include="Core\Windows\Window.cpp" />
-    <ClCompile Include="Managed\DxManager.cpp" />
-    <ClCompile Include="Managed\ObjectManager.cpp" />
-    <ClCompile Include="Managed\SoundManager.cpp" />
-    <ClCompile Include="Managed\TextureManager.cpp" />
-    <ClCompile Include="Object\Camera\Camera.cpp" />
-    <ClCompile Include="Object\Camera\DefaultCamera.cpp" />
-    <ClCompile Include="Object\Camera\ModelViewCamera.cpp" />
-    <ClCompile Include="Object\Camera\UICamera.cpp" />
-    <ClCompile Include="Object\GameObject.cpp" />
-    <ClCompile Include="Object\Shape\Line.cpp" />
-    <ClCompile Include="Object\Shape\Plane.cpp" />
-    <ClCompile Include="Resource\Texture.cpp" />
-    <ClCompile Include="Standard\Standard.cpp" />
-    <ClCompile Include="Standard\Utility\MyRandom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

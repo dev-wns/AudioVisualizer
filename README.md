@@ -30,7 +30,7 @@ Steam Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면에�
 * FModEx
 <br><br/>
 
-## 적용 기술
+## 기술
 
 ### 인스턴싱
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfOTUg/MDAxNTk2NTMzOTU3OTEz.6Jne7pnmzyeGBUy8lj4HTMJlhXv-mo5zWrGlwHosQicg.vyePXO5c81EoN1mNfWTPeNSt-1Cl0BmFgOEwX24v5WIg.GIF.ashi0/ezgif-6-4d4e77096046.gif?type=w966" width="500" height="350">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjk0/MDAxNTk2NTMzOTU3ODMx.S2pplbVgYGA1Nus1iMLlkUc6HIiqS_xfa3g98wKdFDgg.wKBd5qxgcuI6ktWXKldibhVLf_e2uGY0ne0P7rLhsqwg.GIF.ashi0/ezgif-6-44470591d169.gif?type=w966" width="500" height="350"> |

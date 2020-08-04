@@ -40,6 +40,10 @@
   MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
 
 ### 240 fps 고정
+<p align="center">
+  <img src="https://blog.naver.com/PostView.nhn?blogId=ashi0&Redirect=View&logNo=222049539023&categoryNo=1&isAfterWrite=true#">
+  <p align="center">
+  <img src="https://blog.naver.com/PostView.nhn?blogId=ashi0&Redirect=View&logNo=222049539023&categoryNo=1&isAfterWrite=true#">
 </p> <div align="center"> < 사진 > </div>
 </p> <div align="center"> < 240 fps 고정 > </div>
   오브젝트에 관련된 렌더링 부분은 240 fps로 고정 했습니다.<br>

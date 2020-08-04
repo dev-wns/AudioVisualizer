@@ -21,7 +21,7 @@ void SoundPlayer::Init()
 
 	// 음악 로드시간이 오래걸려서.. 우선 쓰레드로 로드하고 화면은 보여주도록 함.
 	std::thread th1 ( [](){
-		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
+		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music2.mp3" ) == false )
 			 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 	} );
 	th1.detach();

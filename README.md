@@ -40,6 +40,7 @@
   MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결해봤습니다. <br>
 
 ### 240 fps 고정
+|  단축키  |     내용                |
 <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjkg/MDAxNTk2NTIzNTQ5MzE1.dQXZ2GKe3aWshj2g_yxk4DurFSVIk31qxEvpq9QFxQsg.WUKOtcko98OpAh7DYKSgJl0UpiRNtU_qD3OONNcOTpMg.JPEG.ashi0/bandicam_2020-08-04_15-42-40-107.jpg?type=w966" width="450" height="350">
 </p> <div align="center"> < before > </div>
 

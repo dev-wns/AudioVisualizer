@@ -25,7 +25,6 @@ Steam Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면에�
 * DirectX11
 
 * FModEx
-<br>
 
 ## 기술
 

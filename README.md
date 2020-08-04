@@ -33,7 +33,7 @@
 |**</p> <div align="center"> < particle> </div>**|**</p> <div align="center"> < spectrum > </div>**|
   
 파티클과 스펙트럼은 각각 같은 객체를 사용하지만 위치, 크기, 회전량, 색상 정도만 다르기 때문에 인스턴싱을 사용하여 <br>
-렌더링에 대한 부하를 조금 줄여봤습니다.
+렌더링에 대한 부하를 줄여봤습니다.
   
 ### 안티앨리어싱
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjQy/MDAxNTk2NTI1OTQxMDg3.J8CF48dXdoYRTqbfxszjEvvSwLRjyKIwvT3mheFD978g.YbjzjIJN2oRh0uLmvWWd1GCI-n7ZuuyBeaR6grxMdb4g.JPEG.ashi0/bandicam_2020-08-04_16-22-25-935.jpg?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMzkg/MDAxNTk2NTI1OTQzNDIz.hhnEWX5U61nPOs05PUMNrJ6QUgQk8ktf8wkLhcLQPiwg.Haxe5Oo0F4BVvQbeUnSwnFCpRN5IYSDjyJ72nlfswUYg.JPEG.ashi0/bandicam_2020-08-04_16-20-28-936.jpg?type=w966" width="500" height="400"> |

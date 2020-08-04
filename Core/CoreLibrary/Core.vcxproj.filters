@@ -19,15 +19,6 @@
     <Filter Include="Object">
       <UniqueIdentifier>{1fe4ab63-1eb1-4f41-8493-7a84d09d2936}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Texture">
-      <UniqueIdentifier>{bdcaf652-4ecd-457b-99f3-2cf34f3025af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{bbbc7cc7-4885-4588-aab9-43b09a194ae1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Component">
-      <UniqueIdentifier>{f70ed63b-13f4-4331-b567-b6abc56b6476}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{fc096451-a60f-4323-bb2b-7fc750662e39}</UniqueIdentifier>
     </Filter>
@@ -70,11 +61,29 @@
     <Filter Include="ExternalLibraries\FMOD\Lib">
       <UniqueIdentifier>{4f8e75a6-17c8-4922-b8e6-b51030036287}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Managed\Sound">
-      <UniqueIdentifier>{802af802-2560-4ee3-a85e-4aed630dc567}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Standard\Base">
       <UniqueIdentifier>{a5b777aa-b3f2-4b5d-b874-fa7e1cd975ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{bdcaf652-4ecd-457b-99f3-2cf34f3025af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Input">
+      <UniqueIdentifier>{c1574630-30d3-4bd5-8c91-96cff76149bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Timer">
+      <UniqueIdentifier>{5183af41-e65c-41a5-9172-ba709a5c5dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Components">
+      <UniqueIdentifier>{bbbc7cc7-4885-4588-aab9-43b09a194ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Components\Component">
+      <UniqueIdentifier>{f70ed63b-13f4-4331-b567-b6abc56b6476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Utility\Exception">
+      <UniqueIdentifier>{3a51cd3f-4a9c-44cb-a327-49a918165bb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Standard\Utility\Random">
+      <UniqueIdentifier>{1b531441-68cd-405e-adcc-08357e1bac4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,27 +102,17 @@
     <ClInclude Include="Core.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.hpp">
-      <Filter>Core\Standard</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Texture.h">
-      <Filter>Texture</Filter>
+      <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Components</Filter>
+      <Filter>Object\Components</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
       <Filter>Object\Shape</Filter>
@@ -332,10 +331,10 @@
       <Filter>ExternalLibraries\DirectX11\Include</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClInclude>
     <ClInclude Include="DxManager.h">
       <Filter>Managed</Filter>
@@ -361,9 +360,6 @@
     <ClInclude Include="DefaultCamera.h">
       <Filter>Object\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Managed\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\ExternalLibraries\FMOD\Include\fmod.h">
       <Filter>ExternalLibraries\FMOD\Include</Filter>
     </ClInclude>
@@ -388,11 +384,35 @@
     <ClInclude Include="Line.h">
       <Filter>Object\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="MyRandom.h">
-      <Filter>Core\Standard\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="BaseUtility.hpp">
       <Filter>Core\Standard\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Core\Standard\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core\Standard\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.hpp">
+      <Filter>Core\Standard\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MyRandom.h">
+      <Filter>Core\Standard\Utility\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.hpp">
+      <Filter>Core\Standard\Utility\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeError.hpp">
+      <Filter>Core\Standard\Utility\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicError.hpp">
+      <Filter>Core\Standard\Utility\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -408,32 +428,26 @@
     <ClCompile Include="RenderTarget.cpp">
       <Filter>Core\DX\RenderTarget</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Texture</Filter>
+      <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Components</Filter>
+      <Filter>Object\Components</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
       <Filter>Object\Shape</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClCompile>
     <ClCompile Include="Material.cpp">
-      <Filter>Components\Component</Filter>
+      <Filter>Object\Components\Component</Filter>
     </ClCompile>
     <ClCompile Include="DxManager.cpp">
       <Filter>Managed</Filter>
@@ -459,14 +473,8 @@
     <ClCompile Include="DefaultCamera.cpp">
       <Filter>Object\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Managed\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>Object\Shape</Filter>
-    </ClCompile>
-    <ClCompile Include="MyRandom.cpp">
-      <Filter>Core\Standard\Utility</Filter>
     </ClCompile>
     <ClCompile Include="BaseStruct.hpp">
       <Filter>Core\Standard\Base</Filter>
@@ -476,6 +484,18 @@
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Core\Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Managed</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Core\Standard\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core\Standard\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="MyRandom.cpp">
+      <Filter>Core\Standard\Utility\Random</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

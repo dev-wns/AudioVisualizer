@@ -17,15 +17,13 @@ SoundPlayer::SoundPlayer() :
 
 void SoundPlayer::Init()
 {
+	ObjectManager::Get()->AddObject( nullptr );
 	// 고정 프레임 설정
 	Timer::Get()->SetFixedFrameRate( 240 );
 
-	// 음악 로드시간이 오래걸려서 우선 쓰레드로 로드하고 화면은 보여주도록 함.
-	std::thread th1 ( [](){
-		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
-			 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
-	} );
-	th1.detach();
+	// 리소스 추가
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
+	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
@@ -163,7 +161,7 @@ void SoundPlayer::Update()
 		spectrum->UpdatePosition( aroundScale, bassAmount );
 	}
 
-	// 카메라 흔들기 효과 ( UI Cam )
+	// 카메라 흔들기 효과
 	if ( bCameraShake == true )
 	{
 		const float& shakeAmount( rawBassValue * shakePower );

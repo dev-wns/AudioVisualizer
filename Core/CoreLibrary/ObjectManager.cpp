@@ -80,7 +80,8 @@ void ObjectManager::Release()
 
 void ObjectManager::AddObject( GameObject* _obj )
 {
-	if ( _obj == nullptr ) throw;
+	if ( _obj == nullptr )
+		throw;
 
 	for ( std::pair<EObject, std::list<GameObject*>> lists : objects )
 	{

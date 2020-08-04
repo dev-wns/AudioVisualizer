@@ -208,9 +208,11 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="Device.h" />
     <ClInclude Include="DxManager.h" />
     <ClInclude Include="DxState.h" />
+    <ClInclude Include="Exception.hpp" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="LogicError.hpp" />
     <ClInclude Include="ModelViewCamera.h" />
     <ClInclude Include="MyRandom.h" />
     <ClInclude Include="Plane.h" />
@@ -220,6 +222,7 @@ copy "..\\..\\Output\\$(TargetName)\\*.lib" "..\\..\\Lib\\$(TargetName)\\"
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="RuntimeError.hpp" />
     <ClInclude Include="Singleton.hpp" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StdAfx.hpp" />

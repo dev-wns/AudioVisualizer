@@ -4,15 +4,14 @@
 
 Texture* TextureManager::GetTexture( const std::wstring& _name )
 {
-	
-	const std::map<std::wstring, Texture*>::const_iterator& iter( std::find( std::cbegin( textures ), std::cend( textures ), _name ) );
-	if ( iter == std::end( textures ) )
+	const std::map<std::wstring, Texture*>::const_iterator& iter( textures.find( _name ) );
+
+	if ( iter == std::cend( textures ) )
 	{
 		throw;
 	}
 
-	Texture* retData( iter->second );
-	return retData;
+	return iter->second;
 }
 
 void TextureManager::AddTexture( const std::wstring& _path )
@@ -25,7 +24,7 @@ void TextureManager::AddTexture( const std::wstring& _path )
 	Texture* oneTexture( new Texture() );
 	oneTexture->NameDivide( _path.c_str() );
 
-	const std::map<std::wstring, Texture*>::const_iterator& iter( std::find( std::cbegin( textures ), std::cend( textures ), oneTexture->GetName() ) );
+	const std::map<std::wstring, Texture*>::const_iterator& iter( textures.find( oneTexture->GetName() ) );
 	if ( iter != std::cend( textures ) )
 	{
 		SafeRelease( oneTexture, true );
@@ -39,7 +38,7 @@ void TextureManager::RemoveTexture( const std::wstring& _name )
 {
 	if ( _name.empty() == true ) return;
 
-	std::map<std::wstring, Texture*>::iterator iter( std::find( std::begin( textures ), std::end( textures ), _name );
+	std::map<std::wstring, Texture*>::iterator iter( textures.find( _name ) );
 	if ( iter == std::end( textures ) ) return;
 
 	SafeRelease( iter->second );

@@ -44,10 +44,10 @@ public:
 	void SetCamera( GameObject* _cam );
 
 public:
-	const std::vector<GameObject*>& GetChild() const { return childs;      }
+	const std::vector<GameObject*>& GetChild() const { return childs; }
 	const std::wstring& GetName() const				 { return objectName;  }
-	GameObject* GetCamera() const					 { return applyCamera; }
-	const EObject GetType() const						     { return objectType;  }
+	const EObject GetType() const					 { return objectType;  }
+	GameObject* GetCamera() const;
 
 public:
 	/* 

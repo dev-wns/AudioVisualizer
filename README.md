@@ -30,7 +30,6 @@
 ### 인스턴싱
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfOTUg/MDAxNTk2NTMzOTU3OTEz.6Jne7pnmzyeGBUy8lj4HTMJlhXv-mo5zWrGlwHosQicg.vyePXO5c81EoN1mNfWTPeNSt-1Cl0BmFgOEwX24v5WIg.GIF.ashi0/ezgif-6-4d4e77096046.gif?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjk0/MDAxNTk2NTMzOTU3ODMx.S2pplbVgYGA1Nus1iMLlkUc6HIiqS_xfa3g98wKdFDgg.wKBd5qxgcuI6ktWXKldibhVLf_e2uGY0ne0P7rLhsqwg.GIF.ashi0/ezgif-6-44470591d169.gif?type=w966" width="500" height="400"> |
 |:------------------------------------------------:|:-------------------------------------------:|
-
 |**</p> <div align="center"> < particle> </div>**|**</p> <div align="center"> < spectrum > </div>**|
   
 파티클과 스펙트럼의 바(사각형)는 각각 같은 객체를 사용하지만 위치, 크기, 회전량, 색상 정도만 다르기 때문에 <br>

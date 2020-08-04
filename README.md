@@ -34,7 +34,8 @@
   
 ### 안티앨리어싱
 |<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjQy/MDAxNTk2NTI1OTQxMDg3.J8CF48dXdoYRTqbfxszjEvvSwLRjyKIwvT3mheFD978g.YbjzjIJN2oRh0uLmvWWd1GCI-n7ZuuyBeaR6grxMdb4g.JPEG.ashi0/bandicam_2020-08-04_16-22-25-935.jpg?type=w966" width="500" height="400">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMzkg/MDAxNTk2NTI1OTQzNDIz.hhnEWX5U61nPOs05PUMNrJ6QUgQk8ktf8wkLhcLQPiwg.Haxe5Oo0F4BVvQbeUnSwnFCpRN5IYSDjyJ72nlfswUYg.JPEG.ashi0/bandicam_2020-08-04_16-20-28-936.jpg?type=w966" width="500" height="400"> |
-|</p> <div align="center"> < before > </div>       |</p> <div align="center"> < after > </div>   |
+|:------------------------------------------------:|:-------------------------------------------:|
+|**</p> <div align="center"> < before > </div>**|**</p> <div align="center"> < after > </div>**|
   
 사각형을 기울여서 렌더링 했을 때 테두리가 계단현상 때문에 부자연스러웠습니다. <br>
 관련 내용을 찾아보다가 DirectX에 안티앨리어싱이라는 기술이 있는 것을 보고 <br>

@@ -57,7 +57,7 @@ Steam의 Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면�
 인스턴싱을 사용하여 렌더링에 대한 부하를 줄였습니다.
   
 ### 안티앨리어싱
-|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMjQy/MDAxNTk2NTI1OTQxMDg3.J8CF48dXdoYRTqbfxszjEvvSwLRjyKIwvT3mheFD978g.YbjzjIJN2oRh0uLmvWWd1GCI-n7ZuuyBeaR6grxMdb4g.JPEG.ashi0/bandicam_2020-08-04_16-22-25-935.jpg?type=w966" width="500" height="350">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMzkg/MDAxNTk2NTI1OTQzNDIz.hhnEWX5U61nPOs05PUMNrJ6QUgQk8ktf8wkLhcLQPiwg.Haxe5Oo0F4BVvQbeUnSwnFCpRN5IYSDjyJ72nlfswUYg.JPEG.ashi0/bandicam_2020-08-04_16-20-28-936.jpg?type=w966" width="500" height="350"> |
+|<img src="https://postfiles.pstatic.net/MjAyMDA4MDRfNzcg/MDAxNTk2NTQ4ODc0NzMz.JUvz57BHKL58sQDS1zAfQ3BwBDfPitTDMVcI6wJJ6ugg.qeR85zkOkdTFUqPU2VQyhYg700G5obvmUlrFUuDZlYYg.JPEG.ashi0/SE-5e6d2a1b-3fb2-4510-a771-26bbed930909.jpg?type=w966" width="500" height="350">  |  <img src="https://postfiles.pstatic.net/MjAyMDA4MDRfMTgz/MDAxNTk2NTQ4OTM5MDYw.QVP0J-53NNtTNz4gbaqGLGWY9BL61QLAk9CJDcFKavEg.AAlHKBqXtbIU_GHFeJ1FFmz_3PeihOXAsIJ6I1wGcYMg.JPEG.ashi0/SE-8e137919-3b8c-480e-a71f-a03f9abe16af.jpg?type=w966" width="500" height="350"> |
 |:------------------------------------------------:|:-------------------------------------------:|
 |**</p> <div align="center"> < before > </div>**|**</p> <div align="center"> < after > </div>**|
   

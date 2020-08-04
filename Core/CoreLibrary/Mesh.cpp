@@ -100,7 +100,8 @@ void Mesh::Init()
 
 void Mesh::PrevRender()
 {
-	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) return;
+	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) 
+		throw NullPointer( __FUNCTION__" - one of vertex, index buffer and constant buffer is null reference.\n" );
 
 	UINT stride( sizeVertex );
 	UINT offset( 0 );
@@ -113,7 +114,8 @@ void Mesh::PrevRender()
 
 void Mesh::PrevRenderInst()
 {
-	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) return;
+	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) 
+		throw NullPointer( __FUNCTION__" - one of vertex, index buffer and constant buffer is null reference.\n" );
 
 	DxManager::Get()->GetContext()->IASetIndexBuffer( indexBuffer, DXGI_FORMAT_R32_UINT, 0 );
 	DxManager::Get()->GetContext()->VSSetConstantBuffers( 0, 1, &vertexShaderConstantBuffer );
@@ -122,7 +124,8 @@ void Mesh::PrevRenderInst()
 
 void Mesh::PostRender()
 {
-	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) return;
+	if ( vertexBuffer == nullptr || indexBuffer == nullptr || vertexShaderConstantBuffer == nullptr ) 
+		throw NullPointer( __FUNCTION__" - one of vertex, index buffer and constant buffer is null reference.\n" );
 
 	DxManager::Get()->GetContext()->DrawIndexed( numIndex, 0, 0 );
 }

@@ -5,8 +5,8 @@
 
 void Device::ResizeClient( const HWND& hWnd, UINT width, UINT height )
 {
-	if ( d3dDevice == nullptr ) return;
-
+	if ( d3dDevice == nullptr )	
+		throw NullPointer( __FUNCTION__" - the device is null reference.\n" );
 	d3dContext->OMSetRenderTargets( 0, nullptr, nullptr );
 
 	SafeRelease( swapChain );
@@ -19,7 +19,7 @@ void Device::Init( const HWND& _hWnd, UINT width, UINT height )
 		|| CreateSwapChain( _hWnd, width, height ) == E_FAIL
 		|| dxgiFaxtory->MakeWindowAssociation( _hWnd, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER ) == E_FAIL )
 	{
-		throw;
+		throw LogicError( __FUNCTION__" - device create failed.\n" );
 	}
 }
 

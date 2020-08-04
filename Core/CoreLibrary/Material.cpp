@@ -34,7 +34,8 @@ void Material::Init()
 
 void Material::PrevRender()
 {
-	if ( vertexShader == nullptr || pixelShader == nullptr || layout == nullptr ) return;
+	if ( vertexShader == nullptr || pixelShader == nullptr || layout == nullptr )
+		throw NullPointer( __FUNCTION__" - one of vertex, index shader and layout is null reference.\n" );
 
 	if ( texture != nullptr )
 		DxManager::Get()->GetContext()->PSSetShaderResources( 0, 1, &texture->GetResource() );

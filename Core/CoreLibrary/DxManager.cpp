@@ -4,7 +4,8 @@
 
 void DxManager::SetRenderTargetView()
 {
-	if ( GetSwapChain() == nullptr ) return;
+	if ( GetSwapChain() == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the swapchain is null reference.\n" );
 
 	DXGI_SWAP_CHAIN_DESC SwapDesc = { 0, };
 	GetSwapChain()->GetDesc( &SwapDesc );
@@ -12,13 +13,14 @@ void DxManager::SetRenderTargetView()
 	if ( GetSwapChain()->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pResource ) == E_FAIL
 		|| dxRT.Create( GetDevice(), ( FLOAT )SwapDesc.BufferDesc.Width, ( FLOAT )SwapDesc.BufferDesc.Height, pResource ) == E_FAIL )
 	{
-		throw;
+		throw LogicError( __FUNCTION__" - RenderTargetView setting failed.\n" );
 	}
 }
 
 void DxManager::ResizeClient( UINT width, UINT height )
 {
-	if ( d3dContext == nullptr ) return;
+	if ( d3dContext == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the context is null reference.\n" );
 	d3dContext->OMSetRenderTargets( 0, nullptr, nullptr );
 
 	SafeRelease( swapChain );
@@ -63,25 +65,29 @@ bool DxManager::isState( EBlend blendState )
 
 void DxManager::SetState( ERasterizer rsState )
 {
-	if ( state.raster[rsState] == nullptr ) return;
+	if ( state.raster[rsState] == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the rasterize state is null reference.\n" );
 	GetContext()->RSSetState( state.raster[rsState] );
 }
 
 void DxManager::SetState( EDepthStencil dsState )
 {
-	if ( state.depth[dsState] == nullptr ) return;
+	if ( state.depth[dsState] == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the depthstencil state is null reference.\n" );
 	GetContext()->OMSetDepthStencilState( state.depth[dsState], 0x00 );
 }
 
 void DxManager::SetState( ESampler samState )
 {
-	if ( state.sampler[samState] == nullptr ) return;
+	if ( state.sampler[samState] == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the sampler state is null reference.\n" );
 	GetContext()->PSSetSamplers( 0, 1, &state.sampler[samState] );
 }
 
 void DxManager::SetState( EBlend blendState )
 {
-	if ( state.blend[blendState] == nullptr ) return;
+	if ( state.blend[blendState] == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the blend state is null reference.\n" );
 	GetContext()->OMSetBlendState( state.blend[blendState], 0, 0xffffffff );
 }
 

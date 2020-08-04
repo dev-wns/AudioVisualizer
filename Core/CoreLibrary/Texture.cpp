@@ -7,7 +7,7 @@ void Texture::CreateShaderResourceView( const std::wstring& _path )
 	HRESULT hr ( S_OK );
 	if ( FAILED( hr = D3DX11CreateShaderResourceViewFromFile( DxManager::Get()->GetDevice(), _path.c_str(), NULL, NULL, &resource, NULL ) ) )
 	{
-		return;
+		throw LogicError( __FUNCTION__" - create of ShaderResourceView failed.\n" );
 	}
 	NameDivide( _path.c_str() );
 	path = _path;
@@ -23,7 +23,7 @@ void Texture::NameDivide( const std::wstring& _path )
 	size_t pos( _path.find_last_of( L'\\' ) );
 	if ( pos == std::wstring::npos )
 	{
-		throw;
+		throw OutOfRange( __FUNCTION__" - the end of the string has been reached.\n" );
 	}
 
 	if ( name.empty() == false )

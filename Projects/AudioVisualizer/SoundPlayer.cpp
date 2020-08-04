@@ -17,7 +17,6 @@ SoundPlayer::SoundPlayer() :
 
 void SoundPlayer::Init()
 {
-	ObjectManager::Get()->AddObject( nullptr );
 	// 고정 프레임 설정
 	Timer::Get()->SetFixedFrameRate( 240 );
 
@@ -34,19 +33,31 @@ void SoundPlayer::Init()
 	backGround->GetComponent<Mesh>()->GetVSCB().color = D3DXVECTOR4( 1.0f, 1.0f, 1.0f, 0.125f );
 	backGround->GetComponent<Material>()->SetTexture( TextureManager::Get()->GetTexture( L"back.jpg" ) );
 	backGround->GetComponent<Material>()->SetPixel( "PixelShaderTexture" );
-	ObjectManager::Get()->AddObject( backGround );
 
 	particle = new ParticleSystem( L"Particle", ObjectManager::Get()->GetCamera( ECamera::Main ), EObject::UI, 128 );
-	ObjectManager::Get()->AddObject( particle );
 
 	spectrum = new Spectrum( L"Spectrum", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI, 90 );
-	ObjectManager::Get()->AddObject( spectrum );
 
 	centerImage = new Plane( L"CenterImage", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
 	centerImage->GetComponent<Transform>()->SetScale( aroundScale, aroundScale, 1.0f );
 	centerImage->GetComponent<Material>()->SetPixel( "PS_Sphere" );
 	centerImage->GetComponent<Material>()->SetTexture( TextureManager::Get()->GetTexture( L"back.jpg" ) );
-	ObjectManager::Get()->AddObject( centerImage );
+	
+	try
+	{
+		ObjectManager::Get()->AddObject( backGround );
+		ObjectManager::Get()->AddObject( particle );
+		ObjectManager::Get()->AddObject( spectrum );
+		ObjectManager::Get()->AddObject( centerImage );
+		ObjectManager::Get()->AddObject( nullptr );
+	}
+	catch ( const Exception& ex )
+	{
+		std::string error( ex.What() );
+		std::string error2( ex.What() );
+
+		error; error2;
+	}
 }
 
 void SoundPlayer::Frame()

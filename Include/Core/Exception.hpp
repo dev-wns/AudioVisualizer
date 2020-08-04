@@ -4,14 +4,15 @@
 class Exception : public std::exception
 {
 public:
-	explicit Exception( const char* _message ) : message( _message ) { }
+	explicit Exception( const char* _message = "" ) : message( _message ) { }
 	explicit Exception( const std::string& _message ) : message( _message ) { }
 	virtual ~Exception() = default;
 
 public:
 	virtual const char* What() const
 	{
-		return message.empty() == true ? "Unknown Exception." : message.c_str();
+		::OutputDebugStringA( message.c_str() );
+		return message.empty() == true ? "unknown exception." : message.c_str();
 	}
 
 protected:

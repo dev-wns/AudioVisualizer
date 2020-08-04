@@ -6,20 +6,16 @@ Texture* TextureManager::GetTexture( const std::wstring& _name )
 {
 	const std::map<std::wstring, Texture*>::const_iterator& iter( textures.find( _name ) );
 
-	if ( iter == std::cend( textures ) )
-	{
-		throw;
-	}
+	if ( iter == std::cend( textures ) ) 
+		throw EmptyData( __FUNCTION__" - the textures iterator has reached the end.\n" );
 
 	return iter->second;
 }
 
 void TextureManager::AddTexture( const std::wstring& _path )
 {
-	if ( _path.empty() == true )
-	{
-		throw;
-	}
+	if ( _path.empty() == true ) 
+		throw EmptyData( __FUNCTION__" - the textures iterator has reached the end.\n" ); 
 
 	Texture* oneTexture( new Texture() );
 	oneTexture->NameDivide( _path.c_str() );
@@ -36,10 +32,12 @@ void TextureManager::AddTexture( const std::wstring& _path )
 
 void TextureManager::RemoveTexture( const std::wstring& _name )
 {
-	if ( _name.empty() == true ) return;
+	if ( _name.empty() == true ) 
+		throw EmptyData( __FUNCTION__" - argument empty.\n" );
 
 	std::map<std::wstring, Texture*>::iterator iter( textures.find( _name ) );
-	if ( iter == std::end( textures ) ) return;
+	if ( iter == std::end( textures ) ) 
+		throw EmptyData( __FUNCTION__" - the textures iterator has reached the end.\n" );
 
 	SafeRelease( iter->second );
 	textures.erase( iter );

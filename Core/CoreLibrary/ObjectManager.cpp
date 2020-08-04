@@ -80,8 +80,8 @@ void ObjectManager::Release()
 
 void ObjectManager::AddObject( GameObject* _obj )
 {
-	if ( _obj == nullptr )
-		throw;
+	if ( _obj == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the argument is null reference.\n" );
 
 	for ( std::pair<EObject, std::list<GameObject*>> lists : objects )
 	{
@@ -108,15 +108,18 @@ void ObjectManager::AddObject( GameObject* _obj )
 
 void ObjectManager::RemoveObject( GameObject* _obj )
 {
-	if ( _obj == nullptr ) throw;
+	if ( _obj == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the argument is null reference.\n" );
 
 	const EObject& type( _obj->objectType );
 	const std::map<EObject, std::list<GameObject*>>::iterator& iter = objects.find( type );
-	if ( iter == objects.cend() ) return;
+	if ( iter == objects.cend() ) 
+		throw EmptyData( __FUNCTION__" - the objects initerator has reached the end.\n" );
 
 	std::list<GameObject*>& _list( iter->second );
 	const std::list<GameObject*>::iterator& _iter( std::find( std::begin( _list ), std::end( _list ), _obj ) );
-	if ( _iter == std::end( _list ) ) return;
+	if ( _iter == std::end( _list ) ) 
+		throw EmptyData( __FUNCTION__" - the objects outiterator has reached the end.\n" );
 
 	GameObject*& delObject( *_iter );
 	SafeRelease( delObject );

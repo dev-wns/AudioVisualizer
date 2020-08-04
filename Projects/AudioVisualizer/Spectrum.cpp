@@ -50,8 +50,8 @@ void Spectrum::Init()
 
 	SetBillboard( true );
 
-	if ( maxSpectrum == 0 )
-		throw;
+	if ( maxSpectrum <= 0 )
+		throw LogicError( __FUNCTION__" - spectrum must be greater than zero.\n" );
 
 	// 스펙트럼 바를 센터 이미지(원형)에 맞게 생성, 이동, 회전 시킴
 	const float& degree( ( 180.0f / maxSpectrum ) * ( 3.14159265358979323846f / 180.0f ) );

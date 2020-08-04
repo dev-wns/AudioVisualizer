@@ -4,7 +4,7 @@
 class LogicError : public Exception
 {
 public:
-	explicit LogicError( const char* _message ) noexcept : Exception( _message ) { }
+	explicit LogicError( const char* _message = "" ) noexcept : Exception( _message ) { }
 	explicit LogicError( const std::string _message ) noexcept : Exception( _message ) { }
 	virtual ~LogicError() = default;
 
@@ -18,7 +18,7 @@ public:
 class OutOfRange : public LogicError
 {
 public:
-	explicit OutOfRange( const char* _message ) noexcept : LogicError( _message ) { }
+	explicit OutOfRange( const char* _message = "" ) noexcept : LogicError( _message ) { }
 	explicit OutOfRange( const std::string _message ) noexcept : LogicError( _message ) { }
 	virtual ~OutOfRange() = default;
 
@@ -32,7 +32,7 @@ public:
 class InvalidArgument : public LogicError
 {
 public:
-	explicit InvalidArgument( const char* _message ) noexcept : LogicError( _message ) { }
+	explicit InvalidArgument( const char* _message = "" ) noexcept : LogicError( _message ) { }
 	explicit InvalidArgument( const std::string _message ) noexcept : LogicError( _message ) { }
 	virtual ~InvalidArgument() = default;
 
@@ -46,8 +46,7 @@ public:
 class EmptyData : public InvalidArgument
 {
 public:
-	explicit EmptyData( const char* _message ) noexcept : InvalidArgument( _message ) { }
-	explicit EmptyData( const std::string _message ) noexcept : InvalidArgument( _message ) { }
+	explicit EmptyData( const std::string _message ) noexcept : InvalidArgument( "empty data : " + _message ) { }
 	virtual ~EmptyData() = default;
 
 public:
@@ -60,13 +59,13 @@ public:
 class NullPointer : public InvalidArgument
 {
 public:
-	explicit NullPointer( const char* _message ) noexcept : InvalidArgument( _message ) { }
-	explicit NullPointer( const std::string _message ) noexcept : InvalidArgument( _message ) { }
+	explicit NullPointer( const char* _message = "" ) noexcept : InvalidArgument( _message ) { }
+	explicit NullPointer( const std::string _message ) noexcept : InvalidArgument( "this object null reference.\n" + _message ) { }
 	virtual ~NullPointer() = default;
 
 public:
 	const char* What() const override
 	{
-		return GetExceptionMessage().empty() == true ? "this object null reference." : LogicError::What();
+		return GetExceptionMessage().empty() == true ? "this object null reference.\n" : LogicError::What();
 	}
 };

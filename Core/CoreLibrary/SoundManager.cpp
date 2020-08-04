@@ -16,18 +16,20 @@ std::map<ESoundCount, float*>& SoundManager::GetSpectrum()
 
 bool SoundManager::LoadSoundFile( const std::string& _path )
 {
-	if ( _path.empty() == true ) return false;
+	if ( _path.empty() == true ) 
+		throw EmptyData( __FUNCTION__" - argument empty.\n" );
 
 	// 사운드 생성
 	FMOD::Sound* sound( nullptr );
-	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) return false;
+	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) 
+		throw LogicError( __FUNCTION__" - soundSystem create failed.\n" );
 	// path에서 이름만 자르기
 	std::string name;
 	const size_t& pos( _path.find_last_of( L'\\' ) );
 
 	if ( pos == std::string::npos )
 	{
-		throw;
+		throw OutOfRange( __FUNCTION__" - the end of the string has been reached.\n" );
 	}
 
 	for ( size_t start = pos + 1; start != _path.size(); start++ )
@@ -41,7 +43,8 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 
 void SoundManager::Play()
 {
-	if ( std::cbegin( musics )->second == nullptr ) return;
+	if ( std::cbegin( musics )->second == nullptr ) 
+		throw NullPointer( __FUNCTION__" - the first data in the music is null reference.\n" );
 
 	bool isPlay( false );
 	for ( FMOD::Channel* oneChannel : channels )
@@ -59,7 +62,8 @@ void SoundManager::Play()
 
 void SoundManager::Play( const std::string& _name )
 {
-	if ( _name.empty() == true || musics.find( _name ) == std::end( musics ) ) throw;
+	if ( _name.empty() == true || musics.find( _name ) == std::end( musics ) ) 
+		throw EmptyData( __FUNCTION__" - argument data is empty or failed to find music.\n" );
 
 	bool isPlay( false );
 	for ( FMOD::Channel* oneChannel : channels )
@@ -126,7 +130,8 @@ void SoundManager::AddVolume( float value )
 	channels[0]->getVolume( &volume );
 	const float& compareValue( volume + value );
 
-	if ( compareValue <= 0.0f || compareValue >= 1.0f ) return;
+	if ( compareValue <= 0.0f || compareValue >= 1.0f ) 
+		throw OutOfRange( __FUNCTION__" - the sound volume must be between 0 ~ 1.\n" );
 
 	volume += value;
 	channels[0]->setVolume( volume );

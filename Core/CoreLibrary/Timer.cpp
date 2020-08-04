@@ -52,7 +52,8 @@ void Timer::Frame()
 
 void Timer::SetFixedFrameRate( const DWORD& value )
 {
-	if ( value <= 0 ) throw;
+	if ( value <= 0 ) 
+		throw LogicError( __FUNCTION__" - value must be greater than zero.\n" );
 	fixedFrame = 1.0f / static_cast<float>( value );
 };
 

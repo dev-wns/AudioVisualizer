@@ -56,7 +56,8 @@ MSAA x8(multi sampling anti-aliasing)을 적용하여 계단현상을 해결했�
 
 ## 설명
 
-오디오 파일을 읽은 후 해당 오디오의 스펙트럼 값을 시각화 하여 보여주는 프로그램 입니다.
+오디오 파일을 읽은 후 해당 오디오의 스펙트럼 값을 시각화 하여 보여주는 프로그램 입니다. <br>
+Steam의 Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면에서 영감을 얻어 제작했습니다. <br>
 
 ### 스펙트럼
 

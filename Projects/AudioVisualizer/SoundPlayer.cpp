@@ -26,7 +26,7 @@ void SoundPlayer::Init()
 	} );
 	th1.detach();
 
-	// 지금 쓰는 사진이 하나밖에 없어서 여기에서 추가함..
+	// 사용하는 사진이 하나밖에 없어서 여기에서 추가함.
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
 	// 객체 등록

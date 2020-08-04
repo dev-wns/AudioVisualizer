@@ -12,7 +12,7 @@ Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, b
 	defaultColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) ) ),
 	rainbowColor( D3DXVECTOR4( MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
 	  					       MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.5f, 1.0f ) ) ),
-	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 100.0f ) ), 
+	moveSpeed( MyRandom::Get()->GetRandomFloat( 1.0f, 200.0f ) ), 
 	respawnDelay( 0.0f ), timer( 0.0f )
 
 {

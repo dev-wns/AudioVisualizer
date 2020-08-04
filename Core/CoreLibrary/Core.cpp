@@ -65,4 +65,5 @@ void Core::GameRelease()
 	SoundManager::Get()->Release();
 	TextureManager::Get()->Release();
 	DxManager::Get()->Release();
+	IOStream::Get()->CloseFile( EIOType::Output );
 }

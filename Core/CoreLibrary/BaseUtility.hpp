@@ -1,5 +1,6 @@
 #pragma once
 #include <tchar.h>
+#include "IOStream.h"
 // #include <algorithm>
 
 namespace Utility 
@@ -150,6 +151,20 @@ namespace Utility
 			return PS;
 		}
 	}
+}
+
+static void ErrorWrite( const char* data )
+{
+	if ( IOStream::Get()->IsOpen( EIOType::Output ) == false )
+		 IOStream::Get()->OpenFile( "..\\..\\error.txt", EIOType::Output );
+	IOStream::Get()->Write( data , true );
+}
+
+static void ErrorWrite( const std::string& data )
+{
+	if ( IOStream::Get()->IsOpen( EIOType::Output ) == false )
+		 IOStream::Get()->OpenFile( "..\\..\\error.txt", EIOType::Output );
+	IOStream::Get()->Write( data, true );
 }
 
 template <typename TYPE>

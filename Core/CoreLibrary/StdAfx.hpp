@@ -25,9 +25,7 @@
 #include <list>
 #include <assert.h>
 
-// 예외처리용 헤더
-#include "LogicError.hpp"
-#include "RuntimeError.hpp"
+#include "Exception.h"
 
 // 메모리 누수 확인
 //#include <stdlib.h>

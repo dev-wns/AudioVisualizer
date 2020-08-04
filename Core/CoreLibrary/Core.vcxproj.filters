@@ -85,6 +85,9 @@
     <Filter Include="Core\Standard\Utility\Random">
       <UniqueIdentifier>{1b531441-68cd-405e-adcc-08357e1bac4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File">
+      <UniqueIdentifier>{0d6f31f3-7d6f-45e8-a72e-524a4db6bb42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.hpp">
@@ -405,13 +408,10 @@
     <ClInclude Include="MyRandom.h">
       <Filter>Core\Standard\Utility\Random</Filter>
     </ClInclude>
-    <ClInclude Include="Exception.hpp">
-      <Filter>Core\Standard\Utility\Exception</Filter>
+    <ClInclude Include="IOStream.h">
+      <Filter>File</Filter>
     </ClInclude>
-    <ClInclude Include="RuntimeError.hpp">
-      <Filter>Core\Standard\Utility\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicError.hpp">
+    <ClInclude Include="Exception.h">
       <Filter>Core\Standard\Utility\Exception</Filter>
     </ClInclude>
   </ItemGroup>
@@ -496,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="MyRandom.cpp">
       <Filter>Core\Standard\Utility\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="IOStream.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Core\Standard\Utility\Exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

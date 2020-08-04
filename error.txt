@@ -1,0 +1,4 @@
+ObjectManager::AddObject - the argument is null reference.
+
+ObjectManager::AddObject - the argument is null reference.
+

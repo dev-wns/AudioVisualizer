@@ -16,17 +16,20 @@ SoundPlayer::SoundPlayer() :
 
 void SoundPlayer::Init()
 {
+	// 고정 프레임 설정
 	Timer::Get()->SetFixedFrameRate( 240 );
 
-	SoundManager::Get()->Init();
+	// 음악 로드시간이 오래걸려서.. 우선 쓰레드로 로드하고 화면은 보여주도록 함.
 	std::thread th1 ( [](){
-		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music66.mp3" ) == false )
-			SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
+		if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
+			 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 	} );
 	th1.detach();
 
+	// 지금 쓰는 사진이 하나밖에 없어서 여기에서 추가함..
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
 
+	// 객체 등록
 	backGround = new Plane( L"BackGround", ObjectManager::Get()->GetCamera( ECamera::UI ), EObject::UI );
 	backGround->GetComponent<Transform>()->SetScale( 1440.0f, 1440.0f, 1.0f );
 	backGround->GetComponent<Transform>()->SetPosition( 0.0f, 0.0f, 999.0f );
@@ -105,6 +108,16 @@ void SoundPlayer::Frame()
 	{
 		bassPower += 100.0f * Timer::Get()->GetSPF();
 	}
+
+	// 볼륨 조절
+	if ( Input::Get()->KeyCheck( VK_SUBTRACT ) == EKeyState::KEY_HOLD )
+	{
+		SoundManager::Get()->AddVolume( -0.25f * Timer::Get()->GetSPF() );
+	}
+	if ( Input::Get()->KeyCheck( VK_ADD ) == EKeyState::KEY_HOLD )
+	{
+		SoundManager::Get()->AddVolume( 0.25f * Timer::Get()->GetSPF() );
+	}
 }
 
 void SoundPlayer::Release()
@@ -120,7 +133,7 @@ void SoundPlayer::BassUpdate()
 {
 	const float& spf( Timer::Get()->GetSPF() );
 	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S4096L] );
-	float calcValue = 0.0f;
+	float calcValue( 0.0f );
 
 	for ( int count = 0; count < 20; count++ )
 	{
@@ -133,7 +146,7 @@ void SoundPlayer::BassUpdate()
 		bassAmount = calcValue;
 
 	if ( bassAmount > 0.0f )
-		bassAmount -= 500.0f * spf;
+		bassAmount -= calcValue * 15.0f * spf;
 	else
 		bassAmount = 0.0f;
 }

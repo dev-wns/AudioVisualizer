@@ -29,7 +29,7 @@ public:
 	//void Play( int iIndex );
 	//void Stop( int iIndex );
 	//void Paused( int iIndex );
-	//void Volume( int iIndex, bool bUp );
+	void AddVolume( float value );
 
 public:
 	void Init();
@@ -42,5 +42,6 @@ private:
 	FMOD::Sound* currentPlaySound;
 	std::map<ESoundCount, float*> spectrum;
 	std::vector<FMOD::Channel*> channels;
+	float volume;
 };
 

@@ -4,7 +4,7 @@
 
 /* 
 	오브젝트들을 관리해주는 클래스 입니다.
-	Empty, Character, Effect, UI, Camera 등 오브젝트를 모아두고 
+	Empty, Character, Effect, UI, Camera... 별로 오브젝트를 모아두고 
 	오브젝트 타입에 따라 렌더링 순서가 결정됩니다.
 */ 
 class ObjectManager : public Singleton<ObjectManager>
@@ -28,7 +28,9 @@ public:
 	void SetCamera( ECamera _cam );
 	Camera* GetCamera( ECamera _camType );
 	void ResizeClient( UINT width, UINT height );
-	std::map<ECamera, Camera*>& GetCameras() { return cameras; }
+
+public:
+	const std::map<ECamera, Camera*>& GetCameras() { return cameras; }
 
 private:
 	friend class Singleton<ObjectManager>;

@@ -12,8 +12,8 @@ namespace Matrix
 
 namespace Quaternion
 {
-	const static D3DXQUATERNION Zero( D3DXQUATERNION( 0, 0, 0, 0 ) );
-	const static D3DXQUATERNION One( D3DXQUATERNION( 1, 1, 1, 1 ) );
+	const static D3DXQUATERNION& Zero( D3DXQUATERNION( 0, 0, 0, 0 ) );
+	const static D3DXQUATERNION& One( D3DXQUATERNION( 1, 1, 1, 1 ) );
 }
 
 namespace Vector2
@@ -61,4 +61,10 @@ namespace Shader
 namespace ObjectName
 {
 	const static std::wstring& Default( L"Empty" );
+}
+
+// ÀÓ½Ã·Î ³Ö¾îµÒ. »ó¼ö¾Æ´Ô..
+namespace Setting
+{
+	static bool AntiAliasing( true );
 }

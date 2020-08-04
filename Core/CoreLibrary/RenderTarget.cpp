@@ -1,6 +1,7 @@
 #include "StdAfx.hpp"
 #include "RenderTarget.h"
 #include "BaseUtility.hpp"
+#include "BaseConst.hpp"
 
 RenderTarget::RenderTarget() : countViewPort( 0 ) { }
 
@@ -112,7 +113,10 @@ HRESULT RenderTarget::UpdateDepthStencilView( ID3D11Device* pDevice, FLOAT iWidt
 		srvDesc.Format = DXGI_FORMAT_R24_UNORM_X8_TYPELESS;
 		break;
 	}
-	dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS; // D3D11_DSV_DIMENSION_TEXTURE2D;
+	if ( Setting::AntiAliasing == true ) 
+		dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS; 
+	else 
+		dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	dsvDesc.Texture2D.MipSlice = 0;
 	
 	//pDevice->CreateDepthStencilView(m_pTexture, &dsvDesc, &curDSView);

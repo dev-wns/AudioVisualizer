@@ -36,7 +36,7 @@ void Input::WindowMessageEvent( MSG msg )
 
 EKeyState Input::KeyCheck( DWORD dwKey )
 {
-	SHORT key( GetAsyncKeyState( dwKey ) );
+	SHORT key( ::GetAsyncKeyState( dwKey ) );
 	if ( key & 0x8000 )
 	{
 		if ( keyState[dwKey] == EKeyState::KEY_FREE || keyState[dwKey] == EKeyState::KEY_UP )

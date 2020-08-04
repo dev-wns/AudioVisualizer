@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseUtility.hpp"
+#include "BaseConst.hpp"
 
 enum class ERasterizer	 : char { Wire = 0, Back, Front, None, };
 enum class EDepthStencil : char { Enable = 0, Disable, };
@@ -120,8 +121,17 @@ struct DxState
 		rsDesc.DepthClipEnable = TRUE;
 		rsDesc.FillMode = D3D11_FILL_WIREFRAME;
 		rsDesc.CullMode = D3D11_CULL_BACK;
-		rsDesc.MultisampleEnable = TRUE;
-		rsDesc.AntialiasedLineEnable = FALSE;
+		if ( Setting::AntiAliasing == true )
+		{
+			rsDesc.MultisampleEnable = TRUE;
+			rsDesc.AntialiasedLineEnable = TRUE;
+		}
+		else
+		{
+			rsDesc.MultisampleEnable = FALSE;
+			rsDesc.AntialiasedLineEnable = FALSE;
+		}
+
 		if ( FAILED( hr = pd3dDevice->CreateRasterizerState( &rsDesc, &rsWire ) ) )
 		{
 			return hr;

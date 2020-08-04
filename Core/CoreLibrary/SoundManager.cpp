@@ -51,6 +51,7 @@ void SoundManager::Play()
 			soundSystem->playSound( FMOD_CHANNELINDEX::FMOD_CHANNEL_FREE, std::cbegin( musics )->second, false, &channels[0] );
 
 			currentPlaySound = std::cbegin( musics )->second;
+			channels[0]->setVolume( 0.1f );
 			break;
 		}
 	}
@@ -120,22 +121,16 @@ void SoundManager::Play( const std::string& _name )
 //	m_pChannel[iIndex]->getPaused( &paused );
 //	m_pChannel[iIndex]->setPaused( !paused );
 //}
-//void SoundManager::Volume( int iIndex, bool bUp )
-//{
-//	float fCurrentVolume;
-//	m_pChannel[iIndex]->getVolume( &fCurrentVolume );
-//	if ( bUp == true )
-//	{
-//		if ( fCurrentVolume <= 1.0f )
-//			fCurrentVolume += g_fSecPerFrame;
-//	}
-//	else
-//	{
-//		if ( fCurrentVolume >= 0.0f )
-//			fCurrentVolume -= g_fSecPerFrame;
-//	}
-//	m_pChannel[iIndex]->setVolume( fCurrentVolume );
-//}
+void SoundManager::AddVolume( float value )
+{
+	channels[0]->getVolume( &volume );
+	const float& compareValue( volume + value );
+
+	if ( compareValue <= 0.0f || compareValue >= 1.0f ) return;
+
+	volume += value;
+	channels[0]->setVolume( volume );
+}
 
 void SoundManager::CreateSoundBuffer()
 {

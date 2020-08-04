@@ -1,6 +1,7 @@
 #include "StdAfx.hpp"
 #include "Device.h"
 #include "BaseUtility.hpp"
+#include "BaseConst.hpp"
 
 void Device::ResizeClient( const HWND& hWnd, UINT width, UINT height )
 {
@@ -97,7 +98,10 @@ HRESULT Device::CreateSwapChain( const HWND& _hWnd, UINT width, UINT height )
 	desc.BufferDesc.Height = height;
 	desc.BufferDesc.RefreshRate.Denominator = 1;
 	desc.BufferDesc.RefreshRate.Numerator = 60;
-	desc.SampleDesc.Count = 8;
+	if ( Setting::AntiAliasing == true )
+		desc.SampleDesc.Count = 8;
+	else
+		desc.SampleDesc.Count = 1;
 	desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	desc.BufferCount = 1;
 	desc.OutputWindow = _hWnd;

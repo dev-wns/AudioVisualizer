@@ -8,10 +8,10 @@
 
 void Core::GameInit()
 {
-	ObjectManager::Get()->PrevInit();
-
-	DxManager::Get()->Init();
 	Timer::Get()->Init();
+	ObjectManager::Get()->PrevInit();
+	DxManager::Get()->Init();
+	SoundManager::Get()->Init();
 	Init();
 	ObjectManager::Get()->PostInit();
 

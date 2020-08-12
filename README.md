@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://im6.ezgif.com/tmp/ezgif-6-eed5cefd3da8.gif">
   
-</p> <div align="center"> [Youtube] : https://www.youtube.com/watch?v=c654-wR1OR8 </div>
+</p> <div align="center"> [Youtube] : https://youtu.be/A_H460-6bpw </div>
 
 ## 설명
 

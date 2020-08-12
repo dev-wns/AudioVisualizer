@@ -24,7 +24,7 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 
 	// 사운드 생성
 	FMOD::Sound* sound( nullptr );
-	if ( soundSystem->createSound( _path.c_str(), FMOD_LOOP_NORMAL, 0, &sound ) != FMOD_RESULT::FMOD_OK )
+	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK )
 		throw LogicError( __FUNCTION__" - soundSystem create failed.\n" );
 
 	// path에서 이름만 자르기

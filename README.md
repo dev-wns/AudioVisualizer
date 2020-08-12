@@ -3,12 +3,13 @@
 <p align="center">
   <img src="https://im6.ezgif.com/tmp/ezgif-6-eed5cefd3da8.gif">
   
-</p> <div align="center"> [Youtube] : https://youtu.be/A_H460-6bpw </div>
+</p> <div align="center"> [Youtube] : https://youtu.be/-4i7t9mSr3I </div>
 
 ## 설명
 
 오디오 파일을 읽은 후 해당 오디오의 스펙트럼 값을 시각화 하여 보여주는 프로그램 입니다. <br>
 Steam Wallpaper Engine 중 사용자가 만든 Audio Visualizer 바탕화면에서 영감을 얻어 제작했습니다. <br>
+QHD(2560x1440)기준이지만 단축키를 활용하여 사용자의 해상도에 맞게 UI 크기조절 하시면 됩니다.<br>
 
 ## 단축키
 |  단축키  |     내용                | 단축키  |         내용         |

@@ -20,7 +20,7 @@ void SoundPlayer::Init()
 	Timer::Get()->SetFixedFrameRate( 240 );
 
 	// 리소스 추가
-	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music30.mp3" ) == true )
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music30.mp3" ) == false )
 	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );

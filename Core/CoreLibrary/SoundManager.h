@@ -8,17 +8,18 @@
 #include "Singleton.hpp"
 
 enum class ESoundCount { S64 = 0, S128, S256, S512, S1024, S2048, S4096L, S4096R, S8192L, S8192R };
+
 class SoundManager : public Singleton<SoundManager>
 {
 public:
-	SoundManager() = default;
+	SoundManager();
 	virtual ~SoundManager() = default;
 	enum class ESound { BackGround = 31, };
 
 public:
 	bool LoadSoundFile( const std::string& _path );
 	void CreateSoundBuffer();
-	std::map<ESoundCount, float*>& GetSpectrum();
+	const float* GetSpectrum( ESoundCount type ) const;
 
 public:
 	bool isPlaying();
@@ -37,6 +38,7 @@ public:
 	void Release();
 
 private:
+	FMOD_DSP_FFT_WINDOW type;
 	FMOD::System* soundSystem;
 	std::map<std::string, FMOD::Sound*> musics;
 	FMOD::Sound* currentPlaySound;

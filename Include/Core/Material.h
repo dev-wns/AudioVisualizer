@@ -5,7 +5,7 @@
 class Material : public Component
 {
 public:
-	Material();;
+	Material();
 	virtual ~Material() = default;
 
 public:

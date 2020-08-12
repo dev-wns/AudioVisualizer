@@ -4,7 +4,7 @@
 class Particle : public GameObject
 {
 public:
-	Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow );
+	Particle( const std::wstring _name, const GameObject* _cam, EObject _type, bool* _isRainbow );
 	virtual ~Particle() = default;
 
 public:
@@ -28,7 +28,7 @@ private:
 class ParticleSystem : public GameObject
 {
 public:
-	ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle );
+	ParticleSystem( const std::wstring _name, const GameObject* _cam, EObject _type, UINT _maxParticle );
 	virtual ~ParticleSystem() = default;
 
 public:

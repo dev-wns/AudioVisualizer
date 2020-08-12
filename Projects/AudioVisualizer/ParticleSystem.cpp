@@ -7,7 +7,7 @@
 #include "DxManager.h"
 #include "ObjectManager.h"
 
-Particle::Particle( const std::wstring _name, GameObject* _cam, EObject _type, bool* _isRainbow ) : 
+Particle::Particle( const std::wstring _name, const GameObject* _cam, EObject _type, bool* _isRainbow ) : 
 	GameObject( _name, _cam, _type ), bRainbow( *_isRainbow ), startPos( Vector3::Zero ), direction( Vector3::Backward ),
 	defaultColor( D3DXVECTOR4( 1.0f, 1.0f, 1.0f, MyRandom::Get()->GetRandomFloat( 0.1f, 1.0f ) ) ),
 	rainbowColor( D3DXVECTOR4( MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ), MyRandom::Get()->GetRandomFloat( 0.0f, 1.0f ),
@@ -46,7 +46,7 @@ void Particle::Init()
 void Particle::Frame()
 {
 	const float& spf( Timer::Get()->GetSPF() );
-	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S512] );
+	const float* spec( SoundManager::Get()->GetSpectrum( ESoundCount::S512 ) );
 
 	// 색상 체크
 	if ( bRainbow == true )
@@ -64,7 +64,7 @@ void Particle::Frame()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-ParticleSystem::ParticleSystem( const std::wstring _name, GameObject* _cam, EObject _type, UINT _maxParticle ) : 
+ParticleSystem::ParticleSystem( const std::wstring _name, const GameObject* _cam, EObject _type, UINT _maxParticle ) : 
 	GameObject( _name, _cam, _type ), bRainbow( false ), maxParticle( _maxParticle ) { }
 
 void ParticleSystem::Init()
@@ -101,7 +101,7 @@ void ParticleSystem::Frame()
 {
 	int count( 0 );
 	const float& width( static_cast< float >( DxManager::Get()->GetClientRect().right ) );
-	for ( GameObject* oneParticle : GetChild() )
+	for ( GameObject* oneParticle : GetChilds() )
 	{
 		const D3DXVECTOR3& pos( oneParticle->GetComponent<Transform>()->GetPosition() );
 		if ( pos.z < 0.0f || ( ( pos.x > -150.0f && pos.y < 150.0f ) && ( pos.x < 150.0f && pos.y > -150.0f ) ) )

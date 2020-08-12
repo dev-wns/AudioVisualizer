@@ -10,21 +10,12 @@ GameObject::GameObject() : bVisibled( true ), bBillboard( false ), objectType( E
 	components.insert( std::make_pair( EComponent::Material, new Material() ) );
 }
 
-GameObject::GameObject( const std::wstring& _name, GameObject* _cam, EObject _type ) : 
+GameObject::GameObject( const std::wstring& _name, const GameObject* _cam, EObject _type ) : 
 	bVisibled( true ), bBillboard( false ), objectType( _type ), objectName( _name ), applyCamera( _cam )
 {
 	components.insert( std::make_pair( EComponent::Transform, new Transform() ) );
 	components.insert( std::make_pair( EComponent::Mesh, new Mesh() ) );
 	components.insert( std::make_pair( EComponent::Material, new Material() ) );
-}
-
-GameObject* GameObject::FindObject( GameObject* _obj )
-{
-	if ( _obj == nullptr ) 
-		throw NullPointer( __FUNCTION__" - the argument is null reference.\n" );
-	const std::vector<GameObject*>::const_iterator& iter( std::find( std::cbegin( childs ), std::cend( childs ), _obj ) );
-
-	return iter == std::cend( childs ) ? nullptr : *iter;
 }
 
 GameObject* GameObject::FindObject( const std::wstring& _name )
@@ -48,6 +39,11 @@ Component* GameObject::FindComponent( EComponent type )
 	return dynamic_cast< Component* >( iter->second );
 }
 
+void GameObject::SetVisible( bool visible ) 
+{
+	bVisibled = visible; 
+}
+
 void GameObject::SetBillboard( bool _billboard )
 {
 	bBillboard = _billboard;
@@ -60,7 +56,6 @@ void GameObject::SetParent( GameObject* _parent )
 	if ( parent != nullptr )
 	{
 		parent->RemoveObject( this );
-		RemoveParent();
 	}
 
 	parent = _parent;
@@ -78,8 +73,27 @@ void GameObject::SetCamera( GameObject* _cam )
 		oneChild->SetCamera( _cam );
 	}
 }
+const std::vector<GameObject*>& GameObject::GetChilds() const
+{ 
+	return childs; 
+}
 
-GameObject* GameObject::GetCamera() const 
+const std::wstring& GameObject::GetName() const
+{
+	return objectName;  
+}
+
+const EObject GameObject::GetType() const
+{
+	return objectType;  
+}
+
+const GameObject* GameObject::GetParent() const
+{
+	return parent; 
+}
+
+const GameObject* GameObject::GetCamera() const 
 {
 	if ( applyCamera == nullptr ) 
 		throw NullPointer( __FUNCTION__" - the apply camera is null reference.\n" );
@@ -139,14 +153,6 @@ void GameObject::DeleteObject( const std::wstring& _name )
 		throw NullPointer( __FUNCTION__" - the object is null reference.\n" );
 
 	SafeDelete( object );
-}
-
-void GameObject::RemoveParent()
-{
-	if ( parent == nullptr )
-		throw NullPointer( __FUNCTION__" - the parent is null reference.\n" );
-
-	parent = nullptr;
 }
 
 void GameObject::Init()

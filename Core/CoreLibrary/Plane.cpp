@@ -1,7 +1,7 @@
 #include "StdAfx.hpp"
 #include "Plane.h"
 
-Plane::Plane( const std::wstring& _name, GameObject* _cam, EObject _type ) : GameObject( _name, _cam, _type ) { }
+Plane::Plane( const std::wstring& _name, const GameObject* _cam, EObject _type ) : GameObject( _name, _cam, _type ) { }
 
 void Plane::Init()
 {

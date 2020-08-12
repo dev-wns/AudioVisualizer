@@ -4,7 +4,7 @@
 class Line : public GameObject
 {
 public:
-	Line( const std::wstring& _name, GameObject* _cam, EObject _type );
+	Line( const std::wstring& _name, const GameObject* _cam, EObject _type );
 	virtual ~Line() = default;
 
 public:

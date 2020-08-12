@@ -1,3 +1,4 @@
+#include "StdAfx.hpp"
 #include "IOStream.h"
 
 IOStream::~IOStream()

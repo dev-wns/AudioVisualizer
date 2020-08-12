@@ -4,13 +4,13 @@
 class Bar : public GameObject
 {
 public:
-	Bar( const std::wstring& _name, GameObject* _cam, EObject _oType );
+	Bar( const std::wstring& _name, const GameObject* _cam, EObject _oType );
 };
 
 class Spectrum : public GameObject
 {
 public:
-	Spectrum( const std::wstring& _name, GameObject* _cam, EObject _oType, UINT _maxSpectrum );
+	Spectrum( const std::wstring& _name, const GameObject* _cam, EObject _oType, UINT _maxSpectrum );
 	virtual ~Spectrum() = default;
 
 public:

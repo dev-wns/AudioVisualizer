@@ -9,7 +9,7 @@
 // =======================================================================================================================
 // ***** Bar
 // =======================================================================================================================
-Bar::Bar( const std::wstring& _name, GameObject* _cam, EObject _oType ) : GameObject( _name, _cam, _oType )
+Bar::Bar( const std::wstring& _name, const GameObject* _cam, EObject _oType ) : GameObject( _name, _cam, _oType )
 {
 	std::vector<PNCT_VERTEX> vertices;
 	vertices.resize( 4 );
@@ -30,7 +30,7 @@ Bar::Bar( const std::wstring& _name, GameObject* _cam, EObject _oType ) : GameOb
 // ***** Spectrum
 // =======================================================================================================================
 
-Spectrum::Spectrum( const std::wstring& _name, GameObject* _cam, EObject _oType, UINT _maxSpectrum ) : 
+Spectrum::Spectrum( const std::wstring& _name, const GameObject* _cam, EObject _oType, UINT _maxSpectrum ) : 
 	GameObject( _name, _cam, _oType ), maxSpectrum( _maxSpectrum ), barScale( 2.5f ) { }
 
 void Spectrum::Init()
@@ -114,7 +114,7 @@ void Spectrum::Init()
 void Spectrum::Frame()
 {
 	int count( 0 );
-	for ( GameObject* oneSpectrumBar : GetChild() )
+	for ( GameObject* oneSpectrumBar : GetChilds() )
 	{
 		oneSpectrumBar->Frame();
 		::D3DXMatrixTranspose( &instanceData[count++].worldMatrix, &oneSpectrumBar->GetComponent<Transform>()->GetLocalMatrix() );
@@ -170,7 +170,7 @@ void Spectrum::Release()
 void Spectrum::UpdatePosition( const float& _aroundScale, const float& _bassAmount )
 {
 	// 베이스 음에 따른 스펙트럼바 위치 조절
-	const std::vector<GameObject*>& childList( GetChild() );
+	const std::vector<GameObject*>& childList( GetChilds() );
 	for ( UINT count = 0; count < maxSpectrum * 2; count++ )
 	{
 		childList[count]->GetComponent<Transform>()->SetPosition(
@@ -182,14 +182,15 @@ void Spectrum::UpdatePosition( const float& _aroundScale, const float& _bassAmou
 void Spectrum::UpdateLength( const float& _lengthAmount )
 {
 	const float& spf( Timer::Get()->GetSPF() );
-	std::map<ESoundCount, float*>& spectrum( SoundManager::Get()->GetSpectrum() );
-	const std::vector<GameObject*>& childList( GetChild() );
+	const float* spectrumLeft( SoundManager::Get()->GetSpectrum( ESoundCount::S4096L ) );
+	const float* spectrumRight( SoundManager::Get()->GetSpectrum( ESoundCount::S4096R ) );
+	const std::vector<GameObject*>& childList( GetChilds() );
 	UINT spectrumCount( 0 );
 
-	for ( UINT count = 0; count < maxSpectrum * 2; spectrumCount++ )
+	for ( UINT count = 0; count < maxSpectrum * 2; )
 	{
 		// 음악에 따라 스펙트럼바 높낮이 조절
-		const float& value( ( ( spectrum[ESoundCount::S4096L][spectrumCount] + spectrum[ESoundCount::S4096R][spectrumCount] ) * 0.5f ) );
+		const float& value( ( ( spectrumLeft[spectrumCount] + spectrumRight[spectrumCount++] ) * 0.5f ) );
 		const float& calc( value * _lengthAmount );
 		const D3DXVECTOR3& scl( childList[count]->GetComponent<Transform>()->GetScale() );
 
@@ -204,15 +205,17 @@ void Spectrum::UpdateLength( const float& _lengthAmount )
 				childList[count]->GetComponent<Transform>()->SetScaleY( calc );
 			}
 		}
-		else
-		{
-			// 스펙트럼 높이 감소
-			// 크기가 클수록 더 많은 힘으로 줄어들게 합니다.
-			childList[count]->GetComponent<Transform>()->ScalingY( -( 50.0f + ( scl.y * 9.7624f ) ) * spf );
-		}
+		//else
+		//{
+		//	// 스펙트럼 높이 감소
+		//	// 크기가 클수록 더 많은 힘으로 줄어들게 합니다.
+		//}
 
+		childList[count]->GetComponent<Transform>()->ScalingY( -( scl.y * 9.7624f ) * spf );
 		if ( scl.y < 0.0f )
+		{
 			childList[count]->GetComponent<Transform>()->SetScaleY( 0.0f );
+		}
 
 		// 만든 스펙트럼이 좌우 대칭이므로 반대쪽은 값 복사
 		childList[count + 1]->GetComponent<Transform>()->SetScale( childList[count]->GetComponent<Transform>()->GetScale() );

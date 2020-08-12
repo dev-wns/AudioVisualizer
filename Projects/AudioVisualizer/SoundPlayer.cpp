@@ -6,13 +6,12 @@
 #include "Const.h"
 #include "Input.h"
 #include "Timer.h"
-#include <thread>
 
 SoundPlayer::SoundPlayer() : 
 	bBackGroundVisible( true ), bCenterImageVisible( true ),
 	bCameraShake( false ), bCenterBass( true ), bBarBass( true ), 
 	aroundScale( 175.0f ), lengthAmount( 2000.0f ),
-	bassPower( 25.0f ), bassAmount( 0.0f ), rawBassValue( 0.0f ),
+	bassPower( 50.0f ), bassAmount( 0.0f ), rawBassValue( 0.0f ),
 	shakePower( 5.0f ) { }
 
 void SoundPlayer::Init()
@@ -21,7 +20,7 @@ void SoundPlayer::Init()
 	Timer::Get()->SetFixedFrameRate( 240 );
 
 	// 리소스 추가
-	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music1.mp3" ) == false )
+	if ( SoundManager::Get()->LoadSoundFile( "..\\..\\Resource\\Sound\\music30.mp3" ) == true )
 	 	 SoundManager::Get()->LoadSoundFile( Path::DefaultSound );
 
 	TextureManager::Get()->AddTexture( Path::DefaultBackgound );
@@ -53,10 +52,7 @@ void SoundPlayer::Init()
 	}
 	catch ( const Exception& ex )
 	{
-		std::string error( ex.What() );
-		std::string error2( ex.What() );
-
-		error; error2;
+		ex.what();
 	}
 }
 
@@ -141,7 +137,7 @@ void SoundPlayer::Release()
 void SoundPlayer::BassUpdate()
 {
 	const float& spf( Timer::Get()->GetSPF() );
-	const float* spec( SoundManager::Get()->GetSpectrum()[ESoundCount::S4096L] );
+	const float* spec( SoundManager::Get()->GetSpectrum( ESoundCount::S4096L ) );
 	float calcValue( 0.0f );
 
 	for ( int count = 0; count < 20; count++ )
@@ -155,7 +151,7 @@ void SoundPlayer::BassUpdate()
 		bassAmount = calcValue;
 
 	if ( bassAmount > 0.0f )
-		bassAmount -= calcValue * 15.0f * spf;
+		bassAmount -= aroundScale * 2.5f * spf;
 	else
 		bassAmount = 0.0f;
 }

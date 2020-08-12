@@ -1,7 +1,10 @@
 #include "StdAfx.hpp"
 #include "SoundManager.h"
 #include "Timer.h"
+#include "Input.h"
 #include "BaseUtility.hpp"
+
+SoundManager::SoundManager() : type( FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS ) {}
 
 bool SoundManager::isPlaying()
 {
@@ -9,9 +12,9 @@ bool SoundManager::isPlaying()
 	return channels[0]->isPlaying( &isPlay );
 }
 
-std::map<ESoundCount, float*>& SoundManager::GetSpectrum()
+const float* SoundManager::GetSpectrum( ESoundCount _type ) const
 {
-	return spectrum;
+	return spectrum.find( _type )->second;
 }
 
 bool SoundManager::LoadSoundFile( const std::string& _path )
@@ -21,8 +24,9 @@ bool SoundManager::LoadSoundFile( const std::string& _path )
 
 	// 사운드 생성
 	FMOD::Sound* sound( nullptr );
-	if ( soundSystem->createSound( _path.c_str(), FMOD_DEFAULT, 0, &sound ) != FMOD_RESULT::FMOD_OK ) 
+	if ( soundSystem->createSound( _path.c_str(), FMOD_LOOP_NORMAL, 0, &sound ) != FMOD_RESULT::FMOD_OK )
 		throw LogicError( __FUNCTION__" - soundSystem create failed.\n" );
+
 	// path에서 이름만 자르기
 	std::string name;
 	const size_t& pos( _path.find_last_of( L'\\' ) );
@@ -220,11 +224,51 @@ void SoundManager::Init()
 
 void SoundManager::Frame()
 {
+	if ( Input::Get()->KeyCheck( VK_NUMPAD1 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_RECT;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD2 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_TRIANGLE;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD3 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_HAMMING;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD4 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_HANNING;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD5 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_BLACKMAN;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD6 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD7 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_MAX;
+	}
+
+	if ( Input::Get()->KeyCheck( VK_NUMPAD8 ) == EKeyState::KEY_PUSH )
+	{
+		type = FMOD_DSP_FFT_WINDOW_FORCEINT;
+	}
+
 	if ( Timer::Get()->IsFixedFrameRate() == true )
 	{
 		soundSystem->getSpectrum( spectrum[ESoundCount::S512], 512, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-		soundSystem->getSpectrum( spectrum[ESoundCount::S4096L], 4096, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
-		soundSystem->getSpectrum( spectrum[ESoundCount::S4096R], 4096, 1, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS );
+		soundSystem->getSpectrum( spectrum[ESoundCount::S4096L], 4096, 0, type );
+		soundSystem->getSpectrum( spectrum[ESoundCount::S4096R], 4096, 1, type );
 	}
 	soundSystem->update();
 }

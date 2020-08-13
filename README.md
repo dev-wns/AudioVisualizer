@@ -1,7 +1,7 @@
 ## 미리보기
 
 <p align="center">
-  <img src="https://im6.ezgif.com/tmp/ezgif-6-eed5cefd3da8.gif">
+  <img src="https://postfiles.pstatic.net/MjAyMDA4MTNfMjA0/MDAxNTk3Mjk4MDc4NDU3.bwK5NTmrn59WQOTabxUF8625xtbfCnE2yOqDnqYni04g.Tqr8U_aT6q9wCu_WoJmd0kaeAp4z2CMkp-2n6kclBckg.GIF.ashi0/ezgif-6-eed5cefd3da8.gif?type=w966">
   
 </p> <div align="center"> [Youtube] : https://youtu.be/-4i7t9mSr3I </div>
 
